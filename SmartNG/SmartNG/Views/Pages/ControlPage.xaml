@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartNG.Views.Pages.ControlPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:SmartNG"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+
+        <local:ControlPageViewModel />
+
+    </ContentPage.BindingContext>
+
+    <Grid BackgroundColor="{x:StaticResource lightGreen}">
+
+        <Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <RowDefinition Height="Auto" />
+
+            <!--  Add and Delete Service  -->
+            <RowDefinition Height="Auto" />
+
+            <!--  Services  -->
+            <RowDefinition Height="*" />
+
+
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Padding="5"
+            FontFamily="{StaticResource KalamBoldFont}"
+            FontSize="40"
+            HorizontalOptions="Center"
+            Text="Service Management"
+            TextColor="{x:StaticResource _DarkBlue}"
+            VerticalOptions="Start" />
+
+        <StackLayout
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Orientation="Horizontal">
+
+            <Button
+                Command="{Binding AddNewService}"
+                CornerRadius="10"
+                Style="{x:StaticResource CustomActionBtn}"
+                Text="Add" />
+
+            <Button
+                CornerRadius="10"
+                Style="{x:StaticResource CustomActionBtn}"
+                Text="Settings" />
+
+
+
+        </StackLayout>
+
+
+        <Frame
+            Grid.Row="2"
+            Margin="30,0,30,30"
+            Padding="10"
+            CornerRadius="10"
+            VerticalOptions="Center">
+
+
+            <ScrollView>
+
+                <StackLayout Orientation="Vertical" />
+
+            </ScrollView>
+
+
+
+        </Frame>
+
+    </Grid>
+
+
+</ContentPage>

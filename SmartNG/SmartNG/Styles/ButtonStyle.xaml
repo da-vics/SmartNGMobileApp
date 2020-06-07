@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+    <!--#region Borderless Btn-->
+    <Style x:Key="BorderlessBtn" TargetType="Button">
+
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{x:StaticResource _DarkBlue}" />
+        <Setter Property="FontFamily" Value="{x:StaticResource KalamBoldFont}" />
+        <Setter Property="FontSize" Value="48" />
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region  Custom Button-->
+
+    <Style x:Key="CustomActionBtn" TargetType="Button">
+
+        <Setter Property="BackgroundColor" Value="{x:StaticResource _DarkGreen}" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Margin" Value="20" />
+        <Setter Property="TextColor" Value="{x:StaticResource MyYellow}" />
+        <Setter Property="FontFamily" Value="{x:StaticResource KalamBoldFont}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="BorderColor" Value="Transparent" />
+
+
+    </Style>
+
+    <!--#endregion-->
+
+
+</ResourceDictionary>

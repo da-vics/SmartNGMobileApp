@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartNG.Views.Pages.RegistrationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:SmartNG"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ContentPage.BindingContext>
+        <local:RegistrationPageViewModel />
+    </ContentPage.BindingContext>
+
+    <!--  Value Converter  -->
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+            <local:ButtonTextVisibilityValueConverter x:Key="BtnVisibilityConverter" />
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="{x:StaticResource lightGreen}">
+
+        <!--  Content Definitions  -->
+        <Grid.RowDefinitions>
+
+            <!--  Header  -->
+            <RowDefinition Height="Auto" />
+
+            <!--  Sign in Options  -->
+            <RowDefinition Height="*" />
+
+
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Margin="0,10,0,0"
+            Padding="10"
+            FontFamily="{StaticResource KalamBoldFont}"
+            FontSize="48"
+            HorizontalOptions="Center"
+            Text="SIGN UP"
+            TextColor="{x:StaticResource _DarkBlue}"
+            VerticalOptions="Start" />
+
+        <Frame
+            Grid.Row="1"
+            Margin="30,0,30,30"
+            Padding="10"
+            CornerRadius="10"
+            VerticalOptions="Center">
+
+            <!--#region InputConten-->
+
+            <ScrollView>
+
+                <StackLayout Orientation="Vertical" VerticalOptions="Center">
+
+                    <!--#region User Name-->
+                    <Label
+                        Style="{x:StaticResource CustomHeadLabel}"
+                        Text="FullName"
+                        TextColor="{x:StaticResource _DarkBlue}"
+                        VerticalOptions="Center" />
+
+                    <Editor
+                        Margin="5,0,5,5"
+                        AutoSize="TextChanges"
+                        Style="{x:StaticResource CustomEntry}"
+                        Text="{Binding FullName, Mode=OneWayToSource}" />
+                    <!--#endregion-->
+
+                    <!--#region UserEmail-->
+                    <Label
+                        Style="{x:StaticResource CustomHeadLabel}"
+                        Text="Email"
+                        TextColor="{x:StaticResource _DarkBlue}"
+                        VerticalOptions="Center" />
+
+                    <Editor
+                        Margin="5,0,5,5"
+                        AutoSize="TextChanges"
+                        Style="{x:StaticResource CustomEntry}"
+                        Text="{Binding Email, Mode=OneWayToSource}" />
+                    <!--#endregion-->
+
+
+                    <!--#region UserPassword-->
+                    <Label
+                        Style="{x:StaticResource CustomHeadLabel}"
+                        Text="Password"
+                        TextColor="{x:StaticResource _DarkBlue}"
+                        VerticalOptions="Center" />
+
+                    <Entry
+                        Margin="5,0,5,5"
+                        IsPassword="True"
+                        Keyboard="Text"
+                        Style="{x:StaticResource CustomEntry}"
+                        Text="{Binding Password, Mode=OneWayToSource}" />
+                    <!--#endregion-->
+
+                    <!--#region UserPassword-->
+                    <Label
+                        Style="{x:StaticResource CustomHeadLabel}"
+                        Text="Confirm Password"
+                        TextColor="{x:StaticResource _DarkBlue}"
+                        VerticalOptions="Center" />
+
+                    <Entry
+                        Margin="5,0,5,5"
+                        IsPassword="True"
+                        Keyboard="Text"
+                        Style="{x:StaticResource CustomEntry}"
+                        Text="{Binding ConfirmPassword, Mode=OneWayToSource}" />
+                    <!--#endregion-->
+
+                    <!--#region PhoneNumber-->
+                    <Label
+                        Style="{x:StaticResource CustomHeadLabel}"
+                        Text="Phone Number"
+                        TextColor="{x:StaticResource _DarkBlue}"
+                        VerticalOptions="Center" />
+
+                    <Entry
+                        Margin="5,0,5,5"
+                        Keyboard="Numeric"
+                        Style="{x:StaticResource CustomEntry}"
+                        Text="{Binding PhoneNumber, Mode=OneWayToSource}" />
+                    <!--#endregion-->
+
+
+                    <!--#region HomeAddress-->
+                    <Label
+                        Style="{x:StaticResource CustomHeadLabel}"
+                        Text="Home Address"
+                        TextColor="{x:StaticResource _DarkBlue}"
+                        VerticalOptions="Center" />
+
+                    <Editor
+                        Margin="5,0,5,5"
+                        AutoSize="TextChanges"
+                        Keyboard="Text"
+                        Style="{x:StaticResource CustomEntry}"
+                        Text="{Binding HomeAddress, Mode=OneWayToSource}" />
+                    <!--#endregion-->
+
+
+                    <!--#region SubmitBtn-->
+                    <Grid HeightRequest="150">
+
+                        <StackLayout>
+
+                            <Button
+                                Command="{Binding UserRegisterCommand}"
+                                CornerRadius="10"
+                                IsVisible="{Binding isSignUpInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                                Style="{x:StaticResource CustomActionBtn}"
+                                Text="Submit" />
+
+                            <ActivityIndicator
+                                Margin="20"
+                                IsEnabled="{Binding isSignUpInit}"
+                                IsRunning="{Binding isSignUpInit}"
+                                IsVisible="{Binding isSignUpInit}"
+                                Color="{x:StaticResource _DarkBlue}" />
+
+                        </StackLayout>
+                    </Grid>
+                    <!--#endregion-->
+
+                </StackLayout>
+            </ScrollView>
+            <!--#endregion-->
+        </Frame>
+
+
+    </Grid>
+
+
+
+</ContentPage>

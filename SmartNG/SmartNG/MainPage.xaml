@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartNG.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:SmartNG"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <NavigationPage.TitleView>
+
+        <Label
+            FontAttributes="Bold"
+            FontSize="25"
+            HorizontalOptions="Center"
+            Text="SmartNG"
+            TextColor="{x:StaticResource _DarkGreen}"
+            VerticalOptions="Center" />
+
+    </NavigationPage.TitleView>
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+
+    </ContentPage.BindingContext>
+
+
+    <Grid BackgroundColor="{x:StaticResource lightGreen}">
+
+        <!--  Content Definitions  -->
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto" />
+            <!--  Options  -->
+            <RowDefinition Height="*" />
+
+            <!--  Contact us  -->
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+
+
+        <Label
+            Grid.Row="0"
+            Margin="5"
+            Padding="10"
+            FontFamily="{StaticResource HeaderFont}"
+            FontSize="48"
+            HorizontalOptions="Center"
+            Text="SmartNG"
+            TextColor="{x:StaticResource _DarkGreen}"
+            VerticalOptions="Start" />
+
+
+        <StackLayout
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="Center">
+
+            <Button
+                Margin="10"
+                Command="{Binding UserSignInCommand}"
+                Style="{x:StaticResource BorderlessBtn}"
+                Text="SIGN In" />
+
+            <Button
+                Margin="10"
+                Command="{Binding RegisterUserCommand}"
+                Style="{x:StaticResource BorderlessBtn}"
+                Text="SIGN Up" />
+
+        </StackLayout>
+
+
+        <Button
+            Grid.Row="2"
+            FontFamily="{StaticResource KalamRegularFont}"
+            FontSize="20"
+            HorizontalOptions="Center"
+            Style="{x:StaticResource BorderlessBtn}"
+            Text="Powered by SmartNG"
+            VerticalOptions="End" />
+
+
+    </Grid>
+
+</ContentPage>
