@@ -149,4 +149,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\loginuser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\signupuser.png" />
+  </ItemGroup>
 </Project>

@@ -116,7 +116,7 @@ namespace SmartNG
 
         private async void UserRegistrationPageSwitch()
         {
-            await Application.Current.MainPage.Navigation.PushModalAsync(new RegistrationPage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new istRegistrationPage());
         }
 
 

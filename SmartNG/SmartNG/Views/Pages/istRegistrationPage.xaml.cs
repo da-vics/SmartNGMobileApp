@@ -1,5 +1,4 @@
-﻿using SmartNG.DataProfiles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace SmartNG.Views.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegistrationPage : ContentPage
+    public partial class istRegistrationPage : ContentPage
     {
-        public RegistrationPage(RegistrationProfile reguser)
+        public istRegistrationPage()
         {
             InitializeComponent();
-            this.BindingContext = new RegistrationPageViewModel(reguser);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace SmartNG
         private string _confirmPassword { get; set; }
         private int _phoneNumber { get; set; }
         private string _homeAddress { get; set; }
-        private bool _isSignUp { get; set; }
+        private bool _isSignUp { get; set; } = false;
 
         private bool _IsRegSuccessful { get; set; } = false;
         #endregion
@@ -33,59 +33,6 @@ namespace SmartNG
         #region PublicMembers
 
         #region Accessors
-
-        public string FullName
-        {
-
-            get => this._fullName;
-
-            set
-            {
-                this._fullName = value;
-                onPropertyChanged();
-            }
-        }
-
-        public string Email
-        {
-
-            get => this._Email;
-
-            set
-            {
-                this._Email = value;
-
-                var verifyEmail = new EmailValidator(Email);
-
-                //if (verifyEmail.IsValid() == false)
-                //{ }
-                onPropertyChanged();
-            }
-        }
-
-        public string Password
-        {
-
-            get => this._password;
-
-            set
-            {
-                this._password = value;
-                onPropertyChanged();
-            }
-        }
-
-        public string ConfirmPassword
-        {
-
-            get => this._confirmPassword;
-
-            set
-            {
-                this._confirmPassword = value;
-                onPropertyChanged();
-            }
-        }
 
         public int PhoneNumber
         {
@@ -125,13 +72,15 @@ namespace SmartNG
         #endregion
 
         public ICommand UserRegisterCommand { get; private set; }
+
+        public RegistrationProfile newUserProfile { get; set; }
         /// <summary>
         /// Default Constructor..
         /// </summary>
-        public RegistrationPageViewModel()
+        public RegistrationPageViewModel(RegistrationProfile registrationProfile)
         {
             UserRegisterCommand = new Command(RegisterUser);
-            this.isSignUpInit = false;
+            newUserProfile = registrationProfile;
         }
 
         #endregion
@@ -146,14 +95,8 @@ namespace SmartNG
             {
                 this.isSignUpInit = true;
 
-                RegistrationProfile newUserProfile = new RegistrationProfile()
-                {
-                    Email = _Email,
-                    PassWordHash = _password,
-                    Fullname = _fullName,
-                    HomeAddress = _homeAddress,
-                    PhoneNumber = _phoneNumber.ToString()
-                };
+                newUserProfile.HomeAddress = _homeAddress;
+                newUserProfile.PhoneNumber = _phoneNumber.ToString();
 
                 var registeruser = new RegisterUserApi(newUserProfile);
 

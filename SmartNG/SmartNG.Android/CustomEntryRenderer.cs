@@ -41,7 +41,7 @@ namespace SmartNG.Droid
                 Control.SetBackground(gradientDrawable);
 
 
-                Control.SetPadding(50, Control.PaddingTop, Control.PaddingRight,
+                Control.SetPadding(20, Control.PaddingTop, Control.PaddingRight,
                     Control.PaddingBottom);
             }
         }
