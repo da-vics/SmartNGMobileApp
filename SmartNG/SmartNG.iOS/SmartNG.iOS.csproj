@@ -146,4 +146,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\email.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loginuser.png" />
+  </ItemGroup>
 </Project>

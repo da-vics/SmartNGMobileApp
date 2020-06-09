@@ -35,8 +35,8 @@ namespace SmartNG.Droid
             {
                 //Control.SetBackgroundResource(Resource.Layout.rounded_shape);
                 var gradientDrawable = new GradientDrawable();
-                gradientDrawable.SetCornerRadius(70f);
-                gradientDrawable.SetStroke(5, Android.Graphics.Color.Gray);
+                gradientDrawable.SetCornerRadius(40f);
+                gradientDrawable.SetStroke(5, Android.Graphics.Color.LightGray);
                 gradientDrawable.SetColor(Android.Graphics.Color.WhiteSmoke);
                 Control.SetBackground(gradientDrawable);
 

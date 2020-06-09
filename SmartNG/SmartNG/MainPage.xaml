@@ -35,13 +35,13 @@
 
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="DarkGray">
+    <Grid BackgroundColor="White">
 
         <!--  Content Definitions  -->
         <Grid.RowDefinitions>
 
             <!--  Margin  -->
-            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
 
             <!--  Image  -->
             <RowDefinition Height="*" />
@@ -80,13 +80,21 @@
         -->
 
         <Image
-            Grid.Row="1"
+            Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Margin="15"
             HeightRequest="60"
             HorizontalOptions="Center"
             Source="Varslogo.png"
+            VerticalOptions="Center" />
+
+        <Image
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            HorizontalOptions="Center"
+            Source="loginuser.png"
             VerticalOptions="Center" />
 
         <StackLayout
@@ -125,7 +133,8 @@
 
                     <local:CustomEntry
                         Keyboard="Text"
-                        Placeholder="Email:"
+                        Placeholder="Email"
+                        PlaceholderColor="LightGray"
                         ReturnType="Next"
                         Style="{x:StaticResource CustomEntry}"
                         Text="{Binding Email, Mode=OneWayToSource}" />
@@ -136,7 +145,8 @@
                         <local:CustomEntry
                             IsPassword="True"
                             Keyboard="Text"
-                            Placeholder="Password:"
+                            Placeholder="Password"
+                            PlaceholderColor="LightGray"
                             ReturnCommand="{Binding UserLoginCommand}"
                             ReturnType="Done"
                             Style="{x:StaticResource CustomEntry}"
@@ -183,7 +193,7 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="3"
                     Command="{Binding UserLoginCommand}"
-                    CornerRadius="50"
+                    CornerRadius="30"
                     IsVisible="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                     Style="{x:StaticResource CustomActionBtn}"
                     Text="Login"
