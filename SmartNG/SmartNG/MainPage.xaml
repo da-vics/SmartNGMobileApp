@@ -26,64 +26,213 @@
 
     </ContentPage.BindingContext>
 
+    <!--  Value Converter  -->
+    <ContentPage.Resources>
 
-    <Grid BackgroundColor="{x:StaticResource lightGreen}">
+        <ResourceDictionary>
+            <local:ButtonTextVisibilityValueConverter x:Key="BtnVisibilityConverter" />
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <Grid BackgroundColor="DarkGray">
 
         <!--  Content Definitions  -->
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="Auto" />
-            <!--  Options  -->
+            <!--  Margin  -->
+            <RowDefinition Height="100" />
+
+            <!--  Image  -->
             <RowDefinition Height="*" />
 
-            <!--  Contact us  -->
+            <!--  Sign in Options  -->
+            <RowDefinition Height="*" />
+
+            <!--  Sign in Options Span  -->
+            <RowDefinition Height="*" />
+
+            <!--  Footer  -->
+            <RowDefinition Height="Auto" />
+
+            <!--  Footer Span  -->
             <RowDefinition Height="Auto" />
 
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
 
-        <Label
-            Grid.Row="0"
-            Margin="5"
-            Padding="10"
-            FontFamily="{StaticResource HeaderFont}"
-            FontSize="48"
+
+            <ColumnDefinition Width="20" />
+
+            <ColumnDefinition Width="*" />
+
+            <ColumnDefinition Width="*" />
+
+            <ColumnDefinition Width="*" />
+
+            <ColumnDefinition Width="20" />
+
+        </Grid.ColumnDefinitions>
+
+
+        <!--
+        -->
+
+        <Image
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            Margin="15"
+            HeightRequest="60"
             HorizontalOptions="Center"
-            Text="SmartNG"
-            TextColor="{x:StaticResource _DarkGreen}"
-            VerticalOptions="Start" />
-
+            Source="Varslogo.png"
+            VerticalOptions="Center" />
 
         <StackLayout
-            Grid.Row="1"
-            HorizontalOptions="Center"
-            Orientation="Vertical"
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            Padding="5"
+            Spacing="0"
             VerticalOptions="Center">
+            <Grid>
 
-            <Button
-                Margin="10"
-                Command="{Binding UserSignInCommand}"
-                Style="{x:StaticResource BorderlessBtn}"
-                Text="SIGN In" />
+                <Grid.ColumnDefinitions>
 
-            <Button
-                Margin="10"
-                Command="{Binding RegisterUserCommand}"
-                Style="{x:StaticResource BorderlessBtn}"
-                Text="SIGN Up" />
+                    <ColumnDefinition Width="10" />
+
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="10" />
+
+                </Grid.ColumnDefinitions>
+
+
+
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Margin="0"
+                    Orientation="Vertical"
+                    Spacing="30"
+                    VerticalOptions="Start">
+
+                    <local:CustomEntry
+                        Keyboard="Text"
+                        Placeholder="Email:"
+                        ReturnType="Next"
+                        Style="{x:StaticResource CustomEntry}"
+                        Text="{Binding Email, Mode=OneWayToSource}" />
+
+
+                    <StackLayout Margin="0" Spacing="0">
+
+                        <local:CustomEntry
+                            IsPassword="True"
+                            Keyboard="Text"
+                            Placeholder="Password:"
+                            ReturnCommand="{Binding UserLoginCommand}"
+                            ReturnType="Done"
+                            Style="{x:StaticResource CustomEntry}"
+                            Text="{Binding Password, Mode=OneWayToSource}" />
+
+                        <!--#region Forgot PasswordBtn-->
+                        <Grid>
+
+                            <Button
+                                FontAttributes="Bold"
+                                HorizontalOptions="EndAndExpand"
+                                Style="{x:StaticResource BorderlessBtn}"
+                                Text="Forgot Password?"
+                                TextColor="Gray"
+                                VerticalOptions="End" />
+                            <!--#endregion-->
+                        </Grid>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+
+            </Grid>
+
+            <!--#region SubmitBtn-->
+            <Grid Margin="0" Padding="0">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="10" />
+
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="*" />
+
+                    <ColumnDefinition Width="10" />
+
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Command="{Binding UserLoginCommand}"
+                    CornerRadius="50"
+                    IsVisible="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                    Style="{x:StaticResource CustomActionBtn}"
+                    Text="Login"
+                    TextColor="White" />
+
+                <ActivityIndicator
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    IsEnabled="{Binding isLoginInit}"
+                    IsRunning="{Binding isLoginInit}"
+                    IsVisible="{Binding isLoginInit}"
+                    Color="{x:StaticResource _DarkBlue}" />
+
+
+            </Grid>
+            <!--#endregion-->
 
         </StackLayout>
 
 
-        <Button
-            Grid.Row="2"
-            FontFamily="{StaticResource KalamRegularFont}"
-            FontSize="20"
-            HorizontalOptions="Center"
-            Style="{x:StaticResource BorderlessBtn}"
-            Text="Powered by SmartNG"
-            VerticalOptions="End" />
+        <StackLayout
+            Grid.Row="5"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            Orientation="Vertical"
+            Spacing="5"
+            VerticalOptions="EndAndExpand">
 
+            <Label
+                FontAttributes="Bold"
+                FontSize="17"
+                HorizontalOptions="Center"
+                Text="Dont have an Account?"
+                TextColor="Gray" />
+
+            <!--#region Forgot PasswordBtn-->
+            <Button
+                Margin="0"
+                Command="{Binding RegisterUserCommand}"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Style="{x:StaticResource BorderlessBtn}"
+                Text="Sign up NOw"
+                TextColor="Black" />
+            <!--#endregion-->
+
+        </StackLayout>
 
     </Grid>
 

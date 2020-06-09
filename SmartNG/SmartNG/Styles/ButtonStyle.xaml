@@ -4,13 +4,13 @@
 
     <!--#region Borderless Btn-->
     <Style x:Key="BorderlessBtn" TargetType="Button">
-
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="FontAttributes" Value="None" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="Padding" Value="20" />
+        <Setter Property="Padding" Value="5" />
         <Setter Property="BorderColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{x:StaticResource _DarkBlue}" />
-        <Setter Property="FontFamily" Value="{x:StaticResource KalamBoldFont}" />
-        <Setter Property="FontSize" Value="48" />
+        <Setter Property="FontSize" Value="15" />
 
     </Style>
     <!--#endregion-->
@@ -19,16 +19,14 @@
 
     <Style x:Key="CustomActionBtn" TargetType="Button">
 
-        <Setter Property="BackgroundColor" Value="{x:StaticResource _DarkGreen}" />
-        <Setter Property="Padding" Value="20" />
-        <Setter Property="Margin" Value="20" />
-        <Setter Property="TextColor" Value="{x:StaticResource MyYellow}" />
-        <Setter Property="FontFamily" Value="{x:StaticResource KalamBoldFont}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="BackgroundColor" Value="Gray" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="5 0 5 0" />
+        <Setter Property="TextColor" Value="LightGray" />
         <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="FontSize" Value="25" />
         <Setter Property="BorderColor" Value="Transparent" />
-
 
     </Style>
 

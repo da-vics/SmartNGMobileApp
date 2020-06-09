@@ -40,10 +40,10 @@ namespace SmartNG.RestAPIClientHandlers
                         {
                             _isRegSuccessful = true;
 
-                            using (HttpContent check = response.Content)
-                            {
-                                string test = await check.ReadAsStringAsync();
-                            }
+                            //using (HttpContent check = response.Content)
+                            //{
+                            //    string test = await check.ReadAsStringAsync();
+                            //}
                         }
 
                         else

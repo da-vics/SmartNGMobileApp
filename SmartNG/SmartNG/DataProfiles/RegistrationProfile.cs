@@ -9,7 +9,6 @@ namespace SmartNG.DataProfiles
     {
         public string Email { get; set; }
         public string PassWordHash { get; set; }
-        public string ApiKeyId { get; set; }
         public string Fullname { get; set; }
         public string HomeAddress { get; set; }
         public string PhoneNumber { get; set; }

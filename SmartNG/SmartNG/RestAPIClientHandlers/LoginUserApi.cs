@@ -45,6 +45,7 @@ namespace SmartNG.RestAPIClientHandlers
                             using (HttpContent check = response.Content)
                             {
                                 string test = await check.ReadAsStringAsync();
+                                AccessKeyProfile accessKey = await Task.Run(() => JsonConvert.DeserializeObject<AccessKeyProfile>(test));
                             }
                         }
 

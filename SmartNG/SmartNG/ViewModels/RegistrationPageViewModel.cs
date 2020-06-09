@@ -11,6 +11,7 @@ using SmartNG.DataProfiles;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using SmartNG.RestAPIClientHandlers;
+using SmartNG.Helpers;
 
 namespace SmartNG
 {
@@ -53,6 +54,11 @@ namespace SmartNG
             set
             {
                 this._Email = value;
+
+                var verifyEmail = new EmailValidator(Email);
+
+                //if (verifyEmail.IsValid() == false)
+                //{ }
                 onPropertyChanged();
             }
         }
@@ -144,7 +150,6 @@ namespace SmartNG
                 {
                     Email = _Email,
                     PassWordHash = _password,
-                    ApiKeyId = "null",
                     Fullname = _fullName,
                     HomeAddress = _homeAddress,
                     PhoneNumber = _phoneNumber.ToString()
@@ -160,8 +165,8 @@ namespace SmartNG
             if (_IsRegSuccessful)
             {
                 _IsRegSuccessful = false;
-                await Application.Current.MainPage.DisplayAlert("Registration", "Sucessful", "mainPage");
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.DisplayAlert("Registration", "Sucessful", "Login");
+                await Application.Current.MainPage.Navigation.PopModalAsync();
             }////
 
             else

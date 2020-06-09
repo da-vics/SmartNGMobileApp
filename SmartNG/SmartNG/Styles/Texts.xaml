@@ -5,8 +5,7 @@
     <!--#region  Custom Header Style-->
     <Style x:Key="CustomHeadLabel" TargetType="Label">
 
-        <Setter Property="FontSize" Value="30" />
-        <Setter Property="FontFamily" Value="{x:StaticResource KalamRegularFont}" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Padding" Value="2" />
         <Setter Property="Margin" Value="0" />
 
@@ -16,9 +15,7 @@
     <!--#region  Custom Entry Style-->
     <Style x:Key="CustomEntry" TargetType="Entry">
 
-        <Setter Property="FontSize" Value="30" />
-        <Setter Property="FontFamily" Value="{x:StaticResource KalamRegularFont}" />
-
+        <Setter Property="FontSize" Value="20" />
     </Style>
     <!--#endregion-->
 

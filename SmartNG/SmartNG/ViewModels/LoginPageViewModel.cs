@@ -41,7 +41,7 @@ namespace SmartNG
 
         public string Email
         {
-            private get => "";
+            private get => _Email;
 
             set
             {
@@ -54,7 +54,7 @@ namespace SmartNG
 
         public string Password
         {
-            private get => "";
+            private get => _password;
 
             set
             {
