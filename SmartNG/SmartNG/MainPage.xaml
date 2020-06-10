@@ -23,7 +23,7 @@
 
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="White">
+    <Grid BackgroundColor="LightGray">
 
         <!--  Content Definitions  -->
         <Grid.RowDefinitions>
@@ -44,7 +44,7 @@
             <RowDefinition Height="Auto" />
 
             <!--  Footer Span  -->
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
 
         </Grid.RowDefinitions>
 
@@ -62,10 +62,6 @@
             <ColumnDefinition Width="20" />
 
         </Grid.ColumnDefinitions>
-
-
-        <!--
-        -->
 
         <Image
             Grid.Row="0"
@@ -116,7 +112,7 @@
                     Grid.ColumnSpan="3"
                     Margin="0"
                     Orientation="Vertical"
-                    Spacing="30"
+                    Spacing="20"
                     VerticalOptions="Start">
 
                     <local:CustomEntry
@@ -166,6 +162,8 @@
                 <Button
                     Grid.Column="1"
                     Grid.ColumnSpan="3"
+                    Margin="0"
+                    BackgroundColor="DarkRed"
                     Command="{Binding UserLoginCommand}"
                     CornerRadius="25"
                     IsVisible="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
@@ -189,11 +187,12 @@
 
 
         <StackLayout
-            Grid.Row="6"
+            Grid.Row="5"
+            Grid.RowSpan="2"
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Orientation="Vertical"
-            Spacing="5"
+            Spacing="0"
             VerticalOptions="EndAndExpand">
 
             <!--#region Forgot PasswordBtn-->

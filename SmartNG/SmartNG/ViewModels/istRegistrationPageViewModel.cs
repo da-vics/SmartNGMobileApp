@@ -1,8 +1,10 @@
-﻿using SmartNG.DataProfiles;
+﻿using Java.Lang;
+using SmartNG.DataProfiles;
 using SmartNG.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -99,12 +101,24 @@ namespace SmartNG
         public istRegistrationPageViewModel()
         {
             UserSetRegCommand = new Command(MoveToRegMain);
+            newUserProfile = new RegistrationProfile();
+            isNextInit = false;
         }
 
         private async void MoveToRegMain(object obj)
         {
-            if (this._isNext == true)
+            if (isNextInit == true)
                 return;
+
+            isNextInit = true;
+            #region CreatesUserProfile 
+            newUserProfile.Fullname = _fullName;
+            newUserProfile.Email = _Email;
+            newUserProfile.PassWordHash = _password;
+            #endregion
+
+            _isallowedToMove = true; /// test
+
 
             if (_isallowedToMove)
                 await Application.Current.MainPage.Navigation.PushModalAsync(new RegistrationPage(newUserProfile));
@@ -113,6 +127,7 @@ namespace SmartNG
             {
                 await Application.Current.MainPage.DisplayAlert("Fields Cannot be Null", "failed", "refill"); /// test
             }
+            isNextInit = false;
         }
 
         #endregion

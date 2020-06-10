@@ -22,6 +22,7 @@ namespace SmartNG.RestAPIClientHandlers
         public async Task<bool> RegisterUser()
         {
 
+
             try
             {
                 using (var client = new HttpClient())

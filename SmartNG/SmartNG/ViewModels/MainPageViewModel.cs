@@ -2,6 +2,7 @@
 using SmartNG.DataProfiles;
 using SmartNG.RestAPIClientHandlers;
 using SmartNG.Views.Pages;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,7 +12,6 @@ namespace SmartNG
 {
     public class MainPageViewModel : BaseViewModel
     {
-
 
         #region PrivateMembers
         private string _password { get; set; }
@@ -87,9 +87,25 @@ namespace SmartNG
             if (this.isLoginInit == true)
                 return;
 
+            try
+            {
+                if (string.IsNullOrEmpty(_Email) || string.IsNullOrEmpty(_password))
+                {
+                    throw new ArgumentException("Fields cannot be Empty");
+                }
+            }
+
+            catch (ArgumentException args)
+            {
+                await Application.Current.MainPage.DisplayAlert("Login Error", args.Message, "Retry");
+                return;
+            }
+
             await Task.Run(async () =>
             {
+
                 isLoginInit = true;
+
 
                 LoginProfile loginProfile = new LoginProfile()
                 {
@@ -104,8 +120,12 @@ namespace SmartNG
                 isLoginInit = false;
             });
 
+
+
+
             if (_IsLogSuccessful)
-                await Application.Current.MainPage.Navigation.PushAsync(new ControlPage());
+                Application.Current.MainPage = new ControlPage();
+            //  await Application.Current.MainPage.Navigation.PushAsync(new ControlPage());
 
             else
             {

@@ -71,6 +71,8 @@ namespace SmartNG
 
         #endregion
 
+
+
         public ICommand UserRegisterCommand { get; private set; }
 
         public RegistrationProfile newUserProfile { get; set; }
@@ -117,6 +119,11 @@ namespace SmartNG
                 _IsRegSuccessful = false;
                 await Application.Current.MainPage.DisplayAlert("test error", "Failed", "Retry");
             } ///
+        }
+
+        public void Editor_Completed(object sender, EventArgs e)
+        {
+
         }
 
     }

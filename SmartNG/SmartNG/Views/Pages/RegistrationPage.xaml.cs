@@ -18,5 +18,10 @@ namespace SmartNG.Views.Pages
             InitializeComponent();
             this.BindingContext = new RegistrationPageViewModel(reguser);
         }
+
+        //private void Editor_Completed(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

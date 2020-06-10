@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace SmartNG.Views.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ControlPage : ContentPage
+    public partial class ControlPage : Shell
     {
         public ControlPage()
         {
@@ -18,6 +18,6 @@ namespace SmartNG.Views.Pages
         }
 
 
-        protected override bool OnBackButtonPressed() => true; /// to prevent back to loginPage
+        ///   protected override bool OnBackButtonPressed() => true; /// to prevent back to loginPage
     }
 }
