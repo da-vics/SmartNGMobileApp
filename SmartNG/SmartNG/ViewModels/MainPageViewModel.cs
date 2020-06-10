@@ -1,4 +1,4 @@
-﻿
+
 using SmartNG.DataProfiles;
 using SmartNG.RestAPIClientHandlers;
 using SmartNG.Views.Pages;
@@ -18,12 +18,47 @@ namespace SmartNG
         private string _Email { get; set; }
         private bool _isLogin { get; set; }
 
+        private string _emailValidation { get; set; } = "required";
+        private string _passwordValidation { get; set; } = "required";
+
+        private Color _loginBtnColor { get; set; } = Color.DarkGray;
+
+        private bool _allowLogin { get; set; } = false;
+
         private bool _IsLogSuccessful { get; set; } = false;
+
         #endregion
 
         #region PublicMembers
 
         #region Accessors
+
+
+        public string EmailValidation
+        {
+            get => _emailValidation;
+
+            set
+            {
+                this._emailValidation = value;
+
+                onPropertyChanged();
+
+            }
+        }
+
+        public string PasswordValidation
+        {
+            get => _passwordValidation;
+
+            set
+            {
+                this._passwordValidation = value;
+
+                onPropertyChanged();
+
+            }
+        }
 
         public bool isLoginInit
         {
@@ -34,10 +69,32 @@ namespace SmartNG
                 this._isLogin = value;
 
                 onPropertyChanged();
-
             }
         }
 
+        public bool allowLogin
+        {
+            get => _allowLogin;
+
+            set
+            {
+                _allowLogin = value;
+                onPropertyChanged();
+            }
+
+        }
+
+        public Color loginBtnColor
+        {
+
+            get => _loginBtnColor;
+
+            set
+            {
+                _loginBtnColor = value;
+                onPropertyChanged();
+            }
+        }
 
         public string Email
         {
@@ -48,6 +105,19 @@ namespace SmartNG
                 this._Email = value;
 
                 onPropertyChanged();
+
+                if (string.IsNullOrEmpty(_Email))
+                {
+                    EmailValidation = "required";
+                    loginBtnColor = Color.DarkGray;
+                    allowLogin = false;
+                }
+
+                else
+                {
+                    EmailValidation = string.Empty;
+                    setLoginProp();
+                }
             }
 
         }
@@ -61,13 +131,25 @@ namespace SmartNG
                 this._password = value;
 
                 onPropertyChanged();
+
+                if (string.IsNullOrEmpty(_password))
+                {
+                    PasswordValidation = "required";
+                    loginBtnColor = Color.DarkGray;
+                    allowLogin = false;
+                }
+
+                else
+                {
+                    PasswordValidation = string.Empty;
+                    setLoginProp();
+                }
             }
 
         }
         #endregion
 
         public ICommand UserLoginCommand { get; private set; }
-
 
         public ICommand RegisterUserCommand { get; private set; }
 
@@ -137,6 +219,21 @@ namespace SmartNG
         private async void UserRegistrationPageSwitch()
         {
             await Application.Current.MainPage.Navigation.PushModalAsync(new istRegistrationPage());
+        }
+
+        private void setLoginProp()
+        {
+            if (!string.IsNullOrEmpty(_Email) && !string.IsNullOrEmpty(_password))
+            {
+                allowLogin = true;
+                loginBtnColor = Color.DarkRed;
+            }
+
+            else
+            {
+                loginBtnColor = Color.DarkGray;
+                allowLogin = false;
+            }
         }
 
 

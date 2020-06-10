@@ -115,14 +115,21 @@
                     Spacing="20"
                     VerticalOptions="Start">
 
-                    <local:CustomEntry
-                        Keyboard="Text"
-                        Placeholder="Email"
-                        PlaceholderColor="LightGray"
-                        ReturnType="Next"
-                        Style="{x:StaticResource CustomEntry}"
-                        Text="{Binding Email, Mode=OneWayToSource}" />
+                    <StackLayout Margin="0" Spacing="0">
 
+                        <local:CustomEntry
+                            Keyboard="Text"
+                            Placeholder="Email"
+                            PlaceholderColor="LightGray"
+                            ReturnType="Next"
+                            Style="{x:StaticResource CustomEntry}"
+                            Text="{Binding Email, Mode=OneWayToSource}" />
+                        <Label
+                            FontSize="15"
+                            Text="{Binding EmailValidation, Mode=TwoWay}"
+                            TextColor="Red" />
+
+                    </StackLayout>
 
                     <StackLayout Margin="0" Spacing="0">
 
@@ -135,6 +142,11 @@
                             ReturnType="Done"
                             Style="{x:StaticResource CustomEntry}"
                             Text="{Binding Password, Mode=OneWayToSource}" />
+
+                        <Label
+                            FontSize="15"
+                            Text="{Binding PasswordValidation, Mode=TwoWay}"
+                            TextColor="Red" />
 
                     </StackLayout>
 
@@ -163,9 +175,10 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="3"
                     Margin="0"
-                    BackgroundColor="DarkRed"
+                    BackgroundColor="{Binding loginBtnColor}"
                     Command="{Binding UserLoginCommand}"
                     CornerRadius="25"
+                    IsEnabled="{Binding allowLogin}"
                     IsVisible="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                     Style="{x:StaticResource CustomActionBtn}"
                     Text="Login"
