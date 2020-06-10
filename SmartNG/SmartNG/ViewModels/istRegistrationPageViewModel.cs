@@ -26,9 +26,9 @@ namespace SmartNG
         private string _passwordValidation { get; set; } = "required";
         private string _confirmPassValidation { get; set; } = "required";
 
-        private Color _proceedBtnColor { get; set; } = Color.DarkGray;
+        private bool checkDone { get; set; } = false;
 
-        private bool _isallowedToMove { get; set; } = false;
+        private bool IsallowedToMove { get; set; } = false;
         #endregion
 
         #region Accessors
@@ -81,33 +81,10 @@ namespace SmartNG
             }
         }
 
-        public Color ProceedBtnColor
-        {
-            get => _proceedBtnColor;
-
-            set
-            {
-                _proceedBtnColor = value;
-                onPropertyChanged();
-            }
-        }
         #endregion
-
-        public bool IsallowedToMove
-        {
-            get => _isallowedToMove;
-
-            set
-            {
-                _isallowedToMove = value;
-                onPropertyChanged();
-            }
-
-        }
 
         public string FullName
         {
-
             get => this._fullName;
 
             set
@@ -123,14 +100,12 @@ namespace SmartNG
                 if (string.IsNullOrEmpty(_fullName))
                 {
                     NameValidation = "required";
-                    ProceedBtnColor = Color.DarkGray;
                     IsallowedToMove = false;
                 }
 
                 else if (!_fullName.Contains(" "))
                 {
                     NameValidation = "full name required";
-                    ProceedBtnColor = Color.DarkGray;
                     IsallowedToMove = false;
                 }
 
@@ -153,17 +128,23 @@ namespace SmartNG
                 this._Email = value;
                 onPropertyChanged();
 
-                if (!string.IsNullOrEmpty(_Email) && EmailValidator.IsValid(_Email))
+                if (string.IsNullOrEmpty(_Email))
                 {
-                    EmailValidation = string.Empty;
-                    setRegProp();
+
+                    EmailValidation = "required";
+                    IsallowedToMove = false;
+                }
+
+                else if (!EmailValidator.IsValid(_Email))
+                {
+                    EmailValidation = "invalid email";
+                    IsallowedToMove = false;
                 }
 
                 else
                 {
-                    EmailValidation = "required";
-                    ProceedBtnColor = Color.DarkGray;
-                    IsallowedToMove = false;
+                    EmailValidation = string.Empty;
+                    setRegProp();
                 }
             }
         }
@@ -181,14 +162,12 @@ namespace SmartNG
                 if (string.IsNullOrEmpty(_password))
                 {
                     PasswordValidation = "required";
-                    ProceedBtnColor = Color.DarkGray;
                     IsallowedToMove = false;
                 }
 
                 else if (_password.Length < 6)
                 {
                     PasswordValidation = "too short";
-                    ProceedBtnColor = Color.DarkGray;
                     IsallowedToMove = false;
                 }
 
@@ -213,20 +192,21 @@ namespace SmartNG
                 if (!string.IsNullOrEmpty(_password) && _confirmPassword != _password)
                 {
                     ConfirmPassValidation = "password must match";
-                    ProceedBtnColor = Color.DarkGray;
                     IsallowedToMove = false;
+                    checkDone = false;
                 }
 
                 else if (string.IsNullOrEmpty(_confirmPassword))
                 {
                     ConfirmPassValidation = "required";
-                    ProceedBtnColor = Color.DarkGray;
                     IsallowedToMove = false;
+                    checkDone = false;
                 }
 
                 else
                 {
                     ConfirmPassValidation = string.Empty;
+                    checkDone = true;
                     setRegProp();
                 }
             }
@@ -250,17 +230,26 @@ namespace SmartNG
 
         public RegistrationProfile newUserProfile { get; set; }
 
-        #region Default Constructor
 
+        #region Default Constructor
         public istRegistrationPageViewModel()
         {
             UserSetRegCommand = new Command(MoveToRegMain);
             newUserProfile = new RegistrationProfile();
             isNextInit = false;
         }
+        #endregion
+
 
         private async void MoveToRegMain(object obj)
         {
+
+            if (checkFieldStates())
+            {
+                await Application.Current.MainPage.DisplayAlert("input error", "one or more input fields not set properly", "retry"); /// test
+                return;
+            }
+
             if (isNextInit == true)
                 return;
 
@@ -272,41 +261,35 @@ namespace SmartNG
             newUserProfile.PassWordHash = _password;
             #endregion
 
-            _isallowedToMove = true; /// test
-
-
-            if (_isallowedToMove)
+            if (IsallowedToMove)
                 await Application.Current.MainPage.Navigation.PushModalAsync(new RegistrationPage(newUserProfile));
 
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Fields Cannot be Null", "failed", "refill"); /// test
-            }
             isNextInit = false;
         }
 
-        #endregion
+        private bool checkFieldStates()
+        {
+            bool check = false;
+            check |= string.IsNullOrEmpty(_Email);
+            check |= string.IsNullOrEmpty(_password);
+            check |= string.IsNullOrEmpty(_confirmPassword);
+            check |= string.IsNullOrEmpty(_fullName);
+
+            return check;
+        }
 
         private void setRegProp()
         {
-            bool check = string.IsNullOrEmpty(_Email) &
-                string.IsNullOrEmpty(_password) &
-                string.IsNullOrEmpty(ConfirmPassword) &
-                string.IsNullOrEmpty(FullName);
 
-            if (check == false)
+            if (checkFieldStates() == false)
             {
                 IsallowedToMove = true;
-                ProceedBtnColor = Color.DarkRed;
             }
-
             else
             {
-                ProceedBtnColor = Color.DarkGray;
                 IsallowedToMove = false;
             }
         }
-
 
     }///
 }

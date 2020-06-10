@@ -106,23 +106,39 @@
                     Grid.ColumnSpan="3"
                     Spacing="20">
 
+                    <StackLayout Margin="0" Spacing="0">
 
-                    <local:CustomEntry
-                        IsPassword="True"
-                        Keyboard="Numeric"
-                        Placeholder="PhoneNumber"
-                        PlaceholderColor="LightGray"
-                        ReturnType="Next"
-                        Style="{x:StaticResource CustomEntry}"
-                        Text="{Binding PhoneNumber, Mode=OneWayToSource}" />
+                        <local:CustomEntry
+                            Keyboard="Numeric"
+                            MaxLength="11"
+                            Placeholder="PhoneNumber"
+                            PlaceholderColor="LightGray"
+                            ReturnType="Next"
+                            Style="{x:StaticResource CustomEntry}"
+                            Text="{Binding PhoneNumber, Mode=OneWayToSource}" />
 
-                    <Editor
-                        Margin="0"
-                        AutoSize="TextChanges"
-                        Keyboard="Text"
-                        Placeholder="Home Address"
-                        PlaceholderColor="Gray"
-                        Text="{Binding HomeAddress, Mode=OneWayToSource}" />
+                        <Label
+                            FontSize="15"
+                            Text="{Binding PhoneNumberValidation, Mode=TwoWay}"
+                            TextColor="Red" />
+
+                    </StackLayout>
+
+                    <StackLayout>
+
+                        <Editor
+                            Margin="0"
+                            AutoSize="TextChanges"
+                            Keyboard="Text"
+                            Placeholder="Home Address"
+                            PlaceholderColor="Gray"
+                            Text="{Binding HomeAddress, Mode=OneWayToSource}" />
+
+                        <Label
+                            FontSize="15"
+                            Text="{Binding AddressValidation, Mode=TwoWay}"
+                            TextColor="Red" />
+                    </StackLayout>
 
                 </StackLayout>
             </Grid>

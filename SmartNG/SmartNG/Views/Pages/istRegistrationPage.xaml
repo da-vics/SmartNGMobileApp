@@ -178,7 +178,6 @@
 
                         <!--#endregion-->
 
-
                         <!--#region proceedNextPage Btn-->
                         <Button
                             Grid.Column="1"
@@ -186,7 +185,6 @@
                             BackgroundColor="DarkRed"
                             Command="{Binding UserSetRegCommand}"
                             CornerRadius="25"
-                            IsEnabled="{Binding isNextInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                             IsVisible="{Binding isNextInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                             Style="{x:StaticResource CustomActionBtn}"
                             Text="Proceed"

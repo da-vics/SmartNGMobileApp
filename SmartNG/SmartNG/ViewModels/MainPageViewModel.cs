@@ -21,9 +21,7 @@ namespace SmartNG
         private string _emailValidation { get; set; } = "required";
         private string _passwordValidation { get; set; } = "required";
 
-        private Color _loginBtnColor { get; set; } = Color.DarkGray;
-
-        private bool _allowLogin { get; set; } = false;
+        private bool allowLogin { get; set; } = false;
 
         private bool _IsLogSuccessful { get; set; } = false;
         #endregion
@@ -39,7 +37,6 @@ namespace SmartNG
             {
                 this._emailValidation = value;
                 onPropertyChanged();
-
             }
         }
 
@@ -51,7 +48,6 @@ namespace SmartNG
             {
                 this._passwordValidation = value;
                 onPropertyChanged();
-
             }
         }
 
@@ -66,29 +62,6 @@ namespace SmartNG
             }
         }
 
-        public bool allowLogin
-        {
-            get => _allowLogin;
-
-            set
-            {
-                _allowLogin = value;
-                onPropertyChanged();
-            }
-
-        }
-
-        public Color loginBtnColor
-        {
-
-            get => _loginBtnColor;
-
-            set
-            {
-                _loginBtnColor = value;
-                onPropertyChanged();
-            }
-        }
 
         public string Email
         {
@@ -103,7 +76,6 @@ namespace SmartNG
                 if (string.IsNullOrEmpty(_Email))
                 {
                     EmailValidation = "required";
-                    loginBtnColor = Color.DarkGray;
                     allowLogin = false;
                 }
 
@@ -129,7 +101,6 @@ namespace SmartNG
                 if (string.IsNullOrEmpty(_password))
                 {
                     PasswordValidation = "required";
-                    loginBtnColor = Color.DarkGray;
                     allowLogin = false;
                 }
 
@@ -159,6 +130,11 @@ namespace SmartNG
 
         private async void loginUser()
         {
+            if (checkFieldStates())
+            {
+                await Application.Current.MainPage.DisplayAlert("input error", "one or more input fields not set properly", "retry"); /// test
+                return;
+            }
 
             if (this.isLoginInit == true)
                 return;
@@ -197,8 +173,6 @@ namespace SmartNG
             });
 
 
-
-
             if (_IsLogSuccessful)
                 Application.Current.MainPage = new ControlPage();
             //  await Application.Current.MainPage.Navigation.PushAsync(new ControlPage());
@@ -215,17 +189,24 @@ namespace SmartNG
             await Application.Current.MainPage.Navigation.PushModalAsync(new istRegistrationPage());
         }
 
+
+        private bool checkFieldStates()
+        {
+            bool check = string.IsNullOrEmpty(_Email)
+                & string.IsNullOrEmpty(_password);
+
+            return check;
+        }
+
         private void setLoginProp()
         {
-            if (!string.IsNullOrEmpty(_Email) && !string.IsNullOrEmpty(_password))
+            if (checkFieldStates() == false)
             {
                 allowLogin = true;
-                loginBtnColor = Color.DarkRed;
             }
 
             else
             {
-                loginBtnColor = Color.DarkGray;
                 allowLogin = false;
             }
         }

@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using SmartNG.RestAPIClientHandlers;
 using SmartNG.Helpers;
+using Android.Renderscripts;
 
 namespace SmartNG
 {
@@ -19,13 +20,14 @@ namespace SmartNG
     {
 
         #region PrivateMembers
-        private string _fullName { get; set; }
-        private string _Email { get; set; }
-        private string _password { get; set; }
-        private string _confirmPassword { get; set; }
-        private int _phoneNumber { get; set; }
-        private string _homeAddress { get; set; }
+        private string _phoneNumber { get; set; } = string.Empty;
+        private string _homeAddress { get; set; } = string.Empty;
         private bool _isSignUp { get; set; } = false;
+
+        private string _phoneNumberValidation { get; set; } = "required";
+        private string _addressValidation { get; set; } = "required";
+
+        private bool _allowRegister { get; set; } = false;
 
         private bool _IsRegSuccessful { get; set; } = false;
         #endregion
@@ -34,7 +36,29 @@ namespace SmartNG
 
         #region Accessors
 
-        public int PhoneNumber
+        public string PhoneNumberValidation
+        {
+            get => _phoneNumberValidation;
+
+            set
+            {
+                this._phoneNumberValidation = value;
+                onPropertyChanged();
+            }
+        }
+
+        public string AddressValidation
+        {
+            get => _addressValidation;
+
+            set
+            {
+                this._addressValidation = value;
+                onPropertyChanged();
+            }
+        }
+
+        public string PhoneNumber
         {
 
             get => this._phoneNumber;
@@ -43,6 +67,24 @@ namespace SmartNG
             {
                 this._phoneNumber = value;
                 onPropertyChanged();
+
+                if (string.IsNullOrEmpty(_phoneNumber))
+                {
+                    PhoneNumberValidation = "required";
+                    _allowRegister = false;
+                }
+
+                else if (_phoneNumber.Length < 11)
+                {
+                    PhoneNumberValidation = "invalid mobile number";
+                    _allowRegister = false;
+                }
+
+                else
+                {
+                    PhoneNumberValidation = string.Empty;
+                    setRegProp();
+                }
             }
         }
 
@@ -55,6 +97,19 @@ namespace SmartNG
             {
                 this._homeAddress = value;
                 onPropertyChanged();
+
+                if (string.IsNullOrEmpty(_homeAddress))
+                {
+                    AddressValidation = "required";
+                    _allowRegister = false;
+                }
+
+                else
+                {
+                    AddressValidation = string.Empty;
+                    setRegProp();
+                }
+
             }
         }
 
@@ -70,8 +125,6 @@ namespace SmartNG
         }
 
         #endregion
-
-
 
         public ICommand UserRegisterCommand { get; private set; }
 
@@ -90,6 +143,13 @@ namespace SmartNG
 
         private async void RegisterUser()
         {
+
+            if (_allowRegister == false)
+            {
+                await Application.Current.MainPage.DisplayAlert("input error", "one or more input fields not set properly", "retry"); /// test
+                return;
+            }
+
             if (this.isSignUpInit == true)
                 return;
 
@@ -98,7 +158,7 @@ namespace SmartNG
                 this.isSignUpInit = true;
 
                 newUserProfile.HomeAddress = _homeAddress;
-                newUserProfile.PhoneNumber = _phoneNumber.ToString();
+                newUserProfile.PhoneNumber = _phoneNumber;
 
                 var registeruser = new RegisterUserApi(newUserProfile);
 
@@ -121,9 +181,33 @@ namespace SmartNG
             } ///
         }
 
-        public void Editor_Completed(object sender, EventArgs e)
-        {
 
+        private bool checkFieldStates()
+        {
+            bool check = true;
+            if (string.IsNullOrEmpty(_phoneNumber) == true || string.IsNullOrEmpty(_addressValidation) == true)
+            {
+                check = true;
+            }
+
+            else if (string.IsNullOrEmpty(_phoneNumber) == false && string.IsNullOrEmpty(_addressValidation) == false)
+            {
+                check = false;
+            }
+            return check;
+        }
+
+        private void setRegProp()
+        {
+            if (checkFieldStates() == false)
+            {
+                _allowRegister = true;
+            }
+
+            else
+            {
+                _allowRegister = false;
+            }
         }
 
     }
