@@ -1,5 +1,6 @@
 ﻿using Java.Lang;
 using SmartNG.DataProfiles;
+using SmartNG.Helpers;
 using SmartNG.Views.Pages;
 using System;
 using System.Collections.Generic;
@@ -14,16 +15,95 @@ namespace SmartNG
     {
 
         #region PrivateMembers
-        private string _fullName { get; set; }
-        private string _Email { get; set; }
-        private string _password { get; set; }
-        private string _confirmPassword { get; set; }
+        private string _fullName { get; set; } = string.Empty;
+        private string _Email { get; set; } = string.Empty;
+        private string _password { get; set; } = string.Empty;
+        private string _confirmPassword { get; set; } = string.Empty;
         private bool _isNext { get; set; } = false;
+
+        private string _nameValidation { get; set; } = "required";
+        private string _emailValidation { get; set; } = "required";
+        private string _passwordValidation { get; set; } = "required";
+        private string _confirmPassValidation { get; set; } = "required";
+
+        private Color _proceedBtnColor { get; set; } = Color.DarkGray;
 
         private bool _isallowedToMove { get; set; } = false;
         #endregion
 
         #region Accessors
+
+        #region EntryValidations
+        public string EmailValidation
+        {
+            get => _emailValidation;
+
+            set
+            {
+                this._emailValidation = value;
+                onPropertyChanged();
+
+            }
+        }
+
+        public string PasswordValidation
+        {
+            get => _passwordValidation;
+
+            set
+            {
+                this._passwordValidation = value;
+                onPropertyChanged();
+
+            }
+        }
+
+        public string ConfirmPassValidation
+        {
+            get => _confirmPassValidation;
+
+            set
+            {
+                this._confirmPassValidation = value;
+                onPropertyChanged();
+
+            }
+        }
+
+        public string NameValidation
+        {
+            get => _nameValidation;
+
+            set
+            {
+                this._nameValidation = value;
+                onPropertyChanged();
+            }
+        }
+
+        public Color ProceedBtnColor
+        {
+            get => _proceedBtnColor;
+
+            set
+            {
+                _proceedBtnColor = value;
+                onPropertyChanged();
+            }
+        }
+        #endregion
+
+        public bool IsallowedToMove
+        {
+            get => _isallowedToMove;
+
+            set
+            {
+                _isallowedToMove = value;
+                onPropertyChanged();
+            }
+
+        }
 
         public string FullName
         {
@@ -33,7 +113,33 @@ namespace SmartNG
             set
             {
                 this._fullName = value;
+                if (!string.IsNullOrEmpty(_fullName))
+                {
+                    _fullName = _fullName.Trim();
+                }
                 onPropertyChanged();
+
+
+                if (string.IsNullOrEmpty(_fullName))
+                {
+                    NameValidation = "required";
+                    ProceedBtnColor = Color.DarkGray;
+                    IsallowedToMove = false;
+                }
+
+                else if (!_fullName.Contains(" "))
+                {
+                    NameValidation = "full name required";
+                    ProceedBtnColor = Color.DarkGray;
+                    IsallowedToMove = false;
+                }
+
+                else
+                {
+                    NameValidation = string.Empty;
+                    setRegProp();
+                }
+
             }
         }
 
@@ -45,12 +151,20 @@ namespace SmartNG
             set
             {
                 this._Email = value;
-
-                ///  var verifyEmail = new EmailValidator(Email);
-
-                //if (verifyEmail.IsValid() == false)
-                //{ }
                 onPropertyChanged();
+
+                if (!string.IsNullOrEmpty(_Email) && EmailValidator.IsValid(_Email))
+                {
+                    EmailValidation = string.Empty;
+                    setRegProp();
+                }
+
+                else
+                {
+                    EmailValidation = "required";
+                    ProceedBtnColor = Color.DarkGray;
+                    IsallowedToMove = false;
+                }
             }
         }
 
@@ -63,6 +177,26 @@ namespace SmartNG
             {
                 this._password = value;
                 onPropertyChanged();
+
+                if (string.IsNullOrEmpty(_password))
+                {
+                    PasswordValidation = "required";
+                    ProceedBtnColor = Color.DarkGray;
+                    IsallowedToMove = false;
+                }
+
+                else if (_password.Length < 6)
+                {
+                    PasswordValidation = "too short";
+                    ProceedBtnColor = Color.DarkGray;
+                    IsallowedToMove = false;
+                }
+
+                else
+                {
+                    PasswordValidation = string.Empty;
+                    setRegProp();
+                }
             }
         }
 
@@ -75,6 +209,26 @@ namespace SmartNG
             {
                 this._confirmPassword = value;
                 onPropertyChanged();
+
+                if (!string.IsNullOrEmpty(_password) && _confirmPassword != _password)
+                {
+                    ConfirmPassValidation = "password must match";
+                    ProceedBtnColor = Color.DarkGray;
+                    IsallowedToMove = false;
+                }
+
+                else if (string.IsNullOrEmpty(_confirmPassword))
+                {
+                    ConfirmPassValidation = "required";
+                    ProceedBtnColor = Color.DarkGray;
+                    IsallowedToMove = false;
+                }
+
+                else
+                {
+                    ConfirmPassValidation = string.Empty;
+                    setRegProp();
+                }
             }
 
         }
@@ -111,6 +265,7 @@ namespace SmartNG
                 return;
 
             isNextInit = true;
+
             #region CreatesUserProfile 
             newUserProfile.Fullname = _fullName;
             newUserProfile.Email = _Email;
@@ -132,7 +287,25 @@ namespace SmartNG
 
         #endregion
 
+        private void setRegProp()
+        {
+            bool check = string.IsNullOrEmpty(_Email) &
+                string.IsNullOrEmpty(_password) &
+                string.IsNullOrEmpty(ConfirmPassword) &
+                string.IsNullOrEmpty(FullName);
 
+            if (check == false)
+            {
+                IsallowedToMove = true;
+                ProceedBtnColor = Color.DarkRed;
+            }
+
+            else
+            {
+                ProceedBtnColor = Color.DarkGray;
+                IsallowedToMove = false;
+            }
+        }
 
 
     }///

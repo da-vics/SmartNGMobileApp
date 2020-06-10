@@ -26,14 +26,11 @@ namespace SmartNG
         private bool _allowLogin { get; set; } = false;
 
         private bool _IsLogSuccessful { get; set; } = false;
-
         #endregion
 
         #region PublicMembers
 
         #region Accessors
-
-
         public string EmailValidation
         {
             get => _emailValidation;
@@ -41,7 +38,6 @@ namespace SmartNG
             set
             {
                 this._emailValidation = value;
-
                 onPropertyChanged();
 
             }
@@ -54,7 +50,6 @@ namespace SmartNG
             set
             {
                 this._passwordValidation = value;
-
                 onPropertyChanged();
 
             }
@@ -67,7 +62,6 @@ namespace SmartNG
             set
             {
                 this._isLogin = value;
-
                 onPropertyChanged();
             }
         }
@@ -235,7 +229,6 @@ namespace SmartNG
                 allowLogin = false;
             }
         }
-
 
     }
 }

@@ -87,7 +87,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Padding="5"
-            Spacing="25"
+            Spacing="20"
             VerticalOptions="Center">
             <Grid>
 
@@ -106,7 +106,6 @@
                 </Grid.ColumnDefinitions>
 
 
-
                 <StackLayout
                     Grid.Column="1"
                     Grid.ColumnSpan="3"
@@ -118,7 +117,7 @@
                     <StackLayout Margin="0" Spacing="0">
 
                         <local:CustomEntry
-                            Keyboard="Text"
+                            Keyboard="Email"
                             Placeholder="Email"
                             PlaceholderColor="LightGray"
                             ReturnType="Next"
@@ -135,7 +134,6 @@
 
                         <local:CustomEntry
                             IsPassword="True"
-                            Keyboard="Text"
                             Placeholder="Password"
                             PlaceholderColor="LightGray"
                             ReturnCommand="{Binding UserLoginCommand}"

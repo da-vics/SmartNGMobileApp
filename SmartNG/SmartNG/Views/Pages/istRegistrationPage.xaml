@@ -36,7 +36,7 @@
             <RowDefinition Height="2*" />
 
             <!--  Register Options  -->
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="15*" />
 
             <RowDefinition Height="*" />
 
@@ -89,7 +89,6 @@
 
             <ScrollView HorizontalScrollBarVisibility="Default" VerticalScrollBarVisibility="Default">
 
-
                 <!--#region  User Input-->
                 <Grid>
 
@@ -110,44 +109,74 @@
                     <StackLayout
                         Grid.Column="1"
                         Grid.ColumnSpan="3"
-                        Spacing="20">
+                        Spacing="15">
 
-                        <local:CustomEntry
-                            Keyboard="Text"
-                            Placeholder="Fullname"
-                            PlaceholderColor="LightGray"
-                            ReturnType="Next"
-                            Style="{x:StaticResource CustomEntry}"
-                            Text="{Binding FullName, Mode=OneWayToSource}" />
+                        <StackLayout Margin="0" Spacing="0">
 
-                        <local:CustomEntry
-                            Keyboard="Text"
-                            Placeholder="Email"
-                            PlaceholderColor="LightGray"
-                            ReturnType="Next"
-                            Style="{x:StaticResource CustomEntry}"
-                            Text="{Binding Email, Mode=OneWayToSource}" />
+                            <local:CustomEntry
+                                Keyboard="Text"
+                                Placeholder="Fullname"
+                                PlaceholderColor="LightGray"
+                                ReturnType="Next"
+                                Style="{x:StaticResource CustomEntry}"
+                                Text="{Binding FullName, Mode=OneWayToSource}" />
+                            <Label
+                                FontSize="15"
+                                Text="{Binding NameValidation, Mode=TwoWay}"
+                                TextColor="Red" />
 
-                        <local:CustomEntry
-                            IsPassword="True"
-                            Keyboard="Text"
-                            Placeholder="Password"
-                            PlaceholderColor="LightGray"
-                            ReturnType="Next"
-                            Style="{x:StaticResource CustomEntry}"
-                            Text="{Binding Password, Mode=OneWayToSource}" />
+                        </StackLayout>
 
-                        <local:CustomEntry
-                            IsPassword="True"
-                            Keyboard="Text"
-                            Placeholder="ConfirmPassword"
-                            PlaceholderColor="LightGray"
-                            ReturnCommand="{Binding UserSetRegCommand}"
-                            ReturnType="Done"
-                            Style="{x:StaticResource CustomEntry}"
-                            Text="{Binding ConfirmPassword, Mode=OneWayToSource}" />
+                        <StackLayout Margin="0" Spacing="0">
+
+                            <local:CustomEntry
+                                Keyboard="Email"
+                                Placeholder="Email"
+                                PlaceholderColor="LightGray"
+                                ReturnType="Next"
+                                Style="{x:StaticResource CustomEntry}"
+                                Text="{Binding Email, Mode=OneWayToSource}" />
+                            <Label
+                                FontSize="15"
+                                Text="{Binding EmailValidation, Mode=TwoWay}"
+                                TextColor="Red" />
+
+                        </StackLayout>
+
+                        <StackLayout Margin="0" Spacing="0">
+
+                            <local:CustomEntry
+                                IsPassword="True"
+                                Placeholder="Password"
+                                PlaceholderColor="LightGray"
+                                ReturnType="Next"
+                                Style="{x:StaticResource CustomEntry}"
+                                Text="{Binding Password, Mode=OneWayToSource}" />
+                            <Label
+                                FontSize="15"
+                                Text="{Binding PasswordValidation, Mode=TwoWay}"
+                                TextColor="Red" />
+
+                        </StackLayout>
+
+                        <StackLayout Margin="0" Spacing="0">
+
+                            <local:CustomEntry
+                                IsPassword="True"
+                                Placeholder="ConfirmPassword"
+                                PlaceholderColor="LightGray"
+                                ReturnCommand="{Binding UserSetRegCommand}"
+                                ReturnType="Done"
+                                Style="{x:StaticResource CustomEntry}"
+                                Text="{Binding ConfirmPassword, Mode=OneWayToSource}" />
+                            <Label
+                                FontSize="15"
+                                Text="{Binding ConfirmPassValidation, Mode=TwoWay}"
+                                TextColor="Red" />
+
+                        </StackLayout>
+
                         <!--#endregion-->
-
 
 
                         <!--#region proceedNextPage Btn-->
@@ -170,7 +199,6 @@
                             IsRunning="{Binding isNextInit}"
                             IsVisible="{Binding isNextInit}"
                             Color="{x:StaticResource _DarkBlue}" />
-
 
                     </StackLayout>
 

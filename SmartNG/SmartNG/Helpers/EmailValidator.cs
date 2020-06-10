@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SmartNG.Helpers
 {
-    public class EmailValidator
+    public static class EmailValidator
     {
-        private string _Email { get; set; } = string.Empty;
-
-        public EmailValidator(string email)
+        public static bool IsValid(string email)
         {
-            _Email = email;
-        }
-
-        public bool IsValid()
-        {
-            try
-            {
-                MailAddress m = new MailAddress(_Email);
-
-                return true;
-            }
-            catch (FormatException)
-            {
+            if (string.IsNullOrEmpty(email))
                 return false;
-            }
+
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            return match.Success;
+
         }
 
     }

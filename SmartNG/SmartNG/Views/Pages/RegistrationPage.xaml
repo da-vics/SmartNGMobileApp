@@ -30,7 +30,7 @@
             <RowDefinition Height="2*" />
 
             <!--  Register Options  -->
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="15*" />
 
             <RowDefinition Height="*" />
 
