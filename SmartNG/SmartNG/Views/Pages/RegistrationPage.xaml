@@ -57,7 +57,8 @@
             Grid.ColumnSpan="5"
             Margin="20"
             HeightRequest="150"
-            Source="signupuser.png" />
+            Source="signupuser.png"
+            VerticalOptions="CenterAndExpand" />
 
         <Label
             Grid.Row="2"
