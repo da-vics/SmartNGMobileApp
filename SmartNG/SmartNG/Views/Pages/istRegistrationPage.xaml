@@ -119,7 +119,7 @@
                                 PlaceholderColor="LightGray"
                                 ReturnType="Next"
                                 Style="{x:StaticResource CustomEntry}"
-                                Text="{Binding FullName, Mode=OneWayToSource}" />
+                                Text="{Binding FullName, Mode=TwoWay}" />
                             <Label
                                 FontSize="15"
                                 Text="{Binding NameValidation, Mode=TwoWay}"

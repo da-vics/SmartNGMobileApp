@@ -18,7 +18,6 @@ namespace SmartNG
 {
     class RegistrationPageViewModel : BaseViewModel
     {
-
         #region PrivateMembers
         private string _phoneNumber { get; set; } = string.Empty;
         private string _homeAddress { get; set; } = string.Empty;
@@ -97,11 +96,6 @@ namespace SmartNG
             {
                 this._homeAddress = value;
 
-                if (!string.IsNullOrEmpty(_homeAddress))
-                {
-                    _homeAddress = _homeAddress.Trim();
-                }
-
                 onPropertyChanged();
 
                 if (string.IsNullOrEmpty(_homeAddress))
@@ -166,6 +160,11 @@ namespace SmartNG
             await Task.Run(async () =>
             {
                 this.isSignUpInit = true;
+
+                if (!string.IsNullOrEmpty(_homeAddress))
+                {
+                    _homeAddress = _homeAddress.Trim();
+                }
 
                 newUserProfile.HomeAddress = _homeAddress;
                 newUserProfile.PhoneNumber = _phoneNumber;

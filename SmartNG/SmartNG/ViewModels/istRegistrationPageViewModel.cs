@@ -4,6 +4,7 @@ using SmartNG.Helpers;
 using SmartNG.Views.Pages;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -91,11 +92,20 @@ namespace SmartNG
             set
             {
                 this._fullName = value;
+
+                _fullName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(_fullName);
+
+                ///// System.Globalization.CultureInfo.TextInfo.ToTitleCase
+                //_fullName = _fullName.ToUpperInvariant();  /// test
+
+                onPropertyChanged();
+
+                var temp = _fullName;
+
                 if (!string.IsNullOrEmpty(_fullName))
                 {
-                    _fullName = _fullName.Trim();
+                    temp = _fullName.Trim();
                 }
-                onPropertyChanged();
 
 
                 if (string.IsNullOrEmpty(_fullName))
@@ -104,7 +114,7 @@ namespace SmartNG
                     IsallowedToMove = false;
                 }
 
-                else if (!_fullName.Contains(" "))
+                else if (!temp.Contains(" "))
                 {
                     NameValidation = "full name required";
                     IsallowedToMove = false;
@@ -265,6 +275,11 @@ namespace SmartNG
                 return;
 
             isNextInit = true;
+
+            if (!string.IsNullOrEmpty(_fullName))
+            {
+                _fullName = _fullName.Trim();
+            }
 
             #region CreatesUserProfile 
             newUserProfile.Fullname = _fullName;
