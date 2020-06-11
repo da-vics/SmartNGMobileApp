@@ -1,4 +1,5 @@
 
+using Android.Util;
 using SmartNG.DataProfiles;
 using SmartNG.RestAPIClientHandlers;
 using SmartNG.Views.Pages;
@@ -14,8 +15,8 @@ namespace SmartNG
     {
 
         #region PrivateMembers
-        private string _password { get; set; }
-        private string _Email { get; set; }
+        private string _password { get; set; } = string.Empty;
+        private string _Email { get; set; } = string.Empty;
         private bool _isLogin { get; set; }
 
         private string _emailValidation { get; set; } = "required";
@@ -71,6 +72,11 @@ namespace SmartNG
             {
                 this._Email = value;
 
+                if (!string.IsNullOrEmpty(_Email))
+                {
+                    _Email = _Email.Trim();
+                }
+
                 onPropertyChanged();
 
                 if (string.IsNullOrEmpty(_Email))
@@ -124,7 +130,6 @@ namespace SmartNG
             this.isLoginInit = false;
             RegisterUserCommand = new Command(this.UserRegistrationPageSwitch);
         }
-
 
         #endregion
 

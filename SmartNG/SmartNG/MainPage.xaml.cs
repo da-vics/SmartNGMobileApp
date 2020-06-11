@@ -13,11 +13,14 @@ namespace SmartNG
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(string email = null, string password = null)
         {
             InitializeComponent();
 
-            /// this.BindingContext = new MainPageViewModel();
+            this.BindingContext = new MainPageViewModel();
+
+            UEmail.Text = email;
+            UPassword.Text = password;
         }
     }
 }

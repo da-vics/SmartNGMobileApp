@@ -21,10 +21,10 @@ namespace SmartNG
         private string _confirmPassword { get; set; } = string.Empty;
         private bool _isNext { get; set; } = false;
 
-        private string _nameValidation { get; set; } = "required";
-        private string _emailValidation { get; set; } = "required";
-        private string _passwordValidation { get; set; } = "required";
-        private string _confirmPassValidation { get; set; } = "required";
+        private string _nameValidation { get; set; }
+        private string _emailValidation { get; set; }
+        private string _passwordValidation { get; set; }
+        private string _confirmPassValidation { get; set; }
 
         private bool checkDone { get; set; } = false;
 
@@ -34,6 +34,7 @@ namespace SmartNG
         #region Accessors
 
         #region EntryValidations
+
         public string EmailValidation
         {
             get => _emailValidation;
@@ -126,6 +127,12 @@ namespace SmartNG
             set
             {
                 this._Email = value;
+
+                if (!string.IsNullOrEmpty(_Email))
+                {
+                    _Email = _Email.Trim();
+                }
+
                 onPropertyChanged();
 
                 if (string.IsNullOrEmpty(_Email))
@@ -237,6 +244,10 @@ namespace SmartNG
             UserSetRegCommand = new Command(MoveToRegMain);
             newUserProfile = new RegistrationProfile();
             isNextInit = false;
+            NameValidation = "required";
+            EmailValidation = "required";
+            ConfirmPassValidation = "required";
+            PasswordValidation = "required";
         }
         #endregion
 
@@ -244,7 +255,7 @@ namespace SmartNG
         private async void MoveToRegMain(object obj)
         {
 
-            if (checkFieldStates())
+            if (IsallowedToMove == false)
             {
                 await Application.Current.MainPage.DisplayAlert("input error", "one or more input fields not set properly", "retry"); /// test
                 return;
@@ -269,11 +280,10 @@ namespace SmartNG
 
         private bool checkFieldStates()
         {
-            bool check = false;
-            check |= string.IsNullOrEmpty(_Email);
-            check |= string.IsNullOrEmpty(_password);
-            check |= string.IsNullOrEmpty(_confirmPassword);
-            check |= string.IsNullOrEmpty(_fullName);
+            bool check = string.IsNullOrEmpty(_emailValidation);
+            check &= string.IsNullOrEmpty(_passwordValidation);
+            check &= string.IsNullOrEmpty(_confirmPassValidation);
+            check &= string.IsNullOrEmpty(_nameValidation);
 
             return check;
         }
@@ -281,7 +291,7 @@ namespace SmartNG
         private void setRegProp()
         {
 
-            if (checkFieldStates() == false)
+            if (checkFieldStates() == true)
             {
                 IsallowedToMove = true;
             }

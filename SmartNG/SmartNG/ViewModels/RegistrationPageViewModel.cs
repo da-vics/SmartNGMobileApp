@@ -24,8 +24,8 @@ namespace SmartNG
         private string _homeAddress { get; set; } = string.Empty;
         private bool _isSignUp { get; set; } = false;
 
-        private string _phoneNumberValidation { get; set; } = "required";
-        private string _addressValidation { get; set; } = "required";
+        private string _phoneNumberValidation { get; set; }
+        private string _addressValidation { get; set; }
 
         private bool _allowRegister { get; set; } = false;
 
@@ -96,6 +96,12 @@ namespace SmartNG
             set
             {
                 this._homeAddress = value;
+
+                if (!string.IsNullOrEmpty(_homeAddress))
+                {
+                    _homeAddress = _homeAddress.Trim();
+                }
+
                 onPropertyChanged();
 
                 if (string.IsNullOrEmpty(_homeAddress))
@@ -136,6 +142,10 @@ namespace SmartNG
         {
             UserRegisterCommand = new Command(RegisterUser);
             newUserProfile = registrationProfile;
+            PhoneNumber = string.Empty;
+            HomeAddress = null;
+            PhoneNumberValidation = "required";
+            AddressValidation = "required";
         }
 
         #endregion
@@ -171,7 +181,8 @@ namespace SmartNG
             {
                 _IsRegSuccessful = false;
                 await Application.Current.MainPage.DisplayAlert("Registration", "Sucessful", "Login");
-                await Application.Current.MainPage.Navigation.PopModalAsync();
+
+                Application.Current.MainPage = new NavigationPage(new MainPage(newUserProfile.Email, newUserProfile.PassWordHash));
             }////
 
             else
@@ -184,22 +195,15 @@ namespace SmartNG
 
         private bool checkFieldStates()
         {
-            bool check = true;
-            if (string.IsNullOrEmpty(_phoneNumber) == true || string.IsNullOrEmpty(_addressValidation) == true)
-            {
-                check = true;
-            }
+            bool check = string.IsNullOrEmpty(PhoneNumberValidation);
+            check &= string.IsNullOrEmpty(AddressValidation);
 
-            else if (string.IsNullOrEmpty(_phoneNumber) == false && string.IsNullOrEmpty(_addressValidation) == false)
-            {
-                check = false;
-            }
             return check;
         }
 
         private void setRegProp()
         {
-            if (checkFieldStates() == false)
+            if (checkFieldStates() == true)
             {
                 _allowRegister = true;
             }

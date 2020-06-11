@@ -9,11 +9,6 @@
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
 
-    <ContentPage.BindingContext>
-        <local:MainPageViewModel />
-
-    </ContentPage.BindingContext>
-
     <!--  Value Converter  -->
     <ContentPage.Resources>
 
@@ -117,6 +112,7 @@
                     <StackLayout Margin="0" Spacing="0">
 
                         <local:CustomEntry
+                            x:Name="UEmail"
                             Keyboard="Email"
                             Placeholder="Email"
                             PlaceholderColor="LightGray"
@@ -133,6 +129,7 @@
                     <StackLayout Margin="0" Spacing="0">
 
                         <local:CustomEntry
+                            x:Name="UPassword"
                             IsPassword="True"
                             Placeholder="Password"
                             PlaceholderColor="LightGray"
