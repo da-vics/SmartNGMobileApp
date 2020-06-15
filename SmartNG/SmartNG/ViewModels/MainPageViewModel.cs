@@ -179,8 +179,11 @@ namespace SmartNG
 
 
             if (_IsLogSuccessful)
+            {
                 Application.Current.MainPage = new ControlPage();
-            //  await Application.Current.MainPage.Navigation.PushAsync(new ControlPage());
+                await Application.Current.MainPage.Navigation.PopToRootAsync(false);
+            }
+
 
             else
             {

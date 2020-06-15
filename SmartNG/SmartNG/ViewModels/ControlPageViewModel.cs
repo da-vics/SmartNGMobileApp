@@ -25,9 +25,10 @@ namespace SmartNG
         }
 
 
-        private void LogOutuser()
+        private async void LogOutuser()
         {
             Application.Current.MainPage = new NavigationPage(new MainPage());
+            await Application.Current.MainPage.Navigation.PopToRootAsync(false);
         }
 
     }

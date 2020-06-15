@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartNG.Views.Pages;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,11 +10,8 @@ namespace SmartNG
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new MainPage())
-            {
-                BarBackgroundColor = Color.LightGreen
-            };
+            MainPage = new NavigationPage(new MainPage());
+            /// MainPage = new ControlPage();
 
         }
 
