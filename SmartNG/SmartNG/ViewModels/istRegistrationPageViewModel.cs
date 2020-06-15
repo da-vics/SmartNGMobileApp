@@ -305,7 +305,6 @@ namespace SmartNG
 
         private void setRegProp()
         {
-
             if (checkFieldStates() == true)
             {
                 IsallowedToMove = true;

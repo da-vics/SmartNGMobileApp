@@ -6,19 +6,87 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="clr-namespace:SmartNG.Views.Pages"
-    NavigationPage.HasNavigationBar="False"
+    xmlns:views="clr-namespace:SmartNG.Views.Pages.ControlPages"
+    FlyoutBackgroundColor="White"
     mc:Ignorable="d">
 
+    <Shell.BindingContext>
 
-    <TabBar Title="Animals" FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Domestic" Icon="paw.png">
-            <ShellContent Title="test" ContentTemplate="{DataTemplate views:istRegistrationPage}" />
+        <local:ControlPageViewModel />
+
+    </Shell.BindingContext>
+
+
+    <Shell.FlyoutHeaderTemplate>
+
+        <DataTemplate>
+
+            <Grid Padding="20" BackgroundColor="White">
+                <Image
+                    Aspect="AspectFit"
+                    BackgroundColor="White"
+                    HorizontalOptions="Center"
+                    Opacity="0.9"
+                    Source="Varslogo.png"
+                    VerticalOptions="Center" />
+            </Grid>
+
+        </DataTemplate>
+
+    </Shell.FlyoutHeaderTemplate>
+
+    <!--#region DeviceManagementPortal-->
+    <FlyoutItem Title="Service Portal" Icon="ServicePortal.png">
+
+        <Tab Title="Devices" Icon="Monitor.png">
+
+            <ShellContent ContentTemplate="{DataTemplate views:MonitorDevicesPage}" />
+
         </Tab>
-        <ShellContent Title="test" ContentTemplate="{DataTemplate views:istRegistrationPage}" />
 
-    </TabBar>
+        <Tab Title="AddService" Icon="addService.png">
 
+            <ShellContent ContentTemplate="{DataTemplate views:FlyOutHeader}" />
+
+        </Tab>
+
+    </FlyoutItem>
+    <!--#endregion-->
+
+
+    <!--#region User Profile-->
+    <FlyoutItem Title="Profile" Icon="loginuser.png">
+
+        <ShellContent ContentTemplate="{DataTemplate views:UserProfilePage}" />
+
+    </FlyoutItem>
+    <!--#endregion-->
+
+
+    <!--#region About Us-->
+    <FlyoutItem Title="About us" Icon="aboutUs.png">
+
+        <ShellContent ContentTemplate="{DataTemplate views:AboutUs}" />
+
+    </FlyoutItem>
+    <!--#endregion-->
+
+
+    <!--#region Contact Us-->
+    <FlyoutItem Title="Contact us" Icon="contactUs.png">
+
+        <ShellContent ContentTemplate="{DataTemplate views:ContactUs}" />
+
+    </FlyoutItem>
+    <!--#endregion-->
+
+
+    <!--#endregion Logout-->
+    <MenuItem
+        Command="{Binding UserLogout}"
+        IconImageSource="logout.png"
+        Text="Logout" />
+    <!--#endregion-->
 
 
 

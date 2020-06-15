@@ -152,4 +152,22 @@
   <ItemGroup>
     <BundleResource Include="Resources\signupuser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\addService.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\contactUs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\aboutUs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ServicePortal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Monitor.png" />
+  </ItemGroup>
 </Project>
