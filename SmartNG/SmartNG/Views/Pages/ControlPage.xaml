@@ -16,7 +16,6 @@
 
     </Shell.BindingContext>
 
-
     <Shell.FlyoutHeaderTemplate>
 
         <DataTemplate>
