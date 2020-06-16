@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace SmartNG
 {
@@ -22,6 +23,9 @@ namespace SmartNG
         private string _emailValidation { get; set; } = "required";
         private string _passwordValidation { get; set; } = "required";
 
+        private bool _hasEmailError { get; set; } = true;
+        private bool _hasPasswordError { get; set; } = true;
+
         private bool allowLogin { get; set; } = false;
 
         private bool _IsLogSuccessful { get; set; } = false;
@@ -30,6 +34,30 @@ namespace SmartNG
         #region PublicMembers
 
         #region Accessors
+
+        public bool HasEmailError
+        {
+            get => _hasEmailError;
+
+            set
+            {
+                _hasEmailError = value;
+                onPropertyChanged();
+            }
+        }
+
+        public bool HasPasswordError
+        {
+
+            get => _hasPasswordError;
+
+            set
+            {
+                _hasPasswordError = value;
+                onPropertyChanged();
+            }
+        }
+
         public string EmailValidation
         {
             get => _emailValidation;
@@ -83,11 +111,13 @@ namespace SmartNG
                 {
                     EmailValidation = "required";
                     allowLogin = false;
+                    HasEmailError = true;
                 }
 
                 else
                 {
                     EmailValidation = string.Empty;
+                    HasEmailError = false;
                     setLoginProp();
                 }
             }
@@ -107,6 +137,7 @@ namespace SmartNG
                 if (string.IsNullOrEmpty(_password))
                 {
                     PasswordValidation = "required";
+                    HasPasswordError = true;
                     allowLogin = false;
                 }
 
@@ -114,6 +145,7 @@ namespace SmartNG
                 {
                     PasswordValidation = string.Empty;
                     setLoginProp();
+                    HasPasswordError = false;
                 }
             }
 

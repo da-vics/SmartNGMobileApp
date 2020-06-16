@@ -26,6 +26,9 @@ namespace SmartNG
         private string _phoneNumberValidation { get; set; }
         private string _addressValidation { get; set; }
 
+        private bool _hasPhoneNumberError { get; set; } = true;
+        private bool _hasAddressError { get; set; } = true;
+
         private bool _allowRegister { get; set; } = false;
 
         private bool _IsRegSuccessful { get; set; } = false;
@@ -34,6 +37,30 @@ namespace SmartNG
         #region PublicMembers
 
         #region Accessors
+
+        public bool HasPhoneNumberError
+        {
+            get => _hasPhoneNumberError;
+
+            set
+            {
+                _hasPhoneNumberError = value;
+                onPropertyChanged();
+            }
+        }
+
+        public bool HasAddressError
+        {
+
+            get => _hasAddressError;
+
+            set
+            {
+                _hasAddressError = value;
+                onPropertyChanged();
+            }
+
+        }
 
         public string PhoneNumberValidation
         {
@@ -70,6 +97,7 @@ namespace SmartNG
                 if (string.IsNullOrEmpty(_phoneNumber))
                 {
                     PhoneNumberValidation = "required";
+                    HasPhoneNumberError = true;
                     _allowRegister = false;
                 }
 
@@ -77,11 +105,13 @@ namespace SmartNG
                 {
                     PhoneNumberValidation = "invalid mobile number";
                     _allowRegister = false;
+                    HasPhoneNumberError = true;
                 }
 
                 else
                 {
                     PhoneNumberValidation = string.Empty;
+                    HasPhoneNumberError = false;
                     setRegProp();
                 }
             }
@@ -102,11 +132,13 @@ namespace SmartNG
                 {
                     AddressValidation = "required";
                     _allowRegister = false;
+                    HasAddressError = true;
                 }
 
                 else
                 {
                     AddressValidation = string.Empty;
+                    HasAddressError = false;
                     setRegProp();
                 }
 

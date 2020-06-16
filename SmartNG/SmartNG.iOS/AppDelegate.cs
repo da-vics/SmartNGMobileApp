@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
 
 namespace SmartNG.iOS
@@ -24,6 +25,7 @@ namespace SmartNG.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            SfTextInputLayoutRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

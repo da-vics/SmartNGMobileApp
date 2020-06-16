@@ -26,6 +26,39 @@ namespace SmartNG.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar1 = global::SmartNG.Droid.Resource.Drawable.Avatar1;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar10 = global::SmartNG.Droid.Resource.Drawable.Avatar10;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar11 = global::SmartNG.Droid.Resource.Drawable.Avatar11;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar12 = global::SmartNG.Droid.Resource.Drawable.Avatar12;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar13 = global::SmartNG.Droid.Resource.Drawable.Avatar13;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar14 = global::SmartNG.Droid.Resource.Drawable.Avatar14;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar15 = global::SmartNG.Droid.Resource.Drawable.Avatar15;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar16 = global::SmartNG.Droid.Resource.Drawable.Avatar16;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar17 = global::SmartNG.Droid.Resource.Drawable.Avatar17;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar18 = global::SmartNG.Droid.Resource.Drawable.Avatar18;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar19 = global::SmartNG.Droid.Resource.Drawable.Avatar19;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar2 = global::SmartNG.Droid.Resource.Drawable.Avatar2;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar20 = global::SmartNG.Droid.Resource.Drawable.Avatar20;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar21 = global::SmartNG.Droid.Resource.Drawable.Avatar21;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar22 = global::SmartNG.Droid.Resource.Drawable.Avatar22;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar23 = global::SmartNG.Droid.Resource.Drawable.Avatar23;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar24 = global::SmartNG.Droid.Resource.Drawable.Avatar24;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar25 = global::SmartNG.Droid.Resource.Drawable.Avatar25;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar26 = global::SmartNG.Droid.Resource.Drawable.Avatar26;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar27 = global::SmartNG.Droid.Resource.Drawable.Avatar27;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar28 = global::SmartNG.Droid.Resource.Drawable.Avatar28;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar29 = global::SmartNG.Droid.Resource.Drawable.Avatar29;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar3 = global::SmartNG.Droid.Resource.Drawable.Avatar3;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar30 = global::SmartNG.Droid.Resource.Drawable.Avatar30;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar4 = global::SmartNG.Droid.Resource.Drawable.Avatar4;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar5 = global::SmartNG.Droid.Resource.Drawable.Avatar5;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar6 = global::SmartNG.Droid.Resource.Drawable.Avatar6;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar7 = global::SmartNG.Droid.Resource.Drawable.Avatar7;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar8 = global::SmartNG.Droid.Resource.Drawable.Avatar8;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.Avatar9 = global::SmartNG.Droid.Resource.Drawable.Avatar9;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.input_layout_drop_down_icon = global::SmartNG.Droid.Resource.Drawable.input_layout_drop_down_icon;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::SmartNG.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::SmartNG.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::SmartNG.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::SmartNG.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::SmartNG.Droid.Resource.Attribute.font;
@@ -8638,139 +8671,238 @@ namespace SmartNG.Droid
 			public const int addService = 2131165277;
 			
 			// aapt resource value: 0x7F07005E
-			public const int avd_hide_password = 2131165278;
+			public const int Avatar1 = 2131165278;
 			
 			// aapt resource value: 0x7F07005F
-			public const int avd_show_password = 2131165279;
+			public const int Avatar10 = 2131165279;
 			
 			// aapt resource value: 0x7F070060
-			public const int btn_checkbox_checked_mtrl = 2131165280;
+			public const int Avatar11 = 2131165280;
 			
 			// aapt resource value: 0x7F070061
-			public const int btn_checkbox_checked_to_unchecked_mtrl_animation = 2131165281;
+			public const int Avatar12 = 2131165281;
 			
 			// aapt resource value: 0x7F070062
-			public const int btn_checkbox_unchecked_mtrl = 2131165282;
+			public const int Avatar13 = 2131165282;
 			
 			// aapt resource value: 0x7F070063
-			public const int btn_checkbox_unchecked_to_checked_mtrl_animation = 2131165283;
+			public const int Avatar14 = 2131165283;
 			
 			// aapt resource value: 0x7F070064
-			public const int btn_radio_off_mtrl = 2131165284;
+			public const int Avatar15 = 2131165284;
 			
 			// aapt resource value: 0x7F070065
-			public const int btn_radio_off_to_on_mtrl_animation = 2131165285;
+			public const int Avatar16 = 2131165285;
 			
 			// aapt resource value: 0x7F070066
-			public const int btn_radio_on_mtrl = 2131165286;
+			public const int Avatar17 = 2131165286;
 			
 			// aapt resource value: 0x7F070067
-			public const int btn_radio_on_to_off_mtrl_animation = 2131165287;
+			public const int Avatar18 = 2131165287;
 			
 			// aapt resource value: 0x7F070068
-			public const int contactUs = 2131165288;
+			public const int Avatar19 = 2131165288;
 			
 			// aapt resource value: 0x7F070069
-			public const int design_bottom_navigation_item_background = 2131165289;
+			public const int Avatar2 = 2131165289;
 			
 			// aapt resource value: 0x7F07006A
-			public const int design_fab_background = 2131165290;
+			public const int Avatar20 = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
-			public const int design_ic_visibility = 2131165291;
+			public const int Avatar21 = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public const int design_ic_visibility_off = 2131165292;
+			public const int Avatar22 = 2131165292;
 			
 			// aapt resource value: 0x7F07006D
-			public const int design_password_eye = 2131165293;
+			public const int Avatar23 = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public const int design_snackbar_background = 2131165294;
+			public const int Avatar24 = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public const int email = 2131165295;
+			public const int Avatar25 = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int ic_mtrl_chip_checked_black = 2131165296;
+			public const int Avatar26 = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public const int ic_mtrl_chip_checked_circle = 2131165297;
+			public const int Avatar27 = 2131165297;
 			
 			// aapt resource value: 0x7F070072
-			public const int ic_mtrl_chip_close_circle = 2131165298;
+			public const int Avatar28 = 2131165298;
 			
 			// aapt resource value: 0x7F070073
-			public const int loginuser = 2131165299;
+			public const int Avatar29 = 2131165299;
 			
 			// aapt resource value: 0x7F070074
-			public const int logout = 2131165300;
+			public const int Avatar3 = 2131165300;
 			
 			// aapt resource value: 0x7F070075
-			public const int Monitor = 2131165301;
+			public const int Avatar30 = 2131165301;
 			
 			// aapt resource value: 0x7F070076
-			public const int mtrl_snackbar_background = 2131165302;
+			public const int Avatar4 = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int mtrl_tabs_default_indicator = 2131165303;
+			public const int Avatar5 = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int navigation_empty_icon = 2131165304;
+			public const int Avatar6 = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int notification_action_background = 2131165305;
+			public const int Avatar7 = 2131165305;
 			
 			// aapt resource value: 0x7F07007A
-			public const int notification_bg = 2131165306;
+			public const int Avatar8 = 2131165306;
 			
 			// aapt resource value: 0x7F07007B
-			public const int notification_bg_low = 2131165307;
+			public const int Avatar9 = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
-			public const int notification_bg_low_normal = 2131165308;
+			public const int avd_hide_password = 2131165308;
 			
 			// aapt resource value: 0x7F07007D
-			public const int notification_bg_low_pressed = 2131165309;
+			public const int avd_show_password = 2131165309;
 			
 			// aapt resource value: 0x7F07007E
-			public const int notification_bg_normal = 2131165310;
+			public const int btn_checkbox_checked_mtrl = 2131165310;
 			
 			// aapt resource value: 0x7F07007F
-			public const int notification_bg_normal_pressed = 2131165311;
+			public const int btn_checkbox_checked_to_unchecked_mtrl_animation = 2131165311;
 			
 			// aapt resource value: 0x7F070080
-			public const int notification_icon_background = 2131165312;
+			public const int btn_checkbox_unchecked_mtrl = 2131165312;
 			
 			// aapt resource value: 0x7F070081
-			public const int notification_template_icon_bg = 2131165313;
+			public const int btn_checkbox_unchecked_to_checked_mtrl_animation = 2131165313;
 			
 			// aapt resource value: 0x7F070082
-			public const int notification_template_icon_low_bg = 2131165314;
+			public const int btn_radio_off_mtrl = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int notification_tile_bg = 2131165315;
+			public const int btn_radio_off_to_on_mtrl_animation = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int notify_panel_notification_icon_bg = 2131165316;
+			public const int btn_radio_on_mtrl = 2131165316;
 			
 			// aapt resource value: 0x7F070085
-			public const int ServicePortal = 2131165317;
+			public const int btn_radio_on_to_off_mtrl_animation = 2131165317;
 			
 			// aapt resource value: 0x7F070086
-			public const int signupuser = 2131165318;
+			public const int contactUs = 2131165318;
 			
 			// aapt resource value: 0x7F070087
-			public const int splash_screen = 2131165319;
+			public const int design_bottom_navigation_item_background = 2131165319;
 			
 			// aapt resource value: 0x7F070088
-			public const int tooltip_frame_dark = 2131165320;
+			public const int design_fab_background = 2131165320;
 			
 			// aapt resource value: 0x7F070089
-			public const int tooltip_frame_light = 2131165321;
+			public const int design_ic_visibility = 2131165321;
 			
 			// aapt resource value: 0x7F07008A
-			public const int Varslogo = 2131165322;
+			public const int design_ic_visibility_off = 2131165322;
+			
+			// aapt resource value: 0x7F07008B
+			public const int design_password_eye = 2131165323;
+			
+			// aapt resource value: 0x7F07008C
+			public const int design_snackbar_background = 2131165324;
+			
+			// aapt resource value: 0x7F07008D
+			public const int email = 2131165325;
+			
+			// aapt resource value: 0x7F07008E
+			public const int ic_mtrl_chip_checked_black = 2131165326;
+			
+			// aapt resource value: 0x7F07008F
+			public const int ic_mtrl_chip_checked_circle = 2131165327;
+			
+			// aapt resource value: 0x7F070090
+			public const int ic_mtrl_chip_close_circle = 2131165328;
+			
+			// aapt resource value: 0x7F070092
+			public const int inputlayout_togglecollapseicon = 2131165330;
+			
+			// aapt resource value: 0x7F070093
+			public const int inputlayout_togglevisibleicon = 2131165331;
+			
+			// aapt resource value: 0x7F070091
+			public const int input_layout_drop_down_icon = 2131165329;
+			
+			// aapt resource value: 0x7F070094
+			public const int loginuser = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int logout = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public const int Monitor = 2131165334;
+			
+			// aapt resource value: 0x7F070097
+			public const int mtrl_snackbar_background = 2131165335;
+			
+			// aapt resource value: 0x7F070098
+			public const int mtrl_tabs_default_indicator = 2131165336;
+			
+			// aapt resource value: 0x7F070099
+			public const int navigation_empty_icon = 2131165337;
+			
+			// aapt resource value: 0x7F07009A
+			public const int notification_action_background = 2131165338;
+			
+			// aapt resource value: 0x7F07009B
+			public const int notification_bg = 2131165339;
+			
+			// aapt resource value: 0x7F07009C
+			public const int notification_bg_low = 2131165340;
+			
+			// aapt resource value: 0x7F07009D
+			public const int notification_bg_low_normal = 2131165341;
+			
+			// aapt resource value: 0x7F07009E
+			public const int notification_bg_low_pressed = 2131165342;
+			
+			// aapt resource value: 0x7F07009F
+			public const int notification_bg_normal = 2131165343;
+			
+			// aapt resource value: 0x7F0700A0
+			public const int notification_bg_normal_pressed = 2131165344;
+			
+			// aapt resource value: 0x7F0700A1
+			public const int notification_icon_background = 2131165345;
+			
+			// aapt resource value: 0x7F0700A2
+			public const int notification_template_icon_bg = 2131165346;
+			
+			// aapt resource value: 0x7F0700A3
+			public const int notification_template_icon_low_bg = 2131165347;
+			
+			// aapt resource value: 0x7F0700A4
+			public const int notification_tile_bg = 2131165348;
+			
+			// aapt resource value: 0x7F0700A5
+			public const int notify_panel_notification_icon_bg = 2131165349;
+			
+			// aapt resource value: 0x7F0700A6
+			public const int ServicePortal = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public const int signupuser = 2131165351;
+			
+			// aapt resource value: 0x7F0700A8
+			public const int splash_screen = 2131165352;
+			
+			// aapt resource value: 0x7F0700A9
+			public const int tooltip_frame_dark = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public const int tooltip_frame_light = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public const int Varslogo = 2131165355;
 			
 			static Drawable()
 			{

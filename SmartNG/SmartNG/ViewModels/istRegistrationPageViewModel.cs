@@ -27,12 +27,63 @@ namespace SmartNG
         private string _passwordValidation { get; set; }
         private string _confirmPassValidation { get; set; }
 
+        private bool _hasEmailError { get; set; } = true;
+        private bool _hasPasswordError { get; set; } = true;
+        private bool _hasFullnameError { get; set; } = true;
+        private bool _hasConfirmPasswordError { get; set; } = true;
+
         private bool checkDone { get; set; } = false;
 
         private bool IsallowedToMove { get; set; } = false;
         #endregion
 
         #region Accessors
+
+        public bool HasEmailError
+        {
+            get => _hasEmailError;
+
+            set
+            {
+                _hasEmailError = value;
+                onPropertyChanged();
+            }
+        }
+
+        public bool HasPasswordError
+        {
+
+            get => _hasPasswordError;
+
+            set
+            {
+                _hasPasswordError = value;
+                onPropertyChanged();
+            }
+        }
+
+        public bool HasFullNameError
+        {
+            get => _hasFullnameError;
+
+            set
+            {
+                _hasFullnameError = value;
+                onPropertyChanged();
+            }
+        }
+
+        public bool HasConfirmPasswordError
+        {
+
+            get => _hasConfirmPasswordError;
+
+            set
+            {
+                _hasConfirmPasswordError = value;
+                onPropertyChanged();
+            }
+        }
 
         #region EntryValidations
 
@@ -112,17 +163,20 @@ namespace SmartNG
                 {
                     NameValidation = "required";
                     IsallowedToMove = false;
+                    HasFullNameError = true;
                 }
 
                 else if (!temp.Contains(" "))
                 {
                     NameValidation = "full name required";
                     IsallowedToMove = false;
+                    HasFullNameError = true;
                 }
 
                 else
                 {
                     NameValidation = string.Empty;
+                    HasFullNameError = false;
                     setRegProp();
                 }
 
@@ -150,17 +204,20 @@ namespace SmartNG
 
                     EmailValidation = "required";
                     IsallowedToMove = false;
+                    HasEmailError = true;
                 }
 
                 else if (!EmailValidator.IsValid(_Email))
                 {
                     EmailValidation = "invalid email";
                     IsallowedToMove = false;
+                    HasEmailError = true;
                 }
 
                 else
                 {
                     EmailValidation = string.Empty;
+                    HasEmailError = false;
                     setRegProp();
                 }
             }
@@ -180,17 +237,20 @@ namespace SmartNG
                 {
                     PasswordValidation = "required";
                     IsallowedToMove = false;
+                    HasPasswordError = true;
                 }
 
                 else if (_password.Length < 6)
                 {
                     PasswordValidation = "too short";
                     IsallowedToMove = false;
+                    HasPasswordError = true;
                 }
 
                 else
                 {
                     PasswordValidation = string.Empty;
+                    HasPasswordError = false;
                     setRegProp();
                 }
             }
@@ -210,12 +270,14 @@ namespace SmartNG
                 {
                     ConfirmPassValidation = "password must match";
                     IsallowedToMove = false;
+                    HasConfirmPasswordError = true;
                     checkDone = false;
                 }
 
                 else if (string.IsNullOrEmpty(_confirmPassword))
                 {
                     ConfirmPassValidation = "required";
+                    HasConfirmPasswordError = true;
                     IsallowedToMove = false;
                     checkDone = false;
                 }
@@ -224,6 +286,7 @@ namespace SmartNG
                 {
                     ConfirmPassValidation = string.Empty;
                     checkDone = true;
+                    HasConfirmPasswordError = false;
                     setRegProp();
                 }
             }

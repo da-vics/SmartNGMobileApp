@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     NavigationPage.HasNavigationBar="False"
@@ -33,10 +34,10 @@
             <!--  Margin  -->
             <RowDefinition Height="5*" />
 
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
 
             <!--  Register Options  -->
-            <RowDefinition Height="15*" />
+            <RowDefinition Height="20*" />
 
             <RowDefinition Height="*" />
 
@@ -61,7 +62,7 @@
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="5"
-            Margin="20"
+            Margin="10"
             HeightRequest="150"
             Source="signupuser.png"
             VerticalOptions="CenterAndExpand" />
@@ -70,6 +71,7 @@
             Grid.Row="2"
             Grid.Column="1"
             Grid.ColumnSpan="3"
+            Margin="0"
             FontAttributes="Bold"
             FontFamily="{x:StaticResource KalamBoldFont}"
             FontSize="40"
@@ -82,15 +84,20 @@
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="5"
+            Margin="0"
+            Padding="0"
             HorizontalOptions="Start"
-            Spacing="25"
+            Spacing="10"
             VerticalOptions="FillAndExpand">
 
 
-            <ScrollView HorizontalScrollBarVisibility="Default" VerticalScrollBarVisibility="Default">
+            <ScrollView
+                Margin="0"
+                HorizontalScrollBarVisibility="Default"
+                VerticalScrollBarVisibility="Default">
 
                 <!--#region  User Input-->
-                <Grid>
+                <Grid Margin="0">
 
                     <Grid.ColumnDefinitions>
 
@@ -109,72 +116,82 @@
                     <StackLayout
                         Grid.Column="1"
                         Grid.ColumnSpan="3"
-                        Spacing="15">
+                        Margin="0"
+                        Spacing="0">
 
-                        <StackLayout Margin="0" Spacing="0">
-
-                            <local:CustomEntry
-                                Keyboard="Text"
-                                Placeholder="Fullname"
-                                PlaceholderColor="LightGray"
+                        <inputLayout:SfTextInputLayout
+                            Margin="0"
+                            Padding="5"
+                            ContainerBackgroundColor="White"
+                            ContainerType="Outlined"
+                            ErrorColor="Red"
+                            ErrorText="{Binding NameValidation, Mode=TwoWay}"
+                            FocusedColor="DarkGray"
+                            HasError="{Binding HasFullNameError}"
+                            Hint="Fullname"
+                            OutlineCornerRadius="8">
+                            <Entry
+                                Margin="0"
                                 ReturnType="Next"
-                                Style="{x:StaticResource CustomEntry}"
                                 Text="{Binding FullName, Mode=TwoWay}" />
-                            <Label
-                                FontSize="15"
-                                Text="{Binding NameValidation, Mode=TwoWay}"
-                                TextColor="Red" />
+                        </inputLayout:SfTextInputLayout>
 
-                        </StackLayout>
 
-                        <StackLayout Margin="0" Spacing="0">
-
-                            <local:CustomEntry
-                                Keyboard="Email"
-                                Placeholder="Email"
-                                PlaceholderColor="LightGray"
+                        <inputLayout:SfTextInputLayout
+                            Margin="0"
+                            Padding="5"
+                            ContainerBackgroundColor="White"
+                            ContainerType="Outlined"
+                            ErrorColor="Red"
+                            ErrorText="{Binding EmailValidation, Mode=TwoWay}"
+                            FocusedColor="DarkGray"
+                            HasError="{Binding HasEmailError}"
+                            Hint="Email"
+                            OutlineCornerRadius="8">
+                            <Entry
+                                Margin="0"
                                 ReturnType="Next"
-                                Style="{x:StaticResource CustomEntry}"
                                 Text="{Binding Email, Mode=OneWayToSource}" />
-                            <Label
-                                FontSize="15"
-                                Text="{Binding EmailValidation, Mode=TwoWay}"
-                                TextColor="Red" />
+                        </inputLayout:SfTextInputLayout>
 
-                        </StackLayout>
 
-                        <StackLayout Margin="0" Spacing="0">
-
-                            <local:CustomEntry
+                        <inputLayout:SfTextInputLayout
+                            Margin="0"
+                            Padding="5"
+                            ContainerBackgroundColor="White"
+                            ContainerType="Outlined"
+                            EnablePasswordVisibilityToggle="true"
+                            ErrorColor="Red"
+                            ErrorText="{Binding PasswordValidation, Mode=TwoWay}"
+                            FocusedColor="DarkGray"
+                            HasError="{Binding HasPasswordError}"
+                            Hint="Password"
+                            OutlineCornerRadius="8">
+                            <Entry
                                 IsPassword="True"
-                                Placeholder="Password"
-                                PlaceholderColor="LightGray"
                                 ReturnType="Next"
-                                Style="{x:StaticResource CustomEntry}"
                                 Text="{Binding Password, Mode=OneWayToSource}" />
-                            <Label
-                                FontSize="15"
-                                Text="{Binding PasswordValidation, Mode=TwoWay}"
-                                TextColor="Red" />
+                        </inputLayout:SfTextInputLayout>
 
-                        </StackLayout>
 
-                        <StackLayout Margin="0" Spacing="0">
-
-                            <local:CustomEntry
+                        <inputLayout:SfTextInputLayout
+                            Margin="0"
+                            Padding="5"
+                            ContainerBackgroundColor="White"
+                            ContainerType="Outlined"
+                            EnablePasswordVisibilityToggle="true"
+                            ErrorColor="Red"
+                            ErrorText="{Binding ConfirmPassValidation, Mode=TwoWay}"
+                            FocusedColor="DarkGray"
+                            HasError="{Binding HasConfirmPasswordError}"
+                            Hint="ConfirmPassword"
+                            OutlineCornerRadius="8">
+                            <Entry
                                 IsPassword="True"
-                                Placeholder="ConfirmPassword"
-                                PlaceholderColor="LightGray"
                                 ReturnCommand="{Binding UserSetRegCommand}"
                                 ReturnType="Done"
-                                Style="{x:StaticResource CustomEntry}"
                                 Text="{Binding ConfirmPassword, Mode=OneWayToSource}" />
-                            <Label
-                                FontSize="15"
-                                Text="{Binding ConfirmPassValidation, Mode=TwoWay}"
-                                TextColor="Red" />
-
-                        </StackLayout>
+                        </inputLayout:SfTextInputLayout>
 
                         <!--#endregion-->
 

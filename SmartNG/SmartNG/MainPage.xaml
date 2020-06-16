@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     NavigationPage.HasNavigationBar="False"
@@ -105,44 +106,50 @@
                     Grid.ColumnSpan="3"
                     Margin="0"
                     Orientation="Vertical"
-                    Spacing="20"
+                    Spacing="10"
                     VerticalOptions="Start">
 
-                    <StackLayout Margin="0" Spacing="0">
 
-                        <local:CustomEntry
+                    <inputLayout:SfTextInputLayout
+                        Margin="0"
+                        Padding="5"
+                        ContainerBackgroundColor="White"
+                        ContainerType="Outlined"
+                        ErrorColor="Red"
+                        ErrorText="{Binding EmailValidation, Mode=TwoWay}"
+                        FocusedColor="DarkGray"
+                        HasError="{Binding HasEmailError}"
+                        Hint="Email"
+                        OutlineCornerRadius="8">
+                        <Entry
                             x:Name="UEmail"
-                            Keyboard="Email"
-                            Placeholder="Email"
-                            PlaceholderColor="LightGray"
+                            Margin="0"
                             ReturnType="Next"
-                            Style="{x:StaticResource CustomEntry}"
                             Text="{Binding Email, Mode=OneWayToSource}" />
-                        <Label
-                            FontSize="15"
-                            Text="{Binding EmailValidation, Mode=TwoWay}"
-                            TextColor="Red" />
+                    </inputLayout:SfTextInputLayout>
 
-                    </StackLayout>
 
-                    <StackLayout Margin="0" Spacing="0">
-
-                        <local:CustomEntry
+                    <inputLayout:SfTextInputLayout
+                        Margin="0"
+                        Padding="5"
+                        ContainerBackgroundColor="White"
+                        ContainerType="Outlined"
+                        EnablePasswordVisibilityToggle="true"
+                        ErrorColor="Red"
+                        ErrorText="{Binding PasswordValidation, Mode=TwoWay}"
+                        FocusedColor="DarkGray"
+                        HasError="{Binding HasPasswordError}"
+                        Hint="Password"
+                        OutlineCornerRadius="8">
+                        <Entry
                             x:Name="UPassword"
                             IsPassword="True"
-                            Placeholder="Password"
-                            PlaceholderColor="LightGray"
                             ReturnCommand="{Binding UserLoginCommand}"
                             ReturnType="Done"
-                            Style="{x:StaticResource CustomEntry}"
                             Text="{Binding Password, Mode=OneWayToSource}" />
+                    </inputLayout:SfTextInputLayout>
 
-                        <Label
-                            FontSize="15"
-                            Text="{Binding PasswordValidation, Mode=TwoWay}"
-                            TextColor="Red" />
 
-                    </StackLayout>
 
                 </StackLayout>
 

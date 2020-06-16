@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -106,39 +107,41 @@
                     Grid.ColumnSpan="3"
                     Spacing="20">
 
-                    <StackLayout Margin="0" Spacing="0">
+                    <inputLayout:SfTextInputLayout
+                        Margin="0"
+                        Padding="5"
+                        ContainerBackgroundColor="White"
+                        ContainerType="Outlined"
+                        ErrorColor="Red"
+                        ErrorText="{Binding PhoneNumberValidation, Mode=TwoWay}"
+                        FocusedColor="DarkGray"
+                        HasError="{Binding HasPhoneNumberError}"
+                        Hint="Phone Number"
+                        OutlineCornerRadius="8">
 
-                        <local:CustomEntry
+                        <Entry
                             Keyboard="Numeric"
                             MaxLength="11"
-                            Placeholder="PhoneNumber"
-                            PlaceholderColor="LightGray"
                             ReturnType="Next"
-                            Style="{x:StaticResource CustomEntry}"
                             Text="{Binding PhoneNumber, Mode=OneWayToSource}" />
+                    </inputLayout:SfTextInputLayout>
 
-                        <Label
-                            FontSize="15"
-                            Text="{Binding PhoneNumberValidation, Mode=TwoWay}"
-                            TextColor="Red" />
 
-                    </StackLayout>
-
-                    <StackLayout>
+                    <inputLayout:SfTextInputLayout
+                        Margin="0"
+                        Padding="5"
+                        ContainerBackgroundColor="White"
+                        ErrorColor="Red"
+                        ErrorText="{Binding AddressValidation, Mode=TwoWay}"
+                        FocusedColor="DarkGray"
+                        HasError="{Binding HasAddressError}"
+                        Hint="HomeAddress">
 
                         <Editor
-                            Margin="0"
                             AutoSize="TextChanges"
                             Keyboard="Text"
-                            Placeholder="Home Address"
-                            PlaceholderColor="Gray"
                             Text="{Binding HomeAddress, Mode=OneWayToSource}" />
-
-                        <Label
-                            FontSize="15"
-                            Text="{Binding AddressValidation, Mode=TwoWay}"
-                            TextColor="Red" />
-                    </StackLayout>
+                    </inputLayout:SfTextInputLayout>
 
                 </StackLayout>
             </Grid>
