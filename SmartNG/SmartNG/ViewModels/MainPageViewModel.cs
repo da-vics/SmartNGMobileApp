@@ -161,7 +161,7 @@ namespace SmartNG
 
         private async Task loginUser()
         {
-            if (checkFieldStates())
+            if (!checkFieldStates())
             {
                 await Application.Current.MainPage.DisplayAlert("input error", "one or more input fields not set properly", "retry"); /// test
                 return;
@@ -212,8 +212,8 @@ namespace SmartNG
 
         private bool checkFieldStates()
         {
-            bool check = string.IsNullOrEmpty(_Email)
-                & string.IsNullOrEmpty(_password);
+            bool check = string.IsNullOrEmpty(EmailValidation)
+                & string.IsNullOrEmpty(PasswordValidation);
 
             return check;
         }

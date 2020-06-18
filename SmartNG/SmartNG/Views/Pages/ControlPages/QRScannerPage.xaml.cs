@@ -37,7 +37,7 @@ namespace SmartNG.Views.Pages.ControlPages
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Scanned result", "The barcode's text is " + result.Text + ". The barcode's format is " + result.BarcodeFormat, "OK");
+                    await Application.Current.MainPage.DisplayAlert("Scanned result", "The barcode's text is " + result.Text + ". The barcode's format is " + result.BarcodeFormat, "OK");   /// test
                     scanView.IsScanning = true;
 
                 }

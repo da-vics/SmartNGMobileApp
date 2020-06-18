@@ -19,7 +19,7 @@
 
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="LightGray">
+    <Grid BackgroundColor="White">
 
         <!--  Content Definitions  -->
         <Grid.RowDefinitions>
@@ -38,15 +38,15 @@
 
         <Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="20" />
-
             <ColumnDefinition Width="*" />
 
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+
+            <ColumnDefinition Width="3*" />
+
+            <ColumnDefinition Width="3*" />
 
             <ColumnDefinition Width="*" />
-
-            <ColumnDefinition Width="20" />
 
         </Grid.ColumnDefinitions>
 
@@ -63,133 +63,149 @@
             TextColor="DarkRed"
             VerticalOptions="FillAndExpand" />
 
-        <StackLayout
+
+        <Frame
             Grid.Row="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Margin="0"
-            Padding="0"
-            HorizontalOptions="Start"
-            Spacing="10"
-            VerticalOptions="FillAndExpand">
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            Padding="10"
+            BackgroundColor="LightGray"
+            CornerRadius="10"
+            HasShadow="True"
+            Opacity="0.8">
 
-            <inputLayout:SfTextInputLayout
+            <StackLayout
                 Margin="0"
-                Padding="5"
-                ContainerBackgroundColor="White"
-                ContainerType="Outlined"
-                ErrorColor="Red"
-                ErrorText="{Binding ServiceValidation, Mode=TwoWay}"
-                FocusedColor="DarkGray"
-                HasError="{Binding HasServiceNameError}"
-                Hint="ServiceName"
-                OutlineCornerRadius="8">
-                <Entry
-                    Margin="0"
-                    ReturnType="Next"
-                    Text="{Binding ServiceName, Mode=TwoWay}" />
-            </inputLayout:SfTextInputLayout>
-
-
-            <inputLayout:SfTextInputLayout
-                Margin="0"
-                Padding="5"
-                ContainerBackgroundColor="White"
-                ContainerType="Outlined"
-                ErrorColor="Red"
-                ErrorText="{Binding WeightValidation, Mode=TwoWay}"
-                FocusedColor="DarkGray"
-                HasError="{Binding HasWeightError}"
-                Hint="Cylinder Weight(KG)"
-                OutlineCornerRadius="8">
-                <Entry
-                    Margin="0"
-                    Keyboard="Numeric"
-                    ReturnType="Next"
-                    Text="{Binding CylinderWeight, Mode=TwoWay}" />
-            </inputLayout:SfTextInputLayout>
-
-            <Grid Margin="0" Padding="5">
-
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-
-                </Grid.ColumnDefinitions>
+                Padding="0"
+                HorizontalOptions="Start"
+                Spacing="10"
+                VerticalOptions="Center">
 
                 <inputLayout:SfTextInputLayout
-                    Grid.Column="0"
                     Margin="0"
                     Padding="5"
                     ContainerBackgroundColor="White"
                     ContainerType="Outlined"
                     ErrorColor="Red"
-                    ErrorText="{Binding DeviceIdValidation, Mode=TwoWay}"
+                    ErrorText="{Binding ServiceValidation, Mode=TwoWay}"
                     FocusedColor="DarkGray"
-                    HasError="{Binding HasDeviceIdError}"
-                    Hint="DeviceId"
+                    HasError="{Binding HasServiceNameError}"
+                    Hint="ServiceName"
                     OutlineCornerRadius="8">
                     <Entry
                         Margin="0"
-                        IsEnabled="False"
-                        Keyboard="Text"
-                        Text="{Binding DeviceId, Mode=TwoWay}" />
+                        ReturnType="Next"
+                        Text="{Binding ServiceName, Mode=TwoWay}" />
                 </inputLayout:SfTextInputLayout>
 
-                <Button
-                    Grid.Column="1"
+
+                <inputLayout:SfTextInputLayout
                     Margin="0"
-                    Padding="0"
-                    BackgroundColor="Gray"
-                    Command="{Binding ScanQRCodeCommand}"
-                    CornerRadius="15"
-                    Style="{x:StaticResource CustomActionBtn}"
-                    Text="ScanQR"
-                    TextColor="White" />
-            </Grid>
+                    Padding="5"
+                    ContainerBackgroundColor="White"
+                    ContainerType="Outlined"
+                    ErrorColor="Red"
+                    ErrorText="{Binding WeightValidation, Mode=TwoWay}"
+                    FocusedColor="DarkGray"
+                    HasError="{Binding HasWeightError}"
+                    Hint="Cylinder Weight(KG)"
+                    OutlineCornerRadius="8">
+                    <Entry
+                        Margin="0"
+                        Keyboard="Numeric"
+                        ReturnType="Next"
+                        Text="{Binding CylinderWeight, Mode=TwoWay}" />
+                </inputLayout:SfTextInputLayout>
 
-            <!--#region SubmitBtn-->
-            <Grid Margin="0" Padding="0">
+                <Grid Margin="0" Padding="5">
 
-                <Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
 
-                    <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
 
-                    <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <ColumnDefinition Width="*" />
+                    <inputLayout:SfTextInputLayout
+                        Grid.Column="0"
+                        Margin="0"
+                        Padding="5"
+                        ContainerBackgroundColor="White"
+                        ContainerType="Outlined"
+                        ErrorColor="Red"
+                        ErrorText="{Binding DeviceIdValidation, Mode=TwoWay}"
+                        FocusedColor="DarkGray"
+                        HasError="{Binding HasDeviceIdError}"
+                        Hint="DeviceId"
+                        OutlineCornerRadius="8">
+                        <Entry
+                            Margin="0"
+                            IsEnabled="False"
+                            Keyboard="Text"
+                            Text="{Binding DeviceId, Mode=TwoWay}" />
+                    </inputLayout:SfTextInputLayout>
 
-                    <ColumnDefinition Width="*" />
+                    <Button
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Gray"
+                        BorderColor="Transparent"
+                        BorderWidth="0"
+                        Command="{Binding ScanQRCodeCommand}"
+                        ContentLayout="Right,0"
+                        CornerRadius="15"
+                        ImageSource="qrcodeicon.png"
+                        Opacity="0.9"
+                        Style="{x:StaticResource CustomActionBtn}"
+                        Text="ScanQR"
+                        TextColor="White" />
+                </Grid>
 
-                    <ColumnDefinition Width="10" />
+                <!--#region SubmitBtn-->
+                <Grid Margin="0,0,0,40" Padding="0">
 
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
 
-                <Button
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Margin="0"
-                    BackgroundColor="Gray"
-                    Command="{Binding AddNewServiceCommand}"
-                    CornerRadius="15"
-                    IsVisible="{Binding isAddService, Converter={x:StaticResource BtnVisibilityConverter}}"
-                    Style="{x:StaticResource CustomActionBtn}"
-                    Text="Add Service"
-                    TextColor="White" />
+                        <ColumnDefinition Width="10" />
 
-                <ActivityIndicator
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    IsEnabled="{Binding isAddService}"
-                    IsRunning="{Binding isAddService}"
-                    IsVisible="{Binding isAddService}"
-                    Color="{x:StaticResource _DarkBlue}" />
-            </Grid>
+                        <ColumnDefinition Width="*" />
 
-        </StackLayout>
+                        <ColumnDefinition Width="*" />
 
+                        <ColumnDefinition Width="*" />
 
+                        <ColumnDefinition Width="10" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Margin="0"
+                        BackgroundColor="Gray"
+                        BorderColor="Transparent"
+                        BorderWidth="0"
+                        Command="{Binding AddNewServiceCommand}"
+                        CornerRadius="15"
+                        IsVisible="{Binding isAddService, Converter={x:StaticResource BtnVisibilityConverter}}"
+                        Opacity="0.9"
+                        Style="{x:StaticResource CustomActionBtn}"
+                        Text="Add Device"
+                        TextColor="White" />
+
+                    <ActivityIndicator
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        IsEnabled="{Binding isAddService}"
+                        IsRunning="{Binding isAddService}"
+                        IsVisible="{Binding isAddService}"
+                        Color="{x:StaticResource _DarkBlue}" />
+                </Grid>
+
+            </StackLayout>
+
+        </Frame>
 
     </Grid>
 
