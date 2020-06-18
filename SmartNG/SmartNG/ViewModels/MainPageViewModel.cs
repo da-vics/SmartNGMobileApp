@@ -26,8 +26,6 @@ namespace SmartNG
         private bool _hasEmailError { get; set; } = true;
         private bool _hasPasswordError { get; set; } = true;
 
-        private bool allowLogin { get; set; } = false;
-
         private bool _IsLogSuccessful { get; set; } = false;
         #endregion
 
@@ -110,7 +108,6 @@ namespace SmartNG
                 if (string.IsNullOrEmpty(_Email))
                 {
                     EmailValidation = "required";
-                    allowLogin = false;
                     HasEmailError = true;
                 }
 
@@ -118,7 +115,6 @@ namespace SmartNG
                 {
                     EmailValidation = string.Empty;
                     HasEmailError = false;
-                    setLoginProp();
                 }
             }
 
@@ -138,13 +134,11 @@ namespace SmartNG
                 {
                     PasswordValidation = "required";
                     HasPasswordError = true;
-                    allowLogin = false;
                 }
 
                 else
                 {
                     PasswordValidation = string.Empty;
-                    setLoginProp();
                     HasPasswordError = false;
                 }
             }
@@ -158,14 +152,14 @@ namespace SmartNG
 
         public MainPageViewModel()
         {
-            UserLoginCommand = new Command(loginUser);
+            UserLoginCommand = new Command(async () => await loginUser());
             this.isLoginInit = false;
-            RegisterUserCommand = new Command(this.UserRegistrationPageSwitch);
+            RegisterUserCommand = new Command(async () => await UserRegistrationPageSwitch());
         }
 
         #endregion
 
-        private async void loginUser()
+        private async Task loginUser()
         {
             if (checkFieldStates())
             {
@@ -175,20 +169,6 @@ namespace SmartNG
 
             if (this.isLoginInit == true)
                 return;
-
-            try
-            {
-                if (string.IsNullOrEmpty(_Email) || string.IsNullOrEmpty(_password))
-                {
-                    throw new ArgumentException("Fields cannot be Empty");
-                }
-            }
-
-            catch (ArgumentException args)
-            {
-                await Application.Current.MainPage.DisplayAlert("Login Error", args.Message, "Retry");
-                return;
-            }
 
             await Task.Run(async () =>
             {
@@ -224,7 +204,7 @@ namespace SmartNG
 
         }
 
-        private async void UserRegistrationPageSwitch()
+        private async Task UserRegistrationPageSwitch()
         {
             await Application.Current.MainPage.Navigation.PushModalAsync(new istRegistrationPage());
         }
@@ -236,19 +216,6 @@ namespace SmartNG
                 & string.IsNullOrEmpty(_password);
 
             return check;
-        }
-
-        private void setLoginProp()
-        {
-            if (checkFieldStates() == false)
-            {
-                allowLogin = true;
-            }
-
-            else
-            {
-                allowLogin = false;
-            }
         }
 
     }

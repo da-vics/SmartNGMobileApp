@@ -4,14 +4,63 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Monitor Device!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+    <Grid>
+
+        <gauge:SfCircularGauge HorizontalOptions="Center" VerticalOptions="Center">
+
+            <gauge:SfCircularGauge.Scales>
+
+                <gauge:Scale
+                    EndValue="100"
+                    Interval="10"
+                    LabelColor="#424242"
+                    LabelFontSize="15"
+                    LabelOffset="0.75"
+                    RadiusFactor="1"
+                    RimColor="LightGray"
+                    RimThickness="30"
+                    ShowTicks="False"
+                    StartValue="0">
+
+                    <gauge:Scale.Pointers>
+
+                        <gauge:RangePointer
+                            AnimationDuration="5"
+                            EnableAnimation="True"
+                            Thickness="30"
+                            Offset="1"
+                            Color="Green"
+                            Value="80" />
+
+                        <gauge:NeedlePointer
+                            AnimationDuration="5"
+                            KnobColor="White"
+                            KnobRadius="12"
+                            KnobStrokeColor="LightGray"
+                            KnobStrokeWidth="8"
+                            LengthFactor="0.55"
+                            TailColor="LightGray"
+                            TailLengthFactor="0.2"
+                            TailStrokeColor="LightGray"
+                            TailStrokeWidth="2"
+                            Thickness="7"
+                            Type="Triangle"
+                            Color="LightGray"
+                            Value="80" />
+
+                    </gauge:Scale.Pointers>
+
+                </gauge:Scale>
+
+            </gauge:SfCircularGauge.Scales>
+
+        </gauge:SfCircularGauge>
+
+    </Grid>
+
+
 </ContentPage>

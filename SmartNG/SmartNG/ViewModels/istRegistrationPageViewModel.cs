@@ -310,11 +310,10 @@ namespace SmartNG
 
         public RegistrationProfile newUserProfile { get; set; }
 
-
         #region Default Constructor
         public istRegistrationPageViewModel()
         {
-            UserSetRegCommand = new Command(MoveToRegMain);
+            UserSetRegCommand = new Command(async (object obj) => await MoveToRegMain(obj));
             newUserProfile = new RegistrationProfile();
             isNextInit = false;
             NameValidation = "required";
@@ -325,7 +324,7 @@ namespace SmartNG
         #endregion
 
 
-        private async void MoveToRegMain(object obj)
+        private async Task MoveToRegMain(object obj)
         {
 
             if (IsallowedToMove == false)

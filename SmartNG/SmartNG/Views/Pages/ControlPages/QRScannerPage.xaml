@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SmartNG.Views.Pages.ControlPages.QRScannerPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    Shell.NavBarIsVisible="False"
+    mc:Ignorable="d">
+
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <zxing:ZXingScannerView
+            x:Name="scanView"
+            IsScanning="True"
+            OnScanResult="scanView_OnScanResult" />
+
+        <zxing:ZXingDefaultOverlay TopText="Align the barcode within the frame" />
+
+
+
+    </Grid>
+
+</ContentPage>

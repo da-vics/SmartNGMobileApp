@@ -26,6 +26,9 @@ namespace SmartNG.iOS
             global::Xamarin.Forms.Forms.Init();
 
             SfTextInputLayoutRenderer.Init();
+            Syncfusion.SfGauge.XForms.iOS.SfGaugeRenderer.Init();
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+            Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

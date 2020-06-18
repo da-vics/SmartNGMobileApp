@@ -166,7 +166,7 @@ namespace SmartNG
         /// </summary>
         public RegistrationPageViewModel(RegistrationProfile registrationProfile)
         {
-            UserRegisterCommand = new Command(RegisterUser);
+            UserRegisterCommand = new Command(async () => await RegisterUser());
             newUserProfile = registrationProfile;
             PhoneNumber = string.Empty;
             HomeAddress = null;
@@ -177,7 +177,7 @@ namespace SmartNG
         #endregion
 
 
-        private async void RegisterUser()
+        private async Task RegisterUser()
         {
 
             if (_allowRegister == false)

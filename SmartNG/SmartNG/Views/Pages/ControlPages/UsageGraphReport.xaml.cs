@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace SmartNG.Views.Pages.ControlPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FlyOutHeader : ContentPage
+    public partial class UsageGraphReport : ContentPage
     {
-        public FlyOutHeader()
+        public UsageGraphReport()
         {
             InitializeComponent();
         }

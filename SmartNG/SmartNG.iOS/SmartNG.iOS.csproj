@@ -136,8 +136,14 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.1.0.57</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.847" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.967" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms">
+      <Version>2.4.1</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -175,5 +181,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\GraphReport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\qrcodeicon.png" />
   </ItemGroup>
 </Project>

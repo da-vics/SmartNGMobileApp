@@ -43,9 +43,15 @@
 
         </Tab>
 
+        <Tab Title="Usage Report" Icon="GraphReport.png">
+
+            <ShellContent ContentTemplate="{DataTemplate views:UsageGraphReport}" />
+
+        </Tab>
+
         <Tab Title="AddService" Icon="addService.png">
 
-            <ShellContent ContentTemplate="{DataTemplate views:FlyOutHeader}" />
+            <ShellContent ContentTemplate="{DataTemplate views:AddServicePage}" />
 
         </Tab>
 
