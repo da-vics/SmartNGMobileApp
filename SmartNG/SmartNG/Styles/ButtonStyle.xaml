@@ -19,6 +19,7 @@
 
     <Style x:Key="CustomActionBtn" TargetType="Button">
 
+        <Setter Property="Padding" Value="10" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="BackgroundColor" Value="Gray" />
         <Setter Property="Padding" Value="0" />

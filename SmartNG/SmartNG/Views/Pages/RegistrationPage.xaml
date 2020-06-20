@@ -28,7 +28,7 @@
             <!--  Margin  -->
             <RowDefinition Height="5*" />
 
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
 
             <!--  Register Options  -->
             <RowDefinition Height="15*" />

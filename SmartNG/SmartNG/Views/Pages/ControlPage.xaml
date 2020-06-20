@@ -39,7 +39,7 @@
 
         <Tab Title="Devices" Icon="Monitor.png">
 
-            <ShellContent ContentTemplate="{DataTemplate views:MonitorDevicesPage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:ListServicesPage}" />
 
         </Tab>
 
@@ -60,27 +60,36 @@
 
 
     <!--#region User Profile-->
-    <FlyoutItem Title="Profile" Icon="loginuser.png">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
-        <ShellContent ContentTemplate="{DataTemplate views:UserProfilePage}" />
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate views:UserProfilePage}"
+            Icon="loginuser.png" />
 
     </FlyoutItem>
     <!--#endregion-->
 
 
     <!--#region About Us-->
-    <FlyoutItem Title="About us" Icon="aboutUs.png">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
-        <ShellContent ContentTemplate="{DataTemplate views:AboutUs}" />
+        <ShellContent
+            Title="About us"
+            ContentTemplate="{DataTemplate views:AboutUs}"
+            Icon="aboutUs.png" />
 
     </FlyoutItem>
     <!--#endregion-->
 
 
     <!--#region Contact Us-->
-    <FlyoutItem Title="Contact us" Icon="contactUs.png">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
 
-        <ShellContent ContentTemplate="{DataTemplate views:ContactUs}" />
+        <ShellContent
+            Title="Contact us"
+            ContentTemplate="{DataTemplate views:ContactUs}"
+            Icon="contactUs.png" />
 
     </FlyoutItem>
     <!--#endregion-->

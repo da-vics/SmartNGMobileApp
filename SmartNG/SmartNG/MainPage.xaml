@@ -25,10 +25,10 @@
         <Grid.RowDefinitions>
 
             <!--  Margin  -->
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
 
             <!--  Image  -->
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1*" />
 
             <!--  Sign in Options  -->
             <RowDefinition Height="*" />
@@ -37,10 +37,10 @@
             <RowDefinition Height="*" />
 
             <!--  Footer  -->
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
 
             <!--  Footer Span  -->
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
 
         </Grid.RowDefinitions>
 
@@ -79,12 +79,11 @@
 
         <StackLayout
             Grid.Row="2"
-            Grid.RowSpan="4"
+            Grid.RowSpan="3"
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Padding="5"
-            Spacing="20"
-            VerticalOptions="Center">
+            Spacing="20">
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -201,7 +200,6 @@
 
         <StackLayout
             Grid.Row="5"
-            Grid.RowSpan="2"
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Orientation="Vertical"
@@ -214,6 +212,7 @@
             <Button
                 FontAttributes="Bold"
                 HorizontalOptions="Center"
+                IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                 Style="{x:StaticResource BorderlessBtn}"
                 Text="Forgot Password?"
                 TextColor="Gray"
@@ -235,6 +234,7 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HorizontalOptions="Center"
+                IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                 Style="{x:StaticResource BorderlessBtn}"
                 Text="Sign up NOw"
                 TextColor="Black" />

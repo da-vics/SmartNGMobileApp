@@ -18,7 +18,7 @@ namespace SmartNG
 
         private string _serviceValidation { get; set; } = "required";
         private string _weightValidation { get; set; } = "required";
-        private string _deviceIdValidation { get; set; } = "required";
+        private string _deviceIdValidation { get; set; } = "tap QRImage to scan QRCode";
 
         private bool _hasServiceNameError { get; set; } = true;
         private bool _hasWeightError { get; set; } = true;
@@ -188,7 +188,7 @@ namespace SmartNG
 
                 if (string.IsNullOrEmpty(_deviceId))
                 {
-                    DeviceIdValidation = "required";
+                    DeviceIdValidation = "tap QRImage to scan QRCode";
                     HasDeviceIdError = true;
                 }
 

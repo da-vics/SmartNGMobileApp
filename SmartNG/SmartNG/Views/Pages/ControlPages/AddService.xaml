@@ -7,6 +7,7 @@
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="DarkGray"
     mc:Ignorable="d">
 
 
@@ -19,67 +20,56 @@
 
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="White">
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-        <!--  Content Definitions  -->
-        <Grid.RowDefinitions>
+        <Grid>
 
-            <RowDefinition Height="*" />
+            <!--  Content Definitions  -->
+            <Grid.RowDefinitions>
 
-            <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
 
-            <RowDefinition Height="Auto" />
+                <RowDefinition Height="15*" />
 
+            </Grid.RowDefinitions>
 
-            <RowDefinition Height="*" />
+            <Grid.ColumnDefinitions>
 
+                <ColumnDefinition Width="*" />
 
-        </Grid.RowDefinitions>
+                <ColumnDefinition Width="50*" />
 
-        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
 
-            <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50*" />
 
-            <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
 
-            <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="3*" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Margin="0"
+                Padding="0"
+                FontAttributes="Bold"
+                FontFamily="{x:StaticResource KalamRegularFont}"
+                FontSize="30"
+                HorizontalOptions="Start"
+                Text="Add New Device"
+                TextColor="DarkRed"
+                VerticalOptions="FillAndExpand" />
 
-            <ColumnDefinition Width="*" />
-
-        </Grid.ColumnDefinitions>
-
-        <Label
-            Grid.Row="1"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Margin="0"
-            FontAttributes="Bold"
-            FontFamily="{x:StaticResource KalamRegularFont}"
-            FontSize="40"
-            HorizontalOptions="Start"
-            Text="Add New Device"
-            TextColor="DarkRed"
-            VerticalOptions="FillAndExpand" />
-
-
-        <Frame
-            Grid.Row="2"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Padding="10"
-            BackgroundColor="LightGray"
-            CornerRadius="10"
-            HasShadow="True"
-            Opacity="0.8">
 
             <StackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
                 Margin="0"
                 Padding="0"
                 HorizontalOptions="Start"
-                Spacing="10"
-                VerticalOptions="Center">
+                Spacing="0">
 
                 <inputLayout:SfTextInputLayout
                     Margin="0"
@@ -109,7 +99,7 @@
                     FocusedColor="DarkGray"
                     HasError="{Binding HasWeightError}"
                     Hint="Cylinder Weight(KG)"
-                    OutlineCornerRadius="8">
+                    OutlineCornerRadius="10">
                     <Entry
                         Margin="0"
                         Keyboard="Numeric"
@@ -121,7 +111,7 @@
 
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="*" />
 
                     </Grid.ColumnDefinitions>
@@ -145,25 +135,39 @@
                             Text="{Binding DeviceId, Mode=TwoWay}" />
                     </inputLayout:SfTextInputLayout>
 
-                    <Button
+
+                    <StackLayout
                         Grid.Column="1"
                         Margin="0"
                         Padding="0"
-                        BackgroundColor="Gray"
-                        BorderColor="Transparent"
-                        BorderWidth="0"
-                        Command="{Binding ScanQRCodeCommand}"
-                        ContentLayout="Right,0"
-                        CornerRadius="15"
-                        ImageSource="qrcodeicon.png"
-                        Opacity="0.9"
-                        Style="{x:StaticResource CustomActionBtn}"
-                        Text="ScanQR"
-                        TextColor="White" />
+                        VerticalOptions="Center">
+
+                        <StackLayout
+                            BackgroundColor="DarkRed"
+                            Opacity="0.7"
+                            VerticalOptions="Center">
+                            <ImageButton
+                                BackgroundColor="Transparent"
+                                BorderColor="Transparent"
+                                BorderWidth="0"
+                                Command="{Binding ScanQRCodeCommand}"
+                                Source="qrcodeicon.png"
+                                Style="{x:StaticResource CustomActionBtn}" />
+                        </StackLayout>
+                        <Label
+                            FontAttributes="Bold"
+                            FontFamily="{x:StaticResource KalamRegularFont}"
+                            HorizontalOptions="Center"
+                            Text="Click!"
+                            TextColor="DarkRed"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+
+
                 </Grid>
 
                 <!--#region SubmitBtn-->
-                <Grid Margin="0,0,0,40" Padding="0">
+                <Grid Margin="0,5,0,0">
 
                     <Grid.ColumnDefinitions>
 
@@ -183,7 +187,7 @@
                         Grid.Column="1"
                         Grid.ColumnSpan="3"
                         Margin="0"
-                        BackgroundColor="Gray"
+                        BackgroundColor="DarkRed"
                         BorderColor="Transparent"
                         BorderWidth="0"
                         Command="{Binding AddNewServiceCommand}"
@@ -192,7 +196,8 @@
                         Opacity="0.9"
                         Style="{x:StaticResource CustomActionBtn}"
                         Text="Add Device"
-                        TextColor="White" />
+                        TextColor="White"
+                        VerticalOptions="Center" />
 
                     <ActivityIndicator
                         Grid.Column="1"
@@ -205,9 +210,12 @@
 
             </StackLayout>
 
-        </Frame>
 
-    </Grid>
+        </Grid>
+
+
+
+    </StackLayout>
 
 
 </ContentPage>

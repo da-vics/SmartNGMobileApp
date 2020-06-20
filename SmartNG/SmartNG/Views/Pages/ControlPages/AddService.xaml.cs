@@ -4,25 +4,25 @@ using Xamarin.Forms.Xaml;
 
 namespace SmartNG.Views.Pages.ControlPages
 {
-    [QueryProperty(nameof(Deviceid), nameof(Deviceid))]
+    ///[QueryProperty(nameof(Deviceid), nameof(Deviceid))]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddServicePage : ContentPage
     {
-        private string deviceid = string.Empty;
+        //private string deviceid = string.Empty;
 
-        public string Deviceid
-        {
-            get => deviceid;
+        //public string Deviceid
+        //{
+        //    get => deviceid;
 
-            set
-            {
-                deviceid = Uri.UnescapeDataString(value ?? string.Empty);
-                OnPropertyChanged(nameof(Deviceid));
+        //    set
+        //    {
+        //        deviceid = Uri.UnescapeDataString(value ?? string.Empty);
+        //        OnPropertyChanged(nameof(Deviceid));
 
-                addServiceViewModel.DeviceId = deviceid;
-            }
+        //        addServiceViewModel.DeviceId = deviceid;
+        //    }
 
-        }
+        //}
 
         AddServiceViewModel addServiceViewModel { get; set; } = new AddServiceViewModel();
 
