@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace SmartNG.RestAPIClientHandlers
 {
@@ -46,6 +47,8 @@ namespace SmartNG.RestAPIClientHandlers
                             {
                                 string test = await check.ReadAsStringAsync();
                                 AccessKeyProfile accessKey = await Task.Run(() => JsonConvert.DeserializeObject<AccessKeyProfile>(test));
+                                Application.Current.Properties["ApiKey"] = accessKey.key;
+                                await Application.Current.SavePropertiesAsync();
                             }
                         }
 

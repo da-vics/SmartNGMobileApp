@@ -1,4 +1,6 @@
-﻿using SmartNG.Views.Pages.ControlPages;
+﻿using SmartNG.DataProfiles;
+using SmartNG.RestAPIClientHandlers;
+using SmartNG.Views.Pages.ControlPages;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +16,9 @@ namespace SmartNG
         private string _serviceName { get; set; } = string.Empty;
         private string _cylinderWeight { get; set; } = null;
         private string _deviceId { get; set; } = string.Empty;
-        private bool _isAddService { get; set; }
+        private bool _isAddService { get; set; } = false;
+
+        private bool _isAddServiceSuccessful { get; set; } = false;
 
         private string _serviceValidation { get; set; } = "required";
         private string _weightValidation { get; set; } = "required";
@@ -241,6 +245,55 @@ namespace SmartNG
 
             if (isAddService)
                 return;
+
+
+            await Task.Run(async () =>
+             {
+                 if (Application.Current.Properties.ContainsKey("ApiKey"))
+                 {
+                     isAddService = true;
+                     var Apikey = Application.Current.Properties["ApiKey"].ToString();
+
+                     #region New UserService
+                     var UserSerivceProfile = new AddServiceProfile
+                     {
+                         apiKey = Apikey,
+                         servicename = this._serviceName,
+                         DeviceId = this._deviceId,
+                         DeviceType = (short)Int16.Parse(this._cylinderWeight)
+                     };
+                     #endregion
+
+                     var addUserService = new AddUserServiceApi(UserSerivceProfile);
+
+                     _isAddServiceSuccessful = await addUserService.addNewService();
+
+                     isAddService = false;
+                 }///
+
+                 else
+                 {
+
+                 }
+
+             });
+
+            if (_isAddServiceSuccessful)
+            {
+                DeviceId = string.Empty;
+                ServiceName = string.Empty;
+                CylinderWeight = string.Empty;
+
+                await Application.Current.MainPage.DisplayAlert("Successful", "new service added", "Ok");
+            }
+
+
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Login Failed", "Try Again", "Retry");
+            }
+
+
         }
     }
 

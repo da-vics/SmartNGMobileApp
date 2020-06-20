@@ -29,7 +29,7 @@
 
                 <RowDefinition Height="Auto" />
 
-                <RowDefinition Height="15*" />
+                <RowDefinition Height="20*" />
 
             </Grid.RowDefinitions>
 
@@ -144,15 +144,14 @@
 
                         <StackLayout
                             BackgroundColor="DarkRed"
-                            Opacity="0.7"
+                            Opacity="0.5"
                             VerticalOptions="Center">
                             <ImageButton
                                 BackgroundColor="Transparent"
                                 BorderColor="Transparent"
                                 BorderWidth="0"
                                 Command="{Binding ScanQRCodeCommand}"
-                                Source="qrcodeicon.png"
-                                Style="{x:StaticResource CustomActionBtn}" />
+                                Source="qrcodeicon.png" />
                         </StackLayout>
                         <Label
                             FontAttributes="Bold"
