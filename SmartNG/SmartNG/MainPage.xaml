@@ -148,8 +148,6 @@
                             Text="{Binding Password, Mode=OneWayToSource}" />
                     </inputLayout:SfTextInputLayout>
 
-
-
                 </StackLayout>
 
             </Grid>

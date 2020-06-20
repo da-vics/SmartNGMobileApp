@@ -13,6 +13,7 @@ namespace SmartNG
     public class AddServiceViewModel : BaseViewModel
     {
         #region PrivateMembers
+
         private string _serviceName { get; set; } = string.Empty;
         private string _cylinderWeight { get; set; } = null;
         private string _deviceId { get; set; } = string.Empty;
@@ -207,6 +208,7 @@ namespace SmartNG
         }
 
         #endregion
+
         public ICommand ScanQRCodeCommand { get; private set; }
 
         public ICommand AddNewServiceCommand { get; private set; }
@@ -245,7 +247,6 @@ namespace SmartNG
 
             if (isAddService)
                 return;
-
 
             await Task.Run(async () =>
              {
@@ -290,9 +291,8 @@ namespace SmartNG
 
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Login Failed", "Try Again", "Retry");
+                await Application.Current.MainPage.DisplayAlert("failed", "Try Again", "Retry"); //test
             }
-
 
         }
     }

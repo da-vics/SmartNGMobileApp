@@ -21,7 +21,6 @@ namespace SmartNG.RestAPIClientHandlers
             _LoginProfile = loginProfile;
         }
 
-
         public async Task<bool> LoginUser()
         {
 
@@ -71,7 +70,6 @@ namespace SmartNG.RestAPIClientHandlers
 
             return _isLogSuccessful;
         }
-
 
     } ///LoginUserApi End
 }

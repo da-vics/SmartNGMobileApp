@@ -21,6 +21,12 @@ namespace SmartNG
 
         private async Task LogOutuser()
         {
+            if (Application.Current.Properties.ContainsKey("ApiKey"))
+            {
+                Application.Current.Properties["ApiKey"] = string.Empty;
+                await Application.Current.SavePropertiesAsync();
+            }
+
             Application.Current.MainPage = new NavigationPage(new MainPage());
             await Application.Current.MainPage.Navigation.PopToRootAsync(false);
         }
