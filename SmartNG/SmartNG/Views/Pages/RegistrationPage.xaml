@@ -67,7 +67,7 @@
             Grid.ColumnSpan="3"
             Margin="0,10,0,10"
             FontAttributes="Bold"
-            FontFamily="{x:StaticResource KalamBoldFont}"
+            FontFamily="{x:StaticResource KalamRegularFont}"
             FontSize="30"
             HorizontalOptions="Start"
             HorizontalTextAlignment="Start"
@@ -182,7 +182,7 @@
                     IsEnabled="{Binding isSignUpInit}"
                     IsRunning="{Binding isSignUpInit}"
                     IsVisible="{Binding isSignUpInit}"
-                    Color="{x:StaticResource _DarkBlue}" />
+                    Color="DarkRed" />
 
 
             </Grid>

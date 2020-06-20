@@ -74,7 +74,7 @@
             Margin="0"
             Padding="0"
             FontAttributes="Bold"
-            FontFamily="{x:StaticResource KalamBoldFont}"
+            FontFamily="{x:StaticResource KalamRegularFont}"
             FontSize="35"
             HorizontalOptions="Start"
             Text="Sign Up"
@@ -214,7 +214,7 @@
                             IsEnabled="{Binding isNextInit}"
                             IsRunning="{Binding isNextInit}"
                             IsVisible="{Binding isNextInit}"
-                            Color="{x:StaticResource _DarkBlue}" />
+                            Color="DarkRed" />
 
                     </StackLayout>
 

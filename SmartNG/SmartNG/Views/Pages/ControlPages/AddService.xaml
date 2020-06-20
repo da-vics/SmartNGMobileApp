@@ -7,7 +7,7 @@
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    BackgroundColor="DarkGray"
+    BackgroundColor="LightGray"
     mc:Ignorable="d">
 
 
@@ -69,7 +69,7 @@
                 Margin="0"
                 Padding="0"
                 HorizontalOptions="Start"
-                Spacing="0">
+                Spacing="10">
 
                 <inputLayout:SfTextInputLayout
                     Margin="0"
@@ -145,7 +145,7 @@
                         <StackLayout
                             BackgroundColor="DarkRed"
                             Opacity="0.5"
-                            VerticalOptions="Center">
+                            VerticalOptions="Start">
                             <ImageButton
                                 BackgroundColor="Transparent"
                                 BorderColor="Transparent"
@@ -159,14 +159,14 @@
                             HorizontalOptions="Center"
                             Text="Click!"
                             TextColor="DarkRed"
-                            VerticalOptions="Center" />
+                            VerticalOptions="Start" />
                     </StackLayout>
 
 
                 </Grid>
 
                 <!--#region SubmitBtn-->
-                <Grid Margin="0,5,0,0">
+                <Grid>
 
                     <Grid.ColumnDefinitions>
 

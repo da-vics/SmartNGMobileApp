@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.XForms.iOS.TextInputLayout;
 using UIKit;
 
@@ -29,6 +30,7 @@ namespace SmartNG.iOS
             Syncfusion.SfGauge.XForms.iOS.SfGaugeRenderer.Init();
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             Syncfusion.XForms.iOS.Border.SfBorderRenderer.Init();
+            new SfBusyIndicatorRenderer();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

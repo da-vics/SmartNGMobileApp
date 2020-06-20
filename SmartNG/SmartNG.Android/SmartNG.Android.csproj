@@ -82,6 +82,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.1.0.57</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>18.1.0.57</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfGauge">
       <Version>18.1.0.57</Version>
     </PackageReference>

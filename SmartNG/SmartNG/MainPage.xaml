@@ -187,7 +187,7 @@
                     IsEnabled="{Binding isLoginInit}"
                     IsRunning="{Binding isLoginInit}"
                     IsVisible="{Binding isLoginInit}"
-                    Color="{x:StaticResource _DarkBlue}" />
+                    Color="DarkRed" />
 
 
             </Grid>

@@ -4,9 +4,9 @@
 
     <Style x:Key="baseStyle" TargetType="Element">
 
-        <Setter Property="Shell.BackgroundColor" Value="DarkRed" />
+        <Setter Property="Shell.BackgroundColor" Value="DarkGray" />
         <Setter Property="Shell.TitleColor" Value="Black" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="LightGray" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
         <Setter Property="Shell.TabBarTitleColor" Value="DarkRed" />
         <Setter Property="Shell.UnselectedColor" Value="Gray" />
         <Setter Property="Shell.TabBarUnselectedColor" Value="Gray" />
