@@ -91,13 +91,10 @@
                                             VerticalOptions="Center" />
 
 
-
                                     </Grid>
 
 
-
                                 </ViewCell>
-
 
                             </DataTemplate>
 
@@ -106,12 +103,10 @@
 
                 </Frame>
 
-
-
                 <ImageButton
                     Grid.Row="2"
                     Margin="0,10,0,0"
-                    Padding="5"
+                    Padding="0"
                     BackgroundColor="Transparent"
                     BorderColor="Transparent"
                     Command="{Binding AddServiceCommand}"
@@ -123,28 +118,27 @@
                     VerticalOptions="End"
                     WidthRequest="80" />
 
-
             </Grid>
-
-
 
         </StackLayout>
 
         <StackLayout
+            Margin="10"
+            Padding="10"
             HorizontalOptions="CenterAndExpand"
             IsVisible="{Binding IsPageActive, Converter={StaticResource PageVisibilityConverter}}"
-            VerticalOptions="Center">
+            VerticalOptions="CenterAndExpand">
 
             <busyindicator:SfBusyIndicator
                 Title="Loading.."
-                AnimationType="Ball"
+                AnimationType="Gear"
                 EnableAnimation="True"
-                HorizontalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
                 TextColor="DarkRed"
                 TitlePlacement="Bottom"
-                VerticalOptions="Center"
-                ViewBoxHeight="150"
-                ViewBoxWidth="150" />
+                VerticalOptions="CenterAndExpand"
+                ViewBoxHeight="90"
+                ViewBoxWidth="90" />
 
         </StackLayout>
 
