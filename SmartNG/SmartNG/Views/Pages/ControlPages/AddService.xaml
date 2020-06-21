@@ -7,9 +7,9 @@
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    BackgroundColor="LightGray"
+    BackgroundColor="#243447"
+    Shell.TabBarIsVisible="False"
     mc:Ignorable="d">
-
 
     <!--  Value Converter  -->
     <ContentPage.Resources>
@@ -22,7 +22,7 @@
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-        <Grid>
+        <Grid Opacity="0.95">
 
             <!--  Content Definitions  -->
             <Grid.RowDefinitions>
@@ -53,12 +53,11 @@
                 Grid.ColumnSpan="3"
                 Margin="0"
                 Padding="0"
-                FontAttributes="Bold"
-                FontFamily="{x:StaticResource KalamRegularFont}"
+                FontFamily="{x:StaticResource KalamBoldFont}"
                 FontSize="30"
                 HorizontalOptions="Start"
                 Text="Add New Device"
-                TextColor="DarkRed"
+                TextColor="Wheat"
                 VerticalOptions="FillAndExpand" />
 
 
@@ -69,12 +68,12 @@
                 Margin="0"
                 Padding="0"
                 HorizontalOptions="Start"
-                Spacing="10">
+                Spacing="15">
 
                 <inputLayout:SfTextInputLayout
                     Margin="0"
                     Padding="5"
-                    ContainerBackgroundColor="White"
+                    ContainerBackgroundColor="LightGray"
                     ContainerType="Outlined"
                     ErrorColor="Red"
                     ErrorText="{Binding ServiceValidation, Mode=TwoWay}"
@@ -92,7 +91,7 @@
                 <inputLayout:SfTextInputLayout
                     Margin="0"
                     Padding="5"
-                    ContainerBackgroundColor="White"
+                    ContainerBackgroundColor="LightGray"
                     ContainerType="Outlined"
                     ErrorColor="Red"
                     ErrorText="{Binding WeightValidation, Mode=TwoWay}"
@@ -120,7 +119,7 @@
                         Grid.Column="0"
                         Margin="0"
                         Padding="5"
-                        ContainerBackgroundColor="White"
+                        ContainerBackgroundColor="LightGray"
                         ContainerType="Outlined"
                         ErrorColor="Red"
                         ErrorText="{Binding DeviceIdValidation, Mode=TwoWay}"
@@ -158,7 +157,7 @@
                             FontFamily="{x:StaticResource KalamRegularFont}"
                             HorizontalOptions="Center"
                             Text="Click!"
-                            TextColor="DarkRed"
+                            TextColor="Wheat"
                             VerticalOptions="Start" />
                     </StackLayout>
 
@@ -185,14 +184,14 @@
                     <Button
                         Grid.Column="1"
                         Grid.ColumnSpan="3"
-                        Margin="0"
+                        Margin="10"
                         BackgroundColor="DarkRed"
                         BorderColor="Transparent"
                         BorderWidth="0"
                         Command="{Binding AddNewServiceCommand}"
                         CornerRadius="15"
                         IsVisible="{Binding isAddService, Converter={x:StaticResource BtnVisibilityConverter}}"
-                        Opacity="0.9"
+                        Opacity="0.8"
                         Style="{x:StaticResource CustomActionBtn}"
                         Text="Add Device"
                         TextColor="White"
@@ -204,14 +203,13 @@
                         IsEnabled="{Binding isAddService}"
                         IsRunning="{Binding isAddService}"
                         IsVisible="{Binding isAddService}"
+                        Opacity="0.9"
                         Color="{x:StaticResource _DarkBlue}" />
                 </Grid>
 
             </StackLayout>
 
-
         </Grid>
-
 
 
     </StackLayout>

@@ -6,22 +6,35 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="#243447"
     mc:Ignorable="d">
 
     <Grid>
 
-        <gauge:SfCircularGauge HorizontalOptions="Center" VerticalOptions="Center">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+
+        </Grid.RowDefinitions>
+
+        <gauge:SfCircularGauge
+            Grid.Row="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
 
             <gauge:SfCircularGauge.Scales>
 
                 <gauge:Scale
                     EndValue="100"
                     Interval="10"
-                    LabelColor="#424242"
+                    LabelColor="White"
                     LabelFontSize="15"
                     LabelOffset="0.75"
                     RadiusFactor="1"
-                    RimColor="LightGray"
+                    RimColor="Gray"
                     RimThickness="30"
                     ShowTicks="False"
                     StartValue="0">
@@ -29,7 +42,7 @@
                     <gauge:Scale.Pointers>
 
                         <gauge:RangePointer
-                            AnimationDuration="5"
+                            AnimationDuration="2"
                             EnableAnimation="True"
                             Thickness="30"
                             Offset="1"
@@ -37,19 +50,19 @@
                             Value="80" />
 
                         <gauge:NeedlePointer
-                            AnimationDuration="5"
+                            AnimationDuration="2"
                             KnobColor="White"
                             KnobRadius="12"
-                            KnobStrokeColor="LightGray"
+                            KnobStrokeColor="DarkRed"
                             KnobStrokeWidth="8"
                             LengthFactor="0.55"
-                            TailColor="LightGray"
+                            TailColor="DarkRed"
                             TailLengthFactor="0.2"
-                            TailStrokeColor="LightGray"
+                            TailStrokeColor="DarkRed"
                             TailStrokeWidth="2"
                             Thickness="7"
                             Type="Triangle"
-                            Color="LightGray"
+                            Color="DarkRed"
                             Value="80" />
 
                     </gauge:Scale.Pointers>

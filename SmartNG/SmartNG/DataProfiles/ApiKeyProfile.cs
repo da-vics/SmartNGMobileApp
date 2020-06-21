@@ -4,8 +4,8 @@ using System.Text;
 
 namespace SmartNG.DataProfiles
 {
-    public class AccessKeyProfile
+    public class ApiKeyProfile
     {
-        public string apiKey { get; set; }
+        public string Key { get; set; }
     }
 }

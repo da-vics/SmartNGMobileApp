@@ -243,6 +243,7 @@ namespace SmartNG
             if (!checkFieldStates())
             {
                 await Application.Current.MainPage.DisplayAlert("input error", "one or more input fields not set properly", "retry"); /// test
+                return;
             }
 
             if (isAddService)

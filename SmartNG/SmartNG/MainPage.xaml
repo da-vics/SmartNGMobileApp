@@ -19,7 +19,7 @@
 
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="LightGray">
+    <Grid BackgroundColor="#243447">
 
         <!--  Content Definitions  -->
         <Grid.RowDefinitions>
@@ -112,14 +112,15 @@
                     <inputLayout:SfTextInputLayout
                         Margin="0"
                         Padding="5"
-                        ContainerBackgroundColor="White"
+                        ContainerBackgroundColor="LightGray"
                         ContainerType="Outlined"
                         ErrorColor="Red"
                         ErrorText="{Binding EmailValidation, Mode=TwoWay}"
                         FocusedColor="DarkGray"
                         HasError="{Binding HasEmailError}"
                         Hint="Email"
-                        OutlineCornerRadius="8">
+                        OutlineCornerRadius="8"
+                        UnfocusedColor="DarkGray">
                         <Entry
                             x:Name="UEmail"
                             Margin="0"
@@ -131,7 +132,7 @@
                     <inputLayout:SfTextInputLayout
                         Margin="0"
                         Padding="5"
-                        ContainerBackgroundColor="White"
+                        ContainerBackgroundColor="LightGray"
                         ContainerType="Outlined"
                         EnablePasswordVisibilityToggle="true"
                         ErrorColor="Red"
@@ -139,7 +140,8 @@
                         FocusedColor="DarkGray"
                         HasError="{Binding HasPasswordError}"
                         Hint="Password"
-                        OutlineCornerRadius="8">
+                        OutlineCornerRadius="8"
+                        UnfocusedColor="DarkGray">
                         <Entry
                             x:Name="UPassword"
                             IsPassword="True"
@@ -177,6 +179,7 @@
                     Command="{Binding UserLoginCommand}"
                     CornerRadius="25"
                     IsVisible="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                    Opacity="0.8"
                     Style="{x:StaticResource CustomActionBtn}"
                     Text="Login"
                     TextColor="White" />
@@ -187,6 +190,7 @@
                     IsEnabled="{Binding isLoginInit}"
                     IsRunning="{Binding isLoginInit}"
                     IsVisible="{Binding isLoginInit}"
+                    Opacity="0.9"
                     Color="DarkRed" />
 
 
@@ -213,7 +217,7 @@
                 IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                 Style="{x:StaticResource BorderlessBtn}"
                 Text="Forgot Password?"
-                TextColor="Gray"
+                TextColor="Wheat"
                 VerticalOptions="Center" />
             <!--#endregion-->
 
@@ -235,7 +239,7 @@
                 IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
                 Style="{x:StaticResource BorderlessBtn}"
                 Text="Sign up NOw"
-                TextColor="Black" />
+                TextColor="Wheat" />
             <!--#endregion-->
 
         </StackLayout>

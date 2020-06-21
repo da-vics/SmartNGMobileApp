@@ -4,17 +4,32 @@
 
     <Style x:Key="baseStyle" TargetType="Element">
 
-        <Setter Property="Shell.BackgroundColor" Value="DarkGray" />
+        <Setter Property="Shell.BackgroundColor" Value="#243447" />
         <Setter Property="Shell.TitleColor" Value="Black" />
-        <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
-        <Setter Property="Shell.TabBarTitleColor" Value="DarkRed" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="#243447" />
+        <Setter Property="Shell.TabBarTitleColor" Value="Wheat" />
         <Setter Property="Shell.UnselectedColor" Value="Gray" />
-        <Setter Property="Shell.TabBarUnselectedColor" Value="Gray" />
-        <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="LightGray" />
+        <Setter Property="Shell.DisabledColor" Value="LightGray" />
 
     </Style>
 
-    <Style BasedOn="{StaticResource baseStyle}" TargetType="FlyoutItem" />
+    <Style x:Key="FloutItemStyle" TargetType="Grid">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightGray" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
 
+
+    <Style BasedOn="{StaticResource baseStyle}" TargetType="FlyoutItem" />
 
 </ResourceDictionary>

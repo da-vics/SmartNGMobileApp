@@ -32,7 +32,7 @@ namespace SmartNG
 
             if (Current.Properties.ContainsKey("ApiKey"))
             {
-                if (!string.IsNullOrEmpty(Current.Properties["ApiKey"].ToString()))
+                if (Current.Properties["ApiKey"] != null)
                 {
                     MainPage = new ControlPage();
                     return;

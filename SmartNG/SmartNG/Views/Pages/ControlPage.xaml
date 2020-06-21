@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:SmartNG.Views.Pages.ControlPages"
-    FlyoutBackgroundColor="White"
+    FlyoutBackgroundColor="#243447"
     mc:Ignorable="d">
 
     <Shell.BindingContext>
@@ -20,12 +20,15 @@
 
         <DataTemplate>
 
-            <Grid Padding="20" BackgroundColor="White">
+            <Grid
+                Padding="20"
+                BackgroundColor="#243447"
+                Opacity="0.95">
                 <Image
                     Aspect="AspectFit"
-                    BackgroundColor="White"
+                    BackgroundColor="Transparent"
                     HorizontalOptions="Center"
-                    Opacity="0.9"
+                    Opacity="0.8"
                     Source="Varslogo.png"
                     VerticalOptions="Center" />
             </Grid>
@@ -33,6 +36,55 @@
         </DataTemplate>
 
     </Shell.FlyoutHeaderTemplate>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid x:Name="grid" Style="{StaticResource FloutItemStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    x:Name="img"
+                    Margin="10"
+                    HeightRequest="30"
+                    Source="{Binding Icon}" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{Binding Title}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+
+        <DataTemplate>
+
+            <Grid x:Name="grid" Style="{StaticResource FloutItemStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    x:Name="img"
+                    Margin="10"
+                    HeightRequest="30"
+                    Source="{Binding Icon}" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Italic"
+                    Text="{Binding Title}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+
+
+        </DataTemplate>
+
+    </Shell.MenuItemTemplate>
 
     <!--#region DeviceManagementPortal-->
     <FlyoutItem Title="Service Portal" Icon="ServicePortal.png">
@@ -46,12 +98,6 @@
         <Tab Title="Usage Report" Icon="GraphReport.png">
 
             <ShellContent ContentTemplate="{DataTemplate views:UsageGraphReport}" />
-
-        </Tab>
-
-        <Tab Title="AddService" Icon="addService.png">
-
-            <ShellContent ContentTemplate="{DataTemplate views:AddServicePage}" />
 
         </Tab>
 

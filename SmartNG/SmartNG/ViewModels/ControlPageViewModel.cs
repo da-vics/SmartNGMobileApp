@@ -23,7 +23,7 @@ namespace SmartNG
         {
             if (Application.Current.Properties.ContainsKey("ApiKey"))
             {
-                Application.Current.Properties["ApiKey"] = string.Empty;
+                Application.Current.Properties["ApiKey"] = null;
                 await Application.Current.SavePropertiesAsync();
             }
 
