@@ -3,10 +3,12 @@
     x:Class="SmartNG.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="#243447"
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
 
@@ -14,236 +16,264 @@
     <ContentPage.Resources>
 
         <ResourceDictionary>
+            <local:PageVisibilityValueConverter x:Key="PageVisibilityConverter" />
             <local:ButtonTextVisibilityValueConverter x:Key="BtnVisibilityConverter" />
         </ResourceDictionary>
 
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="#243447">
+    <Grid>
 
-        <!--  Content Definitions  -->
-        <Grid.RowDefinitions>
+        <Grid IsVisible="{Binding IsPageActive}">
 
-            <!--  Margin  -->
-            <RowDefinition Height="2*" />
+            <!--  Content Definitions  -->
+            <Grid.RowDefinitions>
 
-            <!--  Image  -->
-            <RowDefinition Height="1*" />
+                <!--  Margin  -->
+                <RowDefinition Height="2*" />
 
-            <!--  Sign in Options  -->
-            <RowDefinition Height="*" />
+                <!--  Image  -->
+                <RowDefinition Height="1*" />
 
-            <!--  Sign in Options Span  -->
-            <RowDefinition Height="*" />
+                <!--  Sign in Options  -->
+                <RowDefinition Height="*" />
 
-            <!--  Footer  -->
-            <RowDefinition Height="*" />
+                <!--  Sign in Options Span  -->
+                <RowDefinition Height="*" />
 
-            <!--  Footer Span  -->
-            <RowDefinition Height="2*" />
+                <!--  Footer  -->
+                <RowDefinition Height="*" />
 
-        </Grid.RowDefinitions>
+                <!--  Footer Span  -->
+                <RowDefinition Height="2*" />
 
-        <Grid.ColumnDefinitions>
+            </Grid.RowDefinitions>
 
-
-            <ColumnDefinition Width="20" />
-
-            <ColumnDefinition Width="*" />
-
-            <ColumnDefinition Width="*" />
-
-            <ColumnDefinition Width="*" />
-
-            <ColumnDefinition Width="20" />
-
-        </Grid.ColumnDefinitions>
-
-        <Image
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Margin="15"
-            HeightRequest="80"
-            HorizontalOptions="Center"
-            Source="Varslogo.png"
-            VerticalOptions="Center" />
-
-        <Image
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            HorizontalOptions="Center"
-            Source="loginuser.png"
-            VerticalOptions="Center" />
-
-        <StackLayout
-            Grid.Row="2"
-            Grid.RowSpan="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Padding="5"
-            Spacing="20">
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition Width="10" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="10" />
-
-                </Grid.ColumnDefinitions>
-
-                <StackLayout
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Margin="0"
-                    Orientation="Vertical"
-                    Spacing="10"
-                    VerticalOptions="Start">
+            <Grid.ColumnDefinitions>
 
 
-                    <inputLayout:SfTextInputLayout
+                <ColumnDefinition Width="20" />
+
+                <ColumnDefinition Width="*" />
+
+                <ColumnDefinition Width="*" />
+
+                <ColumnDefinition Width="*" />
+
+                <ColumnDefinition Width="20" />
+
+            </Grid.ColumnDefinitions>
+
+            <Image
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Margin="15"
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                Source="Varslogo.png"
+                VerticalOptions="Center" />
+
+            <Image
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                HorizontalOptions="Center"
+                Source="loginuser.png"
+                VerticalOptions="Center" />
+
+            <StackLayout
+                Grid.Row="2"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Padding="5"
+                Spacing="20">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="10" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="10" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
                         Margin="0"
-                        Padding="5"
-                        ContainerBackgroundColor="LightGray"
-                        ContainerType="Outlined"
-                        ErrorColor="Red"
-                        ErrorText="{Binding EmailValidation, Mode=TwoWay}"
-                        FocusedColor="DarkGray"
-                        HasError="{Binding HasEmailError}"
-                        Hint="Email"
-                        OutlineCornerRadius="8"
-                        UnfocusedColor="DarkGray">
-                        <Entry
-                            x:Name="UEmail"
+                        Orientation="Vertical"
+                        Spacing="10"
+                        VerticalOptions="Start">
+
+
+                        <inputLayout:SfTextInputLayout
                             Margin="0"
-                            ReturnType="Next"
-                            Text="{Binding Email, Mode=OneWayToSource}" />
-                    </inputLayout:SfTextInputLayout>
+                            Padding="5"
+                            ContainerBackgroundColor="LightGray"
+                            ContainerType="Outlined"
+                            ErrorColor="Red"
+                            ErrorText="{Binding EmailValidation, Mode=TwoWay}"
+                            FocusedColor="DarkGray"
+                            HasError="{Binding HasEmailError}"
+                            Hint="Email"
+                            OutlineCornerRadius="8"
+                            UnfocusedColor="DarkGray">
+                            <Entry
+                                x:Name="UEmail"
+                                Margin="0"
+                                ReturnType="Next"
+                                Text="{Binding Email, Mode=OneWayToSource}" />
+                        </inputLayout:SfTextInputLayout>
 
 
-                    <inputLayout:SfTextInputLayout
+                        <inputLayout:SfTextInputLayout
+                            Margin="0"
+                            Padding="5"
+                            ContainerBackgroundColor="LightGray"
+                            ContainerType="Outlined"
+                            EnablePasswordVisibilityToggle="true"
+                            ErrorColor="Red"
+                            ErrorText="{Binding PasswordValidation, Mode=TwoWay}"
+                            FocusedColor="DarkGray"
+                            HasError="{Binding HasPasswordError}"
+                            Hint="Password"
+                            OutlineCornerRadius="8"
+                            UnfocusedColor="DarkGray">
+                            <Entry
+                                x:Name="UPassword"
+                                IsPassword="True"
+                                ReturnCommand="{Binding UserLoginCommand}"
+                                ReturnType="Done"
+                                Text="{Binding Password, Mode=OneWayToSource}" />
+                        </inputLayout:SfTextInputLayout>
+
+                    </StackLayout>
+
+                </Grid>
+
+                <!--#region SubmitBtn-->
+                <Grid Margin="0" Padding="0">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="10" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="10" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
                         Margin="0"
-                        Padding="5"
-                        ContainerBackgroundColor="LightGray"
-                        ContainerType="Outlined"
-                        EnablePasswordVisibilityToggle="true"
-                        ErrorColor="Red"
-                        ErrorText="{Binding PasswordValidation, Mode=TwoWay}"
-                        FocusedColor="DarkGray"
-                        HasError="{Binding HasPasswordError}"
-                        Hint="Password"
-                        OutlineCornerRadius="8"
-                        UnfocusedColor="DarkGray">
-                        <Entry
-                            x:Name="UPassword"
-                            IsPassword="True"
-                            ReturnCommand="{Binding UserLoginCommand}"
-                            ReturnType="Done"
-                            Text="{Binding Password, Mode=OneWayToSource}" />
-                    </inputLayout:SfTextInputLayout>
+                        BackgroundColor="DarkRed"
+                        Command="{Binding UserLoginCommand}"
+                        CornerRadius="25"
+                        IsVisible="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                        Opacity="0.8"
+                        Style="{x:StaticResource CustomActionBtn}"
+                        Text="Login"
+                        TextColor="White" />
 
-                </StackLayout>
+                    <ActivityIndicator
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        IsEnabled="{Binding isLoginInit}"
+                        IsRunning="{Binding isLoginInit}"
+                        IsVisible="{Binding isLoginInit}"
+                        Opacity="0.9"
+                        Color="DarkRed" />
 
-            </Grid>
 
-            <!--#region SubmitBtn-->
-            <Grid Margin="0" Padding="0">
+                </Grid>
+                <!--#endregion-->
 
-                <Grid.ColumnDefinitions>
+            </StackLayout>
 
-                    <ColumnDefinition Width="10" />
 
-                    <ColumnDefinition Width="*" />
+            <StackLayout
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="EndAndExpand">
 
-                    <ColumnDefinition Width="*" />
+                <!--#region Forgot PasswordBtn-->
 
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="10" />
-
-                </Grid.ColumnDefinitions>
 
                 <Button
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                    Style="{x:StaticResource BorderlessBtn}"
+                    Text="Forgot Password?"
+                    TextColor="Wheat"
+                    VerticalOptions="Center" />
+                <!--#endregion-->
+
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="17"
+                    HorizontalOptions="Center"
+                    Text="Dont have an Account?"
+                    TextColor="Gray" />
+
+                <!--#region Forgot PasswordBtn-->
+                <Button
                     Margin="0"
-                    BackgroundColor="DarkRed"
-                    Command="{Binding UserLoginCommand}"
-                    CornerRadius="25"
-                    IsVisible="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
-                    Opacity="0.8"
-                    Style="{x:StaticResource CustomActionBtn}"
-                    Text="Login"
-                    TextColor="White" />
+                    Command="{Binding RegisterUserCommand}"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                    Style="{x:StaticResource BorderlessBtn}"
+                    Text="Sign up NOw"
+                    TextColor="Wheat" />
+                <!--#endregion-->
 
-                <ActivityIndicator
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    IsEnabled="{Binding isLoginInit}"
-                    IsRunning="{Binding isLoginInit}"
-                    IsVisible="{Binding isLoginInit}"
-                    Opacity="0.9"
-                    Color="DarkRed" />
+            </StackLayout>
 
-
-            </Grid>
-            <!--#endregion-->
-
-        </StackLayout>
+        </Grid>
 
 
         <StackLayout
-            Grid.Row="5"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Orientation="Vertical"
-            Spacing="0"
-            VerticalOptions="EndAndExpand">
+            Margin="10"
+            Padding="10"
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding IsPageActive, Converter={StaticResource PageVisibilityConverter}}"
+            VerticalOptions="CenterAndExpand">
 
-            <!--#region Forgot PasswordBtn-->
-
-
-            <Button
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
-                Style="{x:StaticResource BorderlessBtn}"
-                Text="Forgot Password?"
-                TextColor="Wheat"
-                VerticalOptions="Center" />
-            <!--#endregion-->
-
-
-            <Label
-                FontAttributes="Bold"
-                FontSize="17"
-                HorizontalOptions="Center"
-                Text="Dont have an Account?"
-                TextColor="Gray" />
-
-            <!--#region Forgot PasswordBtn-->
-            <Button
-                Margin="0"
-                Command="{Binding RegisterUserCommand}"
-                FontAttributes="Bold"
-                FontSize="20"
-                HorizontalOptions="Center"
-                IsEnabled="{Binding isLoginInit, Converter={x:StaticResource BtnVisibilityConverter}}"
-                Style="{x:StaticResource BorderlessBtn}"
-                Text="Sign up NOw"
-                TextColor="Wheat" />
-            <!--#endregion-->
+            <busyindicator:SfBusyIndicator
+                Title="Loading.."
+                AnimationType="Ball"
+                EnableAnimation="True"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="LightBlue"
+                TitlePlacement="Bottom"
+                VerticalOptions="CenterAndExpand"
+                ViewBoxHeight="90"
+                ViewBoxWidth="90" />
 
         </StackLayout>
 
+
     </Grid>
+
 
 </ContentPage>

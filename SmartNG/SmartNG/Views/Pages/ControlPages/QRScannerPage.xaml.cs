@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartNG.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,9 @@ namespace SmartNG.Views.Pages.ControlPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRScannerPage : ContentPage
     {
-        AddServiceViewModel _addService { get; set; }
+        private AddServiceViewModel _addService { get; set; }
+        private ScanQRCodeViewModel scanQR { get; set; } = new ScanQRCodeViewModel();
+
         public QRScannerPage(AddServiceViewModel addService)
         {
 
@@ -20,10 +23,26 @@ namespace SmartNG.Views.Pages.ControlPages
             scanView.AutoFocus();
 
             _addService = addService;
+
+            BindingContext = scanQR;
             //scanView.Options.PossibleFormats.Clear();
             //scanView.Options.PossibleFormats = new List<ZXing.BarcodeFormat> { ZXing.BarcodeFormat.CODE_128  };
 
         }
+
+        protected override async void OnAppearing()
+        {
+            await scanQR.startupInitChecks();
+            ///   await _listServicePageViewModel.startupInitChecks();
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            scanQR.IsPageActive = false;
+            base.OnDisappearing();
+        }
+
 
         private void scanView_OnScanResult(ZXing.Result result)
         {

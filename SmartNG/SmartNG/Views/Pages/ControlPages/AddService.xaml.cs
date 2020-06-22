@@ -24,14 +24,25 @@ namespace SmartNG.Views.Pages.ControlPages
 
         //}
 
-        AddServiceViewModel addServiceViewModel { get; set; } = new AddServiceViewModel();
+        AddServiceViewModel _addServiceViewModel { get; set; } = new AddServiceViewModel();
 
         public AddServicePage()
         {
             InitializeComponent();
-            BindingContext = addServiceViewModel;
+            BindingContext = _addServiceViewModel;
         }
 
+        protected override async void OnAppearing()
+        {
+            await _addServiceViewModel.startupInitChecks();
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            _addServiceViewModel.IsPageActive = false;
+            base.OnDisappearing();
+        }
     }
 
 }

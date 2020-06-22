@@ -32,11 +32,25 @@ namespace SmartNG
         private bool _allowRegister { get; set; } = false;
 
         private bool _IsRegSuccessful { get; set; } = false;
+
+        private bool _isPageActive { get; set; } = false;
         #endregion
 
         #region PublicMembers
 
         #region Accessors
+
+        public bool IsPageActive
+        {
+            get => _isPageActive;
+
+            set
+            {
+                _isPageActive = value;
+                onPropertyChanged();
+
+            }
+        }
 
         public bool HasPhoneNumberError
         {
@@ -243,6 +257,19 @@ namespace SmartNG
             {
                 _allowRegister = false;
             }
+        }
+
+
+        public async Task startupInitChecks()
+        {
+            IsPageActive = false;
+
+            await Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+                IsPageActive = true;
+
+            });
         }
 
     }

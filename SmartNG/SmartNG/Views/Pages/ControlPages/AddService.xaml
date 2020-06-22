@@ -3,6 +3,7 @@
     x:Class="SmartNG.Views.Pages.ControlPages.AddServicePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
@@ -15,14 +16,18 @@
     <ContentPage.Resources>
 
         <ResourceDictionary>
+
             <local:ButtonTextVisibilityValueConverter x:Key="BtnVisibilityConverter" />
+
+            <local:PageVisibilityValueConverter x:Key="PageVisibilityConverter" />
+
         </ResourceDictionary>
 
     </ContentPage.Resources>
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
-        <Grid Opacity="0.95">
+        <Grid IsVisible="{Binding IsPageActive}" Opacity="0.95">
 
             <!--  Content Definitions  -->
             <Grid.RowDefinitions>
@@ -210,6 +215,27 @@
             </StackLayout>
 
         </Grid>
+
+
+        <StackLayout
+            Margin="10"
+            Padding="10"
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding IsPageActive, Converter={StaticResource PageVisibilityConverter}}"
+            VerticalOptions="CenterAndExpand">
+
+            <busyindicator:SfBusyIndicator
+                Title="Loading.."
+                AnimationType="Gear"
+                EnableAnimation="True"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="LightBlue"
+                TitlePlacement="Bottom"
+                VerticalOptions="CenterAndExpand"
+                ViewBoxHeight="90"
+                ViewBoxWidth="90" />
+
+        </StackLayout>
 
 
     </StackLayout>

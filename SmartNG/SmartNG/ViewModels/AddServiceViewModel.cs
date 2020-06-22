@@ -29,9 +29,24 @@ namespace SmartNG
         private bool _hasWeightError { get; set; } = true;
         private bool _hasDeviceIdError { get; set; } = true;
 
+        private bool _isPageActive { get; set; } = false;
+
         #endregion
 
         #region PublicAccessors
+
+
+        public bool IsPageActive
+        {
+            get => _isPageActive;
+
+            set
+            {
+                _isPageActive = value;
+                onPropertyChanged();
+
+            }
+        }
 
         public bool HasServiceNameError
         {
@@ -282,11 +297,8 @@ namespace SmartNG
 
             if (_isAddServiceSuccessful)
             {
-                DeviceId = string.Empty;
-                ServiceName = string.Empty;
-                CylinderWeight = string.Empty;
-
-                await Application.Current.MainPage.DisplayAlert("Successful", "new service added", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Successful", "Service Added", "Ok");
+                await Application.Current.MainPage.Navigation.PopModalAsync();
             }
 
 
@@ -295,6 +307,18 @@ namespace SmartNG
                 await Application.Current.MainPage.DisplayAlert("failed", "Try Again", "Retry"); //test
             }
 
+        }///
+
+        public async Task startupInitChecks()
+        {
+            IsPageActive = false;
+
+            await Task.Run(async () =>
+            {
+                await Task.Delay(1500);
+                IsPageActive = true;
+
+            });
         }
     }
 

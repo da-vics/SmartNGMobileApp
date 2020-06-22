@@ -52,11 +52,12 @@ namespace SmartNG
 
         public async Task AddNewUserService()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new AddServicePage());
+            await Application.Current.MainPage.Navigation.PushModalAsync(new AddServicePage());
         }
 
         public async Task startupInitChecks()
         {
+
             IsPageActive = false;
 
             await Task.Run(async () =>

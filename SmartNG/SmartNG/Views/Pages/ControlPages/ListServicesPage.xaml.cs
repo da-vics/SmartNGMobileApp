@@ -14,23 +14,28 @@ namespace SmartNG.Views.Pages.ControlPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListServicesPage : ContentPage
     {
-        private ListServicePageViewModel listServicePageViewModel = new ListServicePageViewModel();
+        private ListServicePageViewModel _listServicePageViewModel = new ListServicePageViewModel();
         public ListServicesPage()
         {
             InitializeComponent();
 
-            BindingContext = listServicePageViewModel;
+            BindingContext = _listServicePageViewModel;
 
-            ServiceList.ItemSelected += listServicePageViewModel.SelectedList;
+            ServiceList.ItemSelected += _listServicePageViewModel.SelectedList;
 
         }
 
         protected override async void OnAppearing()
         {
-            ///ObservableCollection
-            ///
-            await listServicePageViewModel.startupInitChecks();
+
+            await _listServicePageViewModel.startupInitChecks();
             base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            _listServicePageViewModel.IsPageActive = false;
+            base.OnDisappearing();
         }
 
     }

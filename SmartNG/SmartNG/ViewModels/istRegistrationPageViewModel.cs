@@ -35,9 +35,23 @@ namespace SmartNG
         private bool checkDone { get; set; } = false;
 
         private bool IsallowedToMove { get; set; } = false;
+
+        private bool _isPageActive { get; set; } = false;
         #endregion
 
         #region Accessors
+
+        public bool IsPageActive
+        {
+            get => _isPageActive;
+
+            set
+            {
+                _isPageActive = value;
+                onPropertyChanged();
+
+            }
+        }
 
         public bool HasEmailError
         {
@@ -375,6 +389,18 @@ namespace SmartNG
             {
                 IsallowedToMove = false;
             }
+        }
+
+        public async Task startupInitChecks()
+        {
+            IsPageActive = false;
+
+            await Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+                IsPageActive = true;
+
+            });
         }
 
     }///

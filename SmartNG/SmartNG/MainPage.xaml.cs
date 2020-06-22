@@ -13,14 +13,32 @@ namespace SmartNG
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        private MainPageViewModel _mainPageViewModel = new MainPageViewModel();
+
         public MainPage(string email = null, string password = null)
         {
             InitializeComponent();
 
-            this.BindingContext = new MainPageViewModel();
+            this.BindingContext = _mainPageViewModel;
 
             UEmail.Text = email;
             UPassword.Text = password;
         }
+
+
+        protected async override void OnAppearing()
+        {
+            await _mainPageViewModel.startupInitChecks();
+            base.OnAppearing();
+        }
+
+
+        protected override void OnDisappearing()
+        {
+            _mainPageViewModel.IsPageActive = false;
+            base.OnDisappearing();
+        }
+
+
     }
 }

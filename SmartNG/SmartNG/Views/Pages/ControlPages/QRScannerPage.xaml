@@ -3,21 +3,61 @@
     x:Class="SmartNG.Views.Pages.ControlPages.QRScannerPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    BackgroundColor="#243447"
     Shell.NavBarIsVisible="False"
     mc:Ignorable="d">
 
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <local:PageVisibilityValueConverter x:Key="PageVisibilityConverter" />
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-        <zxing:ZXingScannerView
-            x:Name="scanView"
-            IsScanning="True"
-            OnScanResult="scanView_OnScanResult" />
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsPageActive}"
+            VerticalOptions="FillAndExpand">
 
-        <zxing:ZXingDefaultOverlay TopText="Align the barcode within the frame" />
+            <zxing:ZXingScannerView
+                x:Name="scanView"
+                IsScanning="True"
+                OnScanResult="scanView_OnScanResult" />
 
+            <zxing:ZXingDefaultOverlay TopText="Align the barcode within the frame" />
+
+        </Grid>
+
+        <StackLayout
+            Margin="10"
+            Padding="10"
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding IsPageActive, Converter={StaticResource PageVisibilityConverter}}"
+            VerticalOptions="CenterAndExpand">
+
+            <busyindicator:SfBusyIndicator
+                Title="Loading.."
+                AnimationType="Gear"
+                EnableAnimation="True"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="LightBlue"
+                TitlePlacement="Bottom"
+                VerticalOptions="CenterAndExpand"
+                ViewBoxHeight="90"
+                ViewBoxWidth="90" />
+
+        </StackLayout>
 
 
     </Grid>

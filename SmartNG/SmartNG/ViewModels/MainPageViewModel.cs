@@ -16,6 +16,9 @@ namespace SmartNG
     {
 
         #region PrivateMembers
+
+        private bool _isPageActive { get; set; } = false;
+
         private string _password { get; set; } = string.Empty;
         private string _Email { get; set; } = string.Empty;
         private bool _isLogin { get; set; }
@@ -32,6 +35,19 @@ namespace SmartNG
         #region PublicMembers
 
         #region Accessors
+
+
+        public bool IsPageActive
+        {
+            get => _isPageActive;
+
+            set
+            {
+                _isPageActive = value;
+                onPropertyChanged();
+
+            }
+        }
 
         public bool HasEmailError
         {
@@ -216,6 +232,18 @@ namespace SmartNG
                 & string.IsNullOrEmpty(PasswordValidation);
 
             return check;
+        }
+
+        public async Task startupInitChecks()
+        {
+            IsPageActive = false;
+
+            await Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+                IsPageActive = true;
+
+            });
         }
 
     }

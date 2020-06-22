@@ -13,15 +13,28 @@ namespace SmartNG.Views.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegistrationPage : ContentPage
     {
+        private RegistrationPageViewModel _registrationPageViewModel { get; set; } = null;
+
         public RegistrationPage(RegistrationProfile reguser)
         {
             InitializeComponent();
-            this.BindingContext = new RegistrationPageViewModel(reguser);
+            _registrationPageViewModel = new RegistrationPageViewModel(reguser);
+            BindingContext = _registrationPageViewModel;
         }
 
-        //private void Editor_Completed(object sender, EventArgs e)
-        //{
+        protected async override void OnAppearing()
+        {
+            await _registrationPageViewModel.startupInitChecks();
+            base.OnAppearing();
+        }
 
-        //}
+
+        protected override void OnDisappearing()
+        {
+            _registrationPageViewModel.IsPageActive = false;
+            base.OnDisappearing();
+        }
+
+
     }
 }

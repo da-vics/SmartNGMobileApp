@@ -39,7 +39,7 @@
                     Grid.Row="0"
                     Margin="10"
                     FontFamily="{x:StaticResource KalamBoldFont}"
-                    FontSize="30"
+                    FontSize="45"
                     Text="Services"
                     TextColor="Wheat" />
 
@@ -134,7 +134,7 @@
                 AnimationType="Gear"
                 EnableAnimation="True"
                 HorizontalOptions="CenterAndExpand"
-                TextColor="DarkRed"
+                TextColor="LightBlue"
                 TitlePlacement="Bottom"
                 VerticalOptions="CenterAndExpand"
                 ViewBoxHeight="90"

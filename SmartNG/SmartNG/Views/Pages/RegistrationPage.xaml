@@ -3,194 +3,220 @@
     x:Class="SmartNG.Views.Pages.RegistrationPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:SmartNG"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="#243447"
     mc:Ignorable="d">
 
     <!--  Value Converter  -->
     <ContentPage.Resources>
 
         <ResourceDictionary>
+            <local:PageVisibilityValueConverter x:Key="PageVisibilityConverter" />
             <local:ButtonTextVisibilityValueConverter x:Key="BtnVisibilityConverter" />
         </ResourceDictionary>
 
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="#243447">
+    <Grid>
 
-        <!--  Content Definitions  -->
-        <Grid.RowDefinitions>
+        <Grid IsVisible="{Binding IsPageActive}">
+            <!--  Content Definitions  -->
+            <Grid.RowDefinitions>
 
-            <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
 
-            <!--  Margin  -->
-            <RowDefinition Height="5*" />
+                <!--  Margin  -->
+                <RowDefinition Height="5*" />
 
-            <RowDefinition Height="3*" />
+                <RowDefinition Height="3*" />
 
-            <!--  Register Options  -->
-            <RowDefinition Height="15*" />
+                <!--  Register Options  -->
+                <RowDefinition Height="15*" />
 
-            <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
 
 
-        </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="10" />
 
-            <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
 
-            <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
 
-            <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
 
-            <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="10" />
 
-        </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
 
-        <Image
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Margin="20"
-            HeightRequest="150"
-            Source="signupuser.png"
-            VerticalOptions="CenterAndExpand" />
+            <Image
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Margin="20"
+                HeightRequest="150"
+                Source="signupuser.png"
+                VerticalOptions="CenterAndExpand" />
 
-        <Label
-            Grid.Row="2"
-            Grid.Column="1"
-            Grid.ColumnSpan="3"
-            Margin="0,10,0,10"
-            FontAttributes="Bold"
-            FontFamily="{x:StaticResource KalamBoldFont}"
-            FontSize="30"
-            HorizontalOptions="Start"
-            HorizontalTextAlignment="Start"
-            Text="Additional Info"
-            TextColor="Wheat"
-            VerticalOptions="Center"
-            VerticalTextAlignment="Center" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Margin="0,10,0,10"
+                FontAttributes="Bold"
+                FontFamily="{x:StaticResource KalamBoldFont}"
+                FontSize="30"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Text="Additional Info"
+                TextColor="Wheat"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+
+            <StackLayout
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Margin="0"
+                HorizontalOptions="Start"
+                Spacing="25"
+                VerticalOptions="Start">
+
+                <!--#region  User Input-->
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="10" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="10" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Spacing="20">
+
+                        <inputLayout:SfTextInputLayout
+                            Margin="0"
+                            Padding="5"
+                            ContainerBackgroundColor="LightGray"
+                            ContainerType="Outlined"
+                            ErrorColor="Red"
+                            ErrorText="{Binding PhoneNumberValidation, Mode=TwoWay}"
+                            FocusedColor="DarkGray"
+                            HasError="{Binding HasPhoneNumberError}"
+                            Hint="Phone Number"
+                            OutlineCornerRadius="8"
+                            UnfocusedColor="DarkGray">
+
+                            <Entry
+                                Keyboard="Numeric"
+                                MaxLength="11"
+                                ReturnType="Next"
+                                Text="{Binding PhoneNumber, Mode=OneWayToSource}" />
+                        </inputLayout:SfTextInputLayout>
+
+
+                        <inputLayout:SfTextInputLayout
+                            Margin="0"
+                            Padding="5"
+                            ContainerBackgroundColor="LightGray"
+                            ErrorColor="Red"
+                            ErrorText="{Binding AddressValidation, Mode=TwoWay}"
+                            FocusedColor="Black"
+                            HasError="{Binding HasAddressError}"
+                            Hint="HomeAddress"
+                            UnfocusedColor="Black">
+
+                            <Editor
+                                AutoSize="TextChanges"
+                                Keyboard="Text"
+                                Text="{Binding HomeAddress, Mode=OneWayToSource}" />
+                        </inputLayout:SfTextInputLayout>
+
+                    </StackLayout>
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region proceedNextPage Btn-->
+                <Grid Margin="0" Padding="0">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="10" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="*" />
+
+                        <ColumnDefinition Width="10" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        BackgroundColor="DarkRed"
+                        Command="{Binding UserRegisterCommand}"
+                        CornerRadius="25"
+                        IsEnabled="{Binding isSignUpInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                        IsVisible="{Binding isSignUpInit, Converter={x:StaticResource BtnVisibilityConverter}}"
+                        Opacity="0.8"
+                        Style="{x:StaticResource CustomActionBtn}"
+                        Text="Register"
+                        TextColor="White" />
+
+                    <ActivityIndicator
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        IsEnabled="{Binding isSignUpInit}"
+                        IsRunning="{Binding isSignUpInit}"
+                        IsVisible="{Binding isSignUpInit}"
+                        Opacity="0.9"
+                        Color="DarkRed" />
+
+
+                </Grid>
+                <!--#endregion-->
+
+            </StackLayout>
+
+        </Grid>
 
         <StackLayout
-            Grid.Row="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="5"
-            Margin="0"
-            HorizontalOptions="Start"
-            Spacing="25"
-            VerticalOptions="Start">
+            Margin="10"
+            Padding="10"
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding IsPageActive, Converter={StaticResource PageVisibilityConverter}}"
+            VerticalOptions="CenterAndExpand">
 
-            <!--#region  User Input-->
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition Width="10" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="10" />
-
-                </Grid.ColumnDefinitions>
-
-                <StackLayout
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    Spacing="20">
-
-                    <inputLayout:SfTextInputLayout
-                        Margin="0"
-                        Padding="5"
-                        ContainerBackgroundColor="LightGray"
-                        ContainerType="Outlined"
-                        ErrorColor="Red"
-                        ErrorText="{Binding PhoneNumberValidation, Mode=TwoWay}"
-                        FocusedColor="DarkGray"
-                        HasError="{Binding HasPhoneNumberError}"
-                        Hint="Phone Number"
-                        OutlineCornerRadius="8"
-                        UnfocusedColor="DarkGray">
-
-                        <Entry
-                            Keyboard="Numeric"
-                            MaxLength="11"
-                            ReturnType="Next"
-                            Text="{Binding PhoneNumber, Mode=OneWayToSource}" />
-                    </inputLayout:SfTextInputLayout>
-
-
-                    <inputLayout:SfTextInputLayout
-                        Margin="0"
-                        Padding="5"
-                        ContainerBackgroundColor="LightGray"
-                        ErrorColor="Red"
-                        ErrorText="{Binding AddressValidation, Mode=TwoWay}"
-                        FocusedColor="Black"
-                        HasError="{Binding HasAddressError}"
-                        Hint="HomeAddress"
-                        UnfocusedColor="Black">
-
-                        <Editor
-                            AutoSize="TextChanges"
-                            Keyboard="Text"
-                            Text="{Binding HomeAddress, Mode=OneWayToSource}" />
-                    </inputLayout:SfTextInputLayout>
-
-                </StackLayout>
-            </Grid>
-            <!--#endregion-->
-
-            <!--#region proceedNextPage Btn-->
-            <Grid Margin="0" Padding="0">
-
-                <Grid.ColumnDefinitions>
-
-                    <ColumnDefinition Width="10" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="*" />
-
-                    <ColumnDefinition Width="10" />
-
-                </Grid.ColumnDefinitions>
-
-                <Button
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    BackgroundColor="DarkRed"
-                    Command="{Binding UserRegisterCommand}"
-                    CornerRadius="25"
-                    IsEnabled="{Binding isSignUpInit, Converter={x:StaticResource BtnVisibilityConverter}}"
-                    IsVisible="{Binding isSignUpInit, Converter={x:StaticResource BtnVisibilityConverter}}"
-                    Opacity="0.8"
-                    Style="{x:StaticResource CustomActionBtn}"
-                    Text="Register"
-                    TextColor="White" />
-
-                <ActivityIndicator
-                    Grid.Column="1"
-                    Grid.ColumnSpan="3"
-                    IsEnabled="{Binding isSignUpInit}"
-                    IsRunning="{Binding isSignUpInit}"
-                    IsVisible="{Binding isSignUpInit}"
-                    Opacity="0.9"
-                    Color="DarkRed" />
-
-
-            </Grid>
-            <!--#endregion-->
+            <busyindicator:SfBusyIndicator
+                Title="Loading.."
+                AnimationType="Ball"
+                EnableAnimation="True"
+                HorizontalOptions="CenterAndExpand"
+                TextColor="LightBlue"
+                TitlePlacement="Bottom"
+                VerticalOptions="CenterAndExpand"
+                ViewBoxHeight="90"
+                ViewBoxWidth="90" />
 
         </StackLayout>
 
