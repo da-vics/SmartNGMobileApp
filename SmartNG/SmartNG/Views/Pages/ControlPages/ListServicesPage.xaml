@@ -34,7 +34,6 @@
                 </Grid.RowDefinitions>
 
 
-
                 <Label
                     Grid.Row="0"
                     Margin="10"
@@ -54,8 +53,11 @@
                     <ListView
                         x:Name="ServiceList"
                         HasUnevenRows="True"
-                        IsPullToRefreshEnabled="False"
+                        IsPullToRefreshEnabled="{Binding IsPullToRefresh}"
+                        IsRefreshing="{Binding IsRefreshing}"
                         ItemsSource="{Binding UserServices}"
+                        RefreshCommand="{Binding RefreshListCommand}"
+                        RefreshControlColor="DarkRed"
                         SeparatorColor="White">
                         <ListView.ItemTemplate>
 
@@ -103,20 +105,62 @@
 
                 </Frame>
 
-                <ImageButton
+                <StackLayout
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding Noservices}"
+                    Spacing="0"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Margin="10,10,10,0"
+                        FontFamily="{x:StaticResource KalamBoldFont}"
+                        FontSize="45"
+                        HorizontalOptions="Center"
+                        Text="No Services"
+                        TextColor="Wheat"
+                        VerticalOptions="Center" />
+
+                    <Label
+                        FontFamily="{x:StaticResource KalamRegularFont}"
+                        FontSize="25"
+                        HorizontalOptions="End"
+                        Text="add new service"
+                        TextColor="Wheat"
+                        VerticalOptions="Center" />
+
+                </StackLayout>
+
+
+                <StackLayout
                     Grid.Row="2"
-                    Margin="0,10,0,0"
-                    Padding="0"
-                    BackgroundColor="Transparent"
-                    BorderColor="Transparent"
-                    Command="{Binding AddServiceCommand}"
-                    CornerRadius="35"
-                    HeightRequest="70"
                     HorizontalOptions="End"
-                    Opacity="0.95"
-                    Source="addBtn.png"
-                    VerticalOptions="End"
-                    WidthRequest="80" />
+                    Spacing="0"
+                    VerticalOptions="End">
+
+                    <ImageButton
+                        Margin="0,10,0,0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        Command="{Binding AddServiceCommand}"
+                        CornerRadius="35"
+                        HeightRequest="70"
+                        HorizontalOptions="End"
+                        Opacity="0.95"
+                        Source="addBtn.png"
+                        VerticalOptions="End"
+                        WidthRequest="80" />
+
+                    <Label
+                        FontFamily="{x:StaticResource KalamRegularFont}"
+                        HorizontalOptions="Center"
+                        Text="Click!"
+                        TextColor="Wheat"
+                        VerticalOptions="End" />
+
+                </StackLayout>
+
 
             </Grid>
 

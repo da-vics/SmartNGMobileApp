@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SmartNG.DataProfiles;
+using SmartNG.DataProfiles.ErrorMessagesProfiles;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -27,8 +29,6 @@ namespace SmartNG.RestAPIClientHandlers
             {
                 using (var client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                     var stringedProfile = await Task.Run(() => JsonConvert.SerializeObject(_addService));
 
@@ -45,12 +45,42 @@ namespace SmartNG.RestAPIClientHandlers
                         else
                         {
                             _isAddSuccessful = false;
+
+                            using (HttpContent check = response.Content)
+                            {
+                                string test = await check.ReadAsStringAsync();
+                                RestApiErrorMessages errorMessages = await Task.Run(() => JsonConvert.DeserializeObject<RestApiErrorMessages>(test));
+
+                                if (errorMessages.Message == "Device not Found!")
+                                    throw new SmartNgHttpException("Device not Found!");
+
+                                else if (errorMessages.Message == "ServiceName already exist")
+                                    throw new SmartNgHttpException("ServiceName already exist");
+                            }
+
                         }
 
                     }
                 } ///end of main CLient Http Content
 
             } ///try block end
+
+            catch (SmartNgHttpException)
+            {
+                throw;
+            }
+
+            catch (HttpRequestException args)
+            {
+                Console.WriteLine(args.Message);
+                return false;
+            }
+
+            catch (ArgumentNullException args)
+            {
+                Console.WriteLine(args.Message);
+                return false;
+            }
 
             catch (Exception args)
             {

@@ -13,6 +13,7 @@ using System.Net.Http.Headers;
 using SmartNG.RestAPIClientHandlers;
 using SmartNG.Helpers;
 using Android.Renderscripts;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 
 namespace SmartNG
 {
@@ -31,7 +32,7 @@ namespace SmartNG
 
         private bool _allowRegister { get; set; } = false;
 
-        private bool _IsRegSuccessful { get; set; } = false;
+        private bool? _IsRegSuccessful { get; set; } = false;
 
         private bool _isPageActive { get; set; } = false;
         #endregion
@@ -190,7 +191,6 @@ namespace SmartNG
 
         #endregion
 
-
         private async Task RegisterUser()
         {
 
@@ -217,12 +217,22 @@ namespace SmartNG
 
                 var registeruser = new RegisterUserApi(newUserProfile);
 
-                _IsRegSuccessful = await registeruser.RegisterUser();
+                try
+                {
+                    _IsRegSuccessful = await registeruser.RegisterUser();
+
+                }
+                catch (SmartNgHttpException args)
+                {
+                    _IsRegSuccessful = null;
+                    Console.WriteLine(args.Message);
+                }
+
 
                 this.isSignUpInit = false;
             });
 
-            if (_IsRegSuccessful)
+            if (_IsRegSuccessful == true)
             {
                 _IsRegSuccessful = false;
                 await Application.Current.MainPage.DisplayAlert("Registration", "Sucessful", "Login");
@@ -230,10 +240,17 @@ namespace SmartNG
                 Application.Current.MainPage = new NavigationPage(new MainPage(newUserProfile.Email, newUserProfile.PassWordHash));
             }////
 
-            else
+            else if (_IsRegSuccessful == null)
             {
                 _IsRegSuccessful = false;
-                await Application.Current.MainPage.DisplayAlert("test error", "Failed", "Retry");
+                await Application.Current.MainPage.DisplayAlert("Registration Error", "Email registered to a user!", "Retry");
+                await Application.Current.MainPage.Navigation.PopModalAsync();
+            }////
+
+
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Service Error", "Try Again", "Retry");
             } ///
         }
 

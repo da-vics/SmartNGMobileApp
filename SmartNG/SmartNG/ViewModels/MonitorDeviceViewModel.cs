@@ -1,6 +1,7 @@
 ﻿using Java.Lang;
 using SmartNG.DataProfiles;
 using SmartNG.RestAPIClientHandlers;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 using Syncfusion.SfGauge.XForms;
 using System;
 using System.Collections.Generic;
@@ -65,8 +66,15 @@ namespace SmartNG
 
             await Task.Run(async () =>
            {
+               try
+               {
+                   await UpdateData();
+               }
 
-               await UpdateData();
+               catch (SmartNgHttpException args)
+               {
+                   ///Console.WriteLine(args.Message);
+               }
 
                IsPageActive = true; /// test
 
@@ -78,7 +86,16 @@ namespace SmartNG
                 {
                     await Task.Run(async () =>
                     {
-                        await UpdateData();
+
+                        try
+                        {
+                            await UpdateData();
+                        }
+                        catch (SmartNgHttpException args)
+                        {
+                            Console.WriteLine(args.Message);
+                        }
+
                     });
                 }
 
@@ -90,7 +107,17 @@ namespace SmartNG
         {
             var getServiceData = new GetServiceDataApi(_servicesProfile);
 
-            _servicesData = await getServiceData.GetUserServices();
+
+            try
+            {
+                _servicesData = await getServiceData.GetUserServices();
+
+            }
+
+            catch (SmartNgHttpException)
+            {
+                throw;
+            }
 
 
             if (_servicesData != null && _servicesData.userdata != null)

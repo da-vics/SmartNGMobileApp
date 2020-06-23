@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SmartNG.DataProfiles;
+using SmartNG.DataProfiles.ErrorMessagesProfiles;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -22,14 +24,10 @@ namespace SmartNG.RestAPIClientHandlers
         public async Task<bool> RegisterUser()
         {
 
-
             try
             {
                 using (var client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
                     var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(_registerUser));
 
                     var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
@@ -40,16 +38,21 @@ namespace SmartNG.RestAPIClientHandlers
                         if (response.IsSuccessStatusCode)
                         {
                             _isRegSuccessful = true;
-
-                            //using (HttpContent check = response.Content)
-                            //{
-                            //    string test = await check.ReadAsStringAsync();
-                            //}
                         }
 
                         else
                         {
                             _isRegSuccessful = false;
+
+
+                            using (HttpContent check = response.Content)
+                            {
+                                string test = await check.ReadAsStringAsync();
+                                RestApiErrorMessages errorMessages = await Task.Run(() => JsonConvert.DeserializeObject<RestApiErrorMessages>(test));
+
+                                if (errorMessages.Message.Contains($"a user with this email {_registerUser.Email}"))
+                                    throw new SmartNgHttpException("a user with this email {_registerUser.Email}");
+                            }
                         }
 
                     }
@@ -57,12 +60,28 @@ namespace SmartNG.RestAPIClientHandlers
 
             } ///try block end
 
-            catch (Exception args)
+            catch (SmartNgHttpException)
+            {
+                throw;
+            }
+
+            catch (HttpRequestException args)
             {
                 Console.WriteLine(args.Message);
                 return false;
             }
 
+            catch (ArgumentNullException args)
+            {
+                Console.WriteLine(args.Message);
+                return false;
+            }
+
+            catch (Exception args)
+            {
+                Console.WriteLine(args.Message);
+                return false;
+            }
 
             return _isRegSuccessful;
         }

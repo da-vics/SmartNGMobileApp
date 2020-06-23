@@ -1,5 +1,6 @@
 ﻿using SmartNG.DataProfiles;
 using SmartNG.RestAPIClientHandlers;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 using SmartNG.Views.Pages.ControlPages;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace SmartNG
         private string _deviceId { get; set; } = string.Empty;
         private bool _isAddService { get; set; } = false;
 
-        private bool _isAddServiceSuccessful { get; set; } = false;
+        private bool? _isAddServiceSuccessful { get; set; } = false;
 
         private string _serviceValidation { get; set; } = "required";
         private string _weightValidation { get; set; } = "required";
@@ -30,6 +31,8 @@ namespace SmartNG
         private bool _hasDeviceIdError { get; set; } = true;
 
         private bool _isPageActive { get; set; } = false;
+
+        private string _addServiceErrorMessage { get; set; } = string.Empty;
 
         #endregion
 
@@ -283,28 +286,41 @@ namespace SmartNG
 
                      var addUserService = new AddUserServiceApi(UserSerivceProfile);
 
-                     _isAddServiceSuccessful = await addUserService.addNewService();
+                     try
+                     {
+                         _isAddServiceSuccessful = await addUserService.addNewService();
+                     }
+
+                     catch (SmartNgHttpException args)
+                     {
+                         _isAddServiceSuccessful = null;
+                         _addServiceErrorMessage = args.Message;
+                     }
 
                      isAddService = false;
                  }///
 
                  else
                  {
-
+                     /// test
                  }
 
              });
 
-            if (_isAddServiceSuccessful)
+            if (_isAddServiceSuccessful == true)
             {
                 await Application.Current.MainPage.DisplayAlert("Successful", "Service Added", "Ok");
                 await Application.Current.MainPage.Navigation.PopModalAsync();
             }
 
+            else if (_isAddServiceSuccessful == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", _addServiceErrorMessage, "Ok");
+            }
 
             else
             {
-                await Application.Current.MainPage.DisplayAlert("failed", "Try Again", "Retry"); //test
+                await Application.Current.MainPage.DisplayAlert("Service Error", "Try Again", "Retry"); //test
             }
 
         }///

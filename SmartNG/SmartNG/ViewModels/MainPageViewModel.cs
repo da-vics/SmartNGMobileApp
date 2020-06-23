@@ -2,6 +2,7 @@
 using Android.Util;
 using SmartNG.DataProfiles;
 using SmartNG.RestAPIClientHandlers;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 using SmartNG.Views.Pages;
 using System;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace SmartNG
         private bool _hasEmailError { get; set; } = true;
         private bool _hasPasswordError { get; set; } = true;
 
-        private bool _IsLogSuccessful { get; set; } = false;
+        private bool? _IsLogSuccessful { get; set; } = false;
         #endregion
 
         #region PublicMembers
@@ -200,22 +201,38 @@ namespace SmartNG
 
                 var loginUser = new LoginUserApi(loginProfile);
 
-                _IsLogSuccessful = await loginUser.LoginUser();
+                try
+                {
+                    _IsLogSuccessful = await loginUser.LoginUser();
+                }
+
+                catch (SmartNgHttpException args)
+                {
+                    _IsLogSuccessful = null;
+                    Console.WriteLine(args.Message);
+                }
+
 
                 isLoginInit = false;
             });
 
 
-            if (_IsLogSuccessful)
+            if (_IsLogSuccessful == true)
             {
                 Application.Current.MainPage = new ControlPage();
                 await Application.Current.MainPage.Navigation.PopToRootAsync(false);
             }
 
+            else if (_IsLogSuccessful == null)
+            {
+
+                await Application.Current.MainPage.DisplayAlert("User Not Found", "Login Failed", "Retry");
+
+            }
 
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Login Failed", "Try Again", "Retry");
+                await Application.Current.MainPage.DisplayAlert("Service Error", "Login Failed", "Retry");
             }
 
         }

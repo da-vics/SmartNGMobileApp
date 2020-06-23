@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SmartNG.DataProfiles;
+using SmartNG.DataProfiles.ErrorMessagesProfiles;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -16,6 +18,7 @@ namespace SmartNG.RestAPIClientHandlers
         private LoginProfile _LoginProfile { get; set; }
         private bool _isLogSuccessful { get; set; } = false;
 
+
         public LoginUserApi(LoginProfile loginProfile)
         {
             _LoginProfile = loginProfile;
@@ -28,9 +31,6 @@ namespace SmartNG.RestAPIClientHandlers
             {
                 using (var client = new HttpClient())
                 {
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
                     var stringedProfile = await Task.Run(() => JsonConvert.SerializeObject(_LoginProfile));
 
                     var httpContent = new StringContent(stringedProfile, Encoding.UTF8, "application/json");
@@ -54,12 +54,39 @@ namespace SmartNG.RestAPIClientHandlers
                         else
                         {
                             _isLogSuccessful = false;
+
+                            using (HttpContent check = response.Content)
+                            {
+                                string test = await check.ReadAsStringAsync();
+                                RestApiErrorMessages errorMessages = await Task.Run(() => JsonConvert.DeserializeObject<RestApiErrorMessages>(test));
+
+                                if (errorMessages.Message == "User Not Found")
+                                    throw new SmartNgHttpException("User Not Found");
+                            }
                         }
 
                     }
                 } ///end of main CLient Http Content
 
             } ///try block end
+
+            catch (SmartNgHttpException)
+            {
+                throw;
+            }
+
+
+            catch (HttpRequestException args)
+            {
+                Console.WriteLine(args.Message);
+                return false;
+            }
+
+            catch (ArgumentNullException args)
+            {
+                Console.WriteLine(args.Message);
+                return false;
+            }
 
             catch (Exception args)
             {

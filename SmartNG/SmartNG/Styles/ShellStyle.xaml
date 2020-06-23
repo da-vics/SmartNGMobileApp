@@ -21,7 +21,7 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Selected">
                         <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="LightGray" />
+                            <Setter Property="BackgroundColor" Value="DarkGray" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -31,5 +31,7 @@
 
 
     <Style BasedOn="{StaticResource baseStyle}" TargetType="FlyoutItem" />
+
+    <Style BasedOn="{StaticResource baseStyle}" TargetType="MenuItem" />
 
 </ResourceDictionary>

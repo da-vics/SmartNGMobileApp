@@ -1,6 +1,7 @@
 ﻿using Java.Lang;
 using SmartNG.DataProfiles;
 using SmartNG.RestAPIClientHandlers;
+using SmartNG.RestAPIClientHandlers.CustomExceptions;
 using SmartNG.Views.Pages.ControlPages;
 using System;
 using System.Collections.ObjectModel;
@@ -14,8 +15,19 @@ namespace SmartNG
     {
         private bool _isPageActive { get; set; } = false;
 
+        private bool _noSerivces { get; set; } = false;
+
+        private bool _isRefreshing { get; set; } = false;
+
+        private bool _isPullToRefresh { get; set; } = false;
+
+
+
+
         private ObservableCollection<GetServicesProfile> _userServices { get; set; } = null;
 
+
+        #region Accessors
         public ObservableCollection<GetServicesProfile> UserServices
         {
             get => _userServices;
@@ -27,6 +39,43 @@ namespace SmartNG
 
             }
 
+        }
+
+
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+
+            set
+            {
+                _isRefreshing = value;
+                onPropertyChanged();
+
+            }
+        }
+
+        public bool IsPullToRefresh
+        {
+            get => _isPullToRefresh;
+
+            set
+            {
+                _isPullToRefresh = value;
+                onPropertyChanged();
+
+            }
+        }
+
+        public bool Noservices
+        {
+            get => _noSerivces;
+
+            set
+            {
+                _noSerivces = value;
+                onPropertyChanged();
+
+            }
         }
 
         public bool IsPageActive
@@ -41,11 +90,15 @@ namespace SmartNG
             }
         }
 
+        #endregion
+
         public ICommand AddServiceCommand { get; private set; }
+
+        public ICommand RefreshListCommand { get; private set; }
 
         public ListServicePageViewModel()
         {
-
+            Noservices = false;
             AddServiceCommand = new Command(async () => await AddNewUserService());
 
         }
@@ -68,15 +121,15 @@ namespace SmartNG
                 {
                     UserServices = await serviceapi.GetUserServices();
 
-
                     IsPageActive = true;
                 }
 
-                catch (ArgumentNullException args)
+                catch (SmartNgHttpException args)
                 {
+                    IsPageActive = true;
+                    Noservices = true;
                     Console.WriteLine(args.Message);
                 }
-
 
             });
         }
