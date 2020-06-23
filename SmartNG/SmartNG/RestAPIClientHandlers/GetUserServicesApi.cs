@@ -98,22 +98,9 @@ namespace SmartNG.RestAPIClientHandlers
                 throw;
             }
 
-            catch (HttpRequestException args)
+            catch (Exception)
             {
-                Console.WriteLine(args.Message);
-                return null;
-            }
-
-            catch (ArgumentNullException args)
-            {
-                Console.WriteLine(args.Message);
-                return null;
-            }
-
-            catch (Exception args)
-            {
-                Console.WriteLine(args.Message);
-                return null;
+                throw;
             }
 
 

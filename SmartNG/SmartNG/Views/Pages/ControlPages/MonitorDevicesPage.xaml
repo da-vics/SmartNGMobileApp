@@ -48,78 +48,109 @@
 
                 <StackLayout
                     Grid.Row="1"
-                    Margin="10"
                     HorizontalOptions="CenterAndExpand"
-                    Spacing="10"
                     VerticalOptions="Center">
 
-                    <gauge:SfCircularGauge
-                        x:Name="Gauge"
-                        HorizontalOptions="Center"
-                        IsEnabled="{Binding IsPageActive}"
+                    <StackLayout
+                        Margin="10"
+                        HorizontalOptions="CenterAndExpand"
+                        IsVisible="{Binding NoservicesData, Converter={StaticResource PageVisibilityConverter}}"
+                        Spacing="10"
                         VerticalOptions="Center">
 
-                        <gauge:SfCircularGauge.Scales>
+                        <gauge:SfCircularGauge
+                            x:Name="Gauge"
+                            HorizontalOptions="Center"
+                            IsEnabled="{Binding IsPageActive}"
+                            VerticalOptions="Center">
 
-                            <gauge:Scale
-                                EndValue="100"
-                                Interval="10"
-                                LabelColor="White"
-                                LabelFontSize="15"
-                                LabelOffset="0.75"
-                                RadiusFactor="1"
-                                RimColor="Gray"
-                                RimThickness="30"
-                                ShowTicks="False"
-                                StartValue="0">
+                            <gauge:SfCircularGauge.Scales>
 
-                                <gauge:Scale.Pointers>
+                                <gauge:Scale
+                                    EndValue="100"
+                                    Interval="10"
+                                    LabelColor="White"
+                                    LabelFontSize="15"
+                                    LabelOffset="0.75"
+                                    RadiusFactor="1"
+                                    RimColor="Gray"
+                                    RimThickness="30"
+                                    ShowTicks="False"
+                                    StartValue="0">
 
-
-                                    <gauge:RangePointer
-                                        x:Name="Pointer1"
-                                        AnimationDuration="2"
-                                        EnableAnimation="{Binding IsPageActive}"
-                                        Thickness="30"
-                                        Offset="1"
-                                        Color="Green"
-                                        Value="{Binding Value}" />
-
-                                    <gauge:NeedlePointer
-                                        x:Name="Pointer2"
-                                        AnimationDuration="2"
-                                        EnableAnimation="{Binding IsPageActive}"
-                                        KnobColor="White"
-                                        KnobRadius="12"
-                                        KnobStrokeColor="DarkRed"
-                                        KnobStrokeWidth="8"
-                                        LengthFactor="0.55"
-                                        TailColor="DarkRed"
-                                        TailLengthFactor="0.2"
-                                        TailStrokeColor="DarkRed"
-                                        TailStrokeWidth="2"
-                                        Thickness="7"
-                                        Type="Triangle"
-                                        Color="DarkRed"
-                                        Value="{Binding Value}" />
-
-                                </gauge:Scale.Pointers>
-
-                            </gauge:Scale>
-
-                        </gauge:SfCircularGauge.Scales>
-
-                    </gauge:SfCircularGauge>
+                                    <gauge:Scale.Pointers>
 
 
-                    <Label
-                        Margin="10"
-                        FontFamily="{x:StaticResource KalamRegularFont}"
-                        FontSize="45"
+                                        <gauge:RangePointer
+                                            x:Name="Pointer1"
+                                            AnimationDuration="2"
+                                            EnableAnimation="{Binding IsPageActive}"
+                                            Thickness="30"
+                                            Offset="1"
+                                            Color="Green"
+                                            Value="{Binding Value}" />
+
+                                        <gauge:NeedlePointer
+                                            x:Name="Pointer2"
+                                            AnimationDuration="2"
+                                            EnableAnimation="{Binding IsPageActive}"
+                                            KnobColor="White"
+                                            KnobRadius="12"
+                                            KnobStrokeColor="DarkRed"
+                                            KnobStrokeWidth="8"
+                                            LengthFactor="0.55"
+                                            TailColor="DarkRed"
+                                            TailLengthFactor="0.2"
+                                            TailStrokeColor="DarkRed"
+                                            TailStrokeWidth="2"
+                                            Thickness="7"
+                                            Type="Triangle"
+                                            Color="DarkRed"
+                                            Value="{Binding Value}" />
+
+                                    </gauge:Scale.Pointers>
+
+                                </gauge:Scale>
+
+                            </gauge:SfCircularGauge.Scales>
+
+                        </gauge:SfCircularGauge>
+
+
+                        <Label
+                            Margin="10"
+                            FontFamily="{x:StaticResource KalamRegularFont}"
+                            FontSize="45"
+                            HorizontalOptions="Center"
+                            Text="{Binding Value, StringFormat='{0:F2}%'}"
+                            TextColor="Wheat"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+
+                    <StackLayout
                         HorizontalOptions="Center"
-                        Text="{Binding Value, StringFormat='{0:F2}%'}"
-                        TextColor="Wheat"
-                        VerticalOptions="Center" />
+                        IsVisible="{Binding NoservicesData}"
+                        Spacing="0"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Margin="10,10,10,0"
+                            FontFamily="{x:StaticResource KalamBoldFont}"
+                            FontSize="45"
+                            HorizontalOptions="Center"
+                            Text="{Binding NoServiceMessage1}"
+                            TextColor="Wheat"
+                            VerticalOptions="Center" />
+
+                        <Label
+                            FontFamily="{x:StaticResource KalamRegularFont}"
+                            FontSize="25"
+                            HorizontalOptions="End"
+                            Text="{Binding NoServiceMessage2}"
+                            TextColor="Wheat"
+                            VerticalOptions="Center" />
+
+                    </StackLayout>
 
                 </StackLayout>
 

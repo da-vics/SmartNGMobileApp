@@ -117,7 +117,7 @@
                         FontFamily="{x:StaticResource KalamBoldFont}"
                         FontSize="45"
                         HorizontalOptions="Center"
-                        Text="No Services"
+                        Text="{Binding NoServiceMessage1}"
                         TextColor="Wheat"
                         VerticalOptions="Center" />
 
@@ -125,7 +125,7 @@
                         FontFamily="{x:StaticResource KalamRegularFont}"
                         FontSize="25"
                         HorizontalOptions="End"
-                        Text="add new service"
+                        Text="{Binding NoServiceMessage2}"
                         TextColor="Wheat"
                         VerticalOptions="Center" />
 
@@ -187,7 +187,6 @@
         </StackLayout>
 
     </Grid>
-
 
 
 </ContentPage>

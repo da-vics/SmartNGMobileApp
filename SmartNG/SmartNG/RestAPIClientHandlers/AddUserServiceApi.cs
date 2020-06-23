@@ -56,6 +56,9 @@ namespace SmartNG.RestAPIClientHandlers
 
                                 else if (errorMessages.Message == "ServiceName already exist")
                                     throw new SmartNgHttpException("ServiceName already exist");
+
+                                else if (errorMessages.Message == "DeviceId has been registered")
+                                    throw new SmartNgHttpException("DeviceId has been registered");
                             }
 
                         }

@@ -73,8 +73,8 @@ namespace SmartNG.RestAPIClientHandlers
                                 string test = await check.ReadAsStringAsync();
                                 RestApiErrorMessages errorMessages = await Task.Run(() => JsonConvert.DeserializeObject<RestApiErrorMessages>(test));
 
-                                if (errorMessages.Message == "No Services")
-                                    throw new SmartNgHttpException("No Services");
+                                if (errorMessages.Message == "No Data")
+                                    throw new SmartNgHttpException("No Data");
                             }
 
                         }
@@ -107,7 +107,6 @@ namespace SmartNG.RestAPIClientHandlers
                 Console.WriteLine(args.Message);
                 return null;
             }
-
 
             return null;
         }

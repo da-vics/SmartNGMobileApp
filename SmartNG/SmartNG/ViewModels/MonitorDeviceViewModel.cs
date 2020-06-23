@@ -14,6 +14,8 @@ namespace SmartNG
     {
         private bool _isPageActive { get; set; } = false;
 
+        private bool _noSerivceData { get; set; } = false;
+
         private GetServicesProfile _servicesProfile { get; set; }
 
         private ServicesDataProfile _servicesData { get; set; } = null;
@@ -24,6 +26,48 @@ namespace SmartNG
 
         private double _value { get; set; } = 0;
 
+        private string _noServiceMessage1 { get; set; } = string.Empty;
+        private string _noServiceMessage2 { get; set; } = string.Empty;
+
+
+
+        public bool NoservicesData
+        {
+            get => _noSerivceData;
+
+            set
+            {
+                _noSerivceData = value;
+                onPropertyChanged();
+
+            }
+        }
+
+        public string NoServiceMessage1
+        {
+
+            get => _noServiceMessage1;
+
+            set
+            {
+                _noServiceMessage1 = value;
+                onPropertyChanged();
+            }
+
+        }
+
+        public string NoServiceMessage2
+        {
+
+            get => _noServiceMessage2;
+
+            set
+            {
+                _noServiceMessage2 = value;
+                onPropertyChanged();
+            }
+
+        }
 
         public double Value
         {
@@ -63,22 +107,29 @@ namespace SmartNG
         public async Task startupInitChecks()
         {
             IsPageActive = false;
+            NoservicesData = false;
+            NoServiceMessage1 = string.Empty;
+            NoServiceMessage2 = string.Empty;
 
-            await Task.Run(async () =>
-           {
-               try
-               {
-                   await UpdateData();
-               }
+            // await Task.Run(async () =>
+            //{
+            //    try
+            //    {
+            //        await UpdateData();
+            //        NoservicesData = false;
+            //    }
 
-               catch (SmartNgHttpException args)
-               {
-                   ///Console.WriteLine(args.Message);
-               }
+            //    catch (SmartNgHttpException args)
+            //    {
+            //        NoservicesData = true;
+            //        NoServiceMessage1 = "No Data Yet";
+            //        NoServiceMessage2 = "make sure device is setup!";
+            //        Console.WriteLine(args.Message);
+            //    }
 
-               IsPageActive = true; /// test
 
-           });
+
+            //});
 
             await Task.Run(async () =>
             {
@@ -90,11 +141,17 @@ namespace SmartNG
                         try
                         {
                             await UpdateData();
+                            NoservicesData = false;
                         }
                         catch (SmartNgHttpException args)
                         {
+                            NoservicesData = true;
+                            NoServiceMessage1 = "No Data Yet";
+                            NoServiceMessage2 = "make sure device is setup!";
                             Console.WriteLine(args.Message);
                         }
+
+                        IsPageActive = true; /// test
 
                     });
                 }
