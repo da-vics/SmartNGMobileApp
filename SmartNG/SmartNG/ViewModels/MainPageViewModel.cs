@@ -169,6 +169,7 @@ namespace SmartNG
 
         public MainPageViewModel()
         {
+
             UserLoginCommand = new Command(async () => await loginUser());
             this.isLoginInit = false;
             RegisterUserCommand = new Command(async () => await UserRegistrationPageSwitch());
@@ -253,6 +254,12 @@ namespace SmartNG
 
         public async Task startupInitChecks()
         {
+            if (Application.Current.Properties.ContainsKey("ApiKey"))
+            {
+                Application.Current.Properties["ApiKey"] = null;
+                await Application.Current.SavePropertiesAsync();
+            }
+
             IsPageActive = false;
 
             await Task.Run(async () =>

@@ -16,19 +16,14 @@ namespace SmartNG
 
         public ControlPageViewModel()
         {
-            UserLogout = new Command(async () => await LogOutuser());
+            UserLogout = new Command(LogOutuser);
         }
 
-        private async Task LogOutuser()
+        private void LogOutuser()
         {
-            if (Application.Current.Properties.ContainsKey("ApiKey"))
-            {
-                Application.Current.Properties["ApiKey"] = null;
-                await Application.Current.SavePropertiesAsync();
-            }
 
             Application.Current.MainPage = new NavigationPage(new MainPage());
-            await Application.Current.MainPage.Navigation.PopToRootAsync(false);
+
         }
 
     }
