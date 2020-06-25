@@ -171,9 +171,6 @@
     <BundleResource Include="Resources\logout.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\addService.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\contactUs.png" />
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +189,6 @@
     <BundleResource Include="Resources\qrcodeicon.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\addBtn.png" />
+    <BundleResource Include="Resources\addServiceBtn.png" />
   </ItemGroup>
 </Project>

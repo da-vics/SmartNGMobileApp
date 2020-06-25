@@ -139,18 +139,19 @@
                     VerticalOptions="End">
 
                     <ImageButton
-                        Margin="0,10,0,0"
+                        Margin="10,10,10,0"
                         Padding="0"
-                        BackgroundColor="Transparent"
+                        BackgroundColor="#E74C3C"
                         BorderColor="Transparent"
+                        BorderWidth="0"
                         Command="{Binding AddServiceCommand}"
-                        CornerRadius="35"
-                        HeightRequest="70"
+                        CornerRadius="30"
+                        HeightRequest="60"
                         HorizontalOptions="End"
                         Opacity="0.95"
-                        Source="addBtn.png"
+                        Source="addServiceBtn.png"
                         VerticalOptions="End"
-                        WidthRequest="80" />
+                        WidthRequest="60" />
 
                     <Label
                         FontFamily="{x:StaticResource KalamRegularFont}"
